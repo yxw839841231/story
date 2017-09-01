@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 配置自定义Realm -->
+    <bean id="UserRealm" class="cn.zjoin.story.core.shiro.UserRealm"/>
+
+    <!-- 安全管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="UserRealm"/>
+        <!-- cacheManager -->
+        <property name="cacheManager" ref="cacheManager"/>
+        <!-- sessionManager -->
+        <property name="sessionManager" ref="sessionManager" />
+
+        <property name="rememberMeManager" ref="rememberMeManager"/>
+    </bean>
+
+    <!-- sessionManager -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+         <!--设置全局会话超时时间，默认30分钟(1800000)-->
+        <!--<property name="globalSessionTimeout" value="6000"/>-->
+        <!-- 是否在会话过期后会调用SessionDAO的delete方法删除会话 默认true-->
+        <!--<property name="deleteInvalidSessions" value="false"/>-->
+        <!-- 是否开启会话验证器任务 默认true -->
+        <!--<property name="sessionValidationSchedulerEnabled" value="false"/>-->
+        <!-- 会话验证器调度时间 -->
+        <!--<property name="sessionValidationInterval" value="5000"/>-->
+        <property name="sessionDAO" ref="redisSessionDAO" />
+    </bean>
+
+    <!-- cacheManager -->
+    <bean id="cacheManager" class="org.crazycake.shiro.RedisCacheManager">
+        <property name="redisManager" ref="redisManager" />
+    </bean>
+
+    <!-- redisSessionDAO -->
+    <bean id="redisSessionDAO" class="org.crazycake.shiro.RedisSessionDAO">
+        <property name="redisManager" ref="redisManager" />
+    </bean>
+
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('5AvVhmFLUS0ATA4Kprsdag==')}"/>
+        <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="meiwo"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="2592000"/><!-- 30天 -->
+    </bean>
+
+    <!-- shiro redisManager -->
+    <bean id="redisManager" class="org.crazycake.shiro.RedisManager">
+        <property name="host" value="${redis.ip}"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="password" value="${redis.password}"/>
+        <property name="expire" value="${redis.expire}"/>
+        <property name="timeout" value="${redis.timeout}"/>
+    </bean>
+
+    <!-- Shiro过滤器 核心-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- Shiro的核心安全接口,这个属性是必须的 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 身份认证失败，则跳转到登录页面的配置 -->
+        <property name="loginUrl" value="/v1/user/timeout"/>
+        <!-- 权限认证失败，则跳转到指定页面 -->
+        <property name="unauthorizedUrl" value="/v1/user/timeout"/>
+        <!-- Shiro连接约束配置,即过滤链的定义 -->
+        <property name="filterChainDefinitions">
+            <value>
+                <!--authc表示需要认证 没有进行身份认证是不能进行访问的-->
+                /v1/user/userdata = authc
+                /v1/user/changepw = authc
+                /v1/user/timeout = authc
+                /v1/user/saleslist = authc
+                /v1/user/typelist = authc
+                /v1/customer/* = authc
+                /v1/newcustomer/* = authc
+                /v1/record/* = authc
+                /v1/financial/* = authc
+                /v1/project/* = authc
+                /v1/other/* = authc
+                /v1/template/* = authc
+                /v1/supplier/* = authc
+                /v1/summary/* = authc
+                /v1/newfinancial/* = authc
+                /v1/contract/* = authc
+            </value>
+        </property>
+    </bean>
+
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <!-- 开启Shiro注解 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor">
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
+
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
+</beans>

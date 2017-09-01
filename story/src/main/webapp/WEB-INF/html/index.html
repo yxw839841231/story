@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>说出你的故事</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="故事,灵魂深处有故事,易天下,story,story521,说出你的故事">
+    <link rel="shortcut icon" type="image/x-icon" href="http://ovkuoveh9.bkt.clouddn.com/logo.ico"/>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/layui/css/story.css">
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.config({
+            base: '/layui/js/modules/'
+        }).use('index');
+    </script>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header story-header">
+        <div class="layui-logo" style="margin-left: 30px"><img src="http://ovkuoveh9.bkt.clouddn.com/logo-2.png"></div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-center">
+            <li class="layui-nav-item"><a href="">灵魂故事</a></li>
+            <li class="layui-nav-item"><a href="">闲话杂谈</a></li>
+            <li class="layui-nav-item"><a href="">胡说八道</a></li>
+            <li class="layui-nav-item"><a href="">高谈阔论</a></li>
+            <li class="layui-nav-item"><a href="">华山论剑</a></li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item logining"><a href="javascript:void(0)" id="login">登录</a></li>
+            <li class="layui-nav-item logining"><a href="javascript:void(0)" id="regist">注册</a></li>
+            <li class="layui-nav-item logined"><a href="javascript:void(0)" id="username"></a></li>
+            <li class="layui-nav-item logined"><a href="javascript:void(0)" id="logout">登出</a></li>
+        </ul>
+    </div>
+    <div style="height: 61px;clear: both"></div>
+    <div class="story-main" style="min-height: 100px;width: 1140px;margin: 0 auto">
+
+        <div class="layui-row">
+            <div class="layui-col-xs12 layui-col-md8">
+                <div class="layui-carousel" id="test1">
+                    <div carousel-item>
+                        <div><img src="http://ohwphyjeu.bkt.clouddn.com/gardening1.jpg"></div>
+                        <div><img src="http://ohwphyjeu.bkt.clouddn.com/gardening5.jpg"></div>
+                        <div><img src="http://ohwphyjeu.bkt.clouddn.com/gardening6.jpg"></div>
+                        <div><img src="http://ohwphyjeu.bkt.clouddn.com/ws/bg-slide3.jpg"></div>
+                        <div><img src="http://ohwphyjeu.bkt.clouddn.com/ws/bg-slide4.jpg"></div>
+                    </div>
+                </div>
+                <blockquote class="layui-elem-quote">引用区域的文字</blockquote>
+                <div class="grid-demo grid-demo-bg1">
+                    <ul>
+                        <li class="story-article-li">
+                            <div class="layui-row">
+                                <div class=" layui-col-md3">
+                                    <a href="#"><img src="http://ohwphyjeu.bkt.clouddn.com/gardening5.jpg" class="story-article-img"></a>
+                                </div>
+                                <div class=" layui-col-md9 story-right-word">
+                                    <a href="#"><span style="font-size: 20px;">这里应该是标题这里应该是标题这里应该是标题</span></a>
+                                    <br><br>
+                                    <p>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        这里应该是简短的介绍内容这里应该是简短的介绍内容这里应该是简短的介绍内容这里应该是简短的介绍内容……
+                                    </p>
+                                    <br>
+                                    <div style="position: relative;bottom: 0px;font-size: 15px" >
+                                        <div class="layui-row">
+                                            <div class="layui-col-md4 story-article-foot">
+                                                <i class="layui-icon story-icon"> &#xe6c6;</i>(0)
+                                            </div>
+                                            <div class="layui-col-md4 story-article-foot">
+                                                <i class="layui-icon story-icon"> &#xe63a;</i>(15)
+                                            </div>
+                                            <div class="layui-col-md4 story-article-foot">
+                                                <i class="layui-icon story-icon">&#xe612;</i>：<b>佚名</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </li>
+                        <li class="story-article-li">
+                            <div class="layui-row">
+                                <div class=" layui-col-md3">
+                                    <a href="#"><img src="http://ohwphyjeu.bkt.clouddn.com/ws/bg-slide4.jpg" class="story-article-img"></a>
+                                </div>
+                                <div class=" layui-col-md9 story-right-word">
+                                    <a href="#"><span style="font-size: 20px;">这里应该是标题这里应该是标题这里应该是标题</span></a>
+                                    <br><br>
+                                    <p>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        这里应该是简短的介绍内容这里应该是简短的介绍内容这里应该是简短的介绍内容这里应该是简短的介绍内容……
+                                    </p>
+                                    <br>
+                                    <div style="position: relative;bottom: 0px;font-size: 15px" >
+                                        <div class="layui-row">
+                                            <div class="layui-col-md4 story-article-foot">
+                                                <i class="layui-icon story-icon"> &#xe6c6;</i>(0)
+                                            </div>
+                                            <div class="layui-col-md4 story-article-foot">
+                                                <i class="layui-icon story-icon"> &#xe63a;</i>(15)
+                                            </div>
+                                            <div class="layui-col-md4 story-article-foot">
+                                                <i class="layui-icon story-icon">&#xe612;</i>：<b>佚名</b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="layui-col-xs6 layui-col-md4 story-right-word">
+                <div class="grid-demo story-right-comment">
+                    <span class="story-right-title">争锋相对</span>
+                    <span class="story-right-title story-right-title-icon"><i class="layui-icon">&#xe65b;</i></span>
+                    <div>
+                        <ul>
+                            <li class="story-right-article-li">
+                                热门文章标题……
+                            </li>
+                            <li class="story-right-article-li">
+                                热门文章标题……
+                            </li>
+                            <li class="story-right-article-li">
+                                热门文章标题……
+                            </li>
+                            <li class="story-right-article-li">
+                                热门文章标题……
+                            </li>
+                            <li class="story-right-article-li">
+                                热门文章标题……
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <br>
+                <div class="grid-demo story-right-comment">
+                    <span class="story-right-title">热门文章</span>
+                    <span class="story-right-title story-right-title-icon"><i class="layui-icon">&#xe65b;</i></span>
+                    <div>
+                        <ul>
+                            <li class="story-right-article-li">
+                                热门文章标题……
+                            </li>
+                            <li class="story-right-article-li">
+                                热门文章标题……
+                            </li>
+                            <li class="story-right-article-li">
+                                热门文章标题……
+                            </li>
+                            <li class="story-right-article-li">
+                                热门文章标题……
+                            </li>
+                            <li class="story-right-article-li">
+                                热门文章标题……
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <br>
+                <div class="grid-demo story-right-comment">
+                    <span class="story-right-title">最新评论</span>
+                    <span class="story-right-title story-right-title-icon"><i class="layui-icon">&#xe65b;</i></span>
+                    <div>
+                        <ul>
+                            <li class="story-right-comment-li">
+                                太搞笑了
+                            </li>
+                            <li class="story-right-comment-li">
+                                太搞笑了
+                            </li>
+                            <li class="story-right-comment-li">
+                                太搞笑了
+                            </li>
+                            <li class="story-right-comment-li">
+                                太搞笑了
+                            </li>
+                            <li class="story-right-comment-li">
+                                太搞笑了
+                            </li>
+                            <li class="story-right-comment-li">
+                                太搞笑了
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div style="height: 50px;clear: both"></div>
+    <div class="story-foot">
+        2017 @易天下 | <a href="http://www.miibeian.gov.cn/" target="_blank" style="color: #92B8B1">浙ICP备17039224号-1</a>
+    </div>
+</div>
+</body>
+</html>

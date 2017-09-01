@@ -1,0 +1,94 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+.story-admin{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+.story-top-nav{
+    width: 100%;
+    height: 61px;
+    background-color: #393D49;
+    border-bottom: 1px solid seagreen;
+}
+.story-top-nav-right{
+    width: 20%;
+    height: 60px;
+    float: right;
+}
+.story-left-nav{
+    width: 200px;
+    height:100%;
+    min-height: 880px;
+    background-color: #393D49;
+}
+.story-admin-main-container{
+    position: absolute;
+    width: 100%;
+    max-width: 1720px;
+    height: auto;
+    top: 61px;
+    left: 200px;
+}
+.story-admin-foot{
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    bottom: 0px;
+    background: #2F4056;
+}
+.grid-row{
+    margin: 5%;
+    width: 90%;
+    height: 85px;
+    line-height: 85px;
+    background: #1E9FFF;
+    border-radius: 15px;
+    text-align: center;
+    color:#F0F0F0;
+}
+.layui-row-left{
+    float: left;
+    margin-left:20px;
+}
+.admin-tab{
+    margin: 0;
+}
+.ladmin-tab-title{
+    position: fixed;left: 200px;z-index: 1;background: #fcfcfc;width: 100%;
+}
+.admin-this{
+    background: #5FB878;
+}
+.admin-search{
+    float: right;
+    width: 400px;
+    height: 35px;
+    font-size: 20px;
+    margin-right: 5px;
+}
+.admin-search input{
+    height: 35px;
+    width: 375px;
+    padding-right: 30px;
+    border: 1px solid #e6e6e6;
+}
+.admin-search i{
+    position: relative;
+    top: -25px;
+    float: right;
+    right: 0px;
+    cursor: pointer;
+}
+.zjoin-upload{
+    width: 200px;
+    height: 100px;
+}
+.zjoin-upload img{
+    max-width: 100%;max-height: 100%;
+}

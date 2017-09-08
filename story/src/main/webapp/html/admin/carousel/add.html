@@ -52,17 +52,7 @@
                 success:function(){
                     layer.msg("发表成功！");
                     layer.closeAll();
-                    table.reload('table_carousel_list', {
-                        elem: '#table_carousel_list'
-                        , id: 'table_carousel_list'
-                        , url: '/admin/carousel/list'
-                        , cols: [[
-                            {checkbox: true, fixed: true}
-                            , {field: 'title', title: '名称', width: 200}
-                        ]]
-                        , page: true
-                        , height: 725
-                    });
+                    table.reload('table_carousel_list', { });
                 }
             });
             return false;

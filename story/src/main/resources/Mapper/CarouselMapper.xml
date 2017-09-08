@@ -12,4 +12,6 @@
     <result column="isdelete" property="isdelete" jdbcType="BIT" />
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
+
+  <select id="queryByPage"  resultMap="BaseResultMap"></select>
 </mapper>

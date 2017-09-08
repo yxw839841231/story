@@ -32,6 +32,11 @@ public class BaseResult {
     private Integer code;
     private String msg;
     private Object data;
+    private Integer pageSize;
+
+    private Integer pageCurrent;
+
+    private Integer total;
 
     public Integer getCode() {
         return code;
@@ -55,5 +60,29 @@ public class BaseResult {
 
     public void setData(Object data) {
         this.data = data;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Integer getPageCurrent() {
+        return pageCurrent;
+    }
+
+    public void setPageCurrent(Integer pageCurrent) {
+        this.pageCurrent = pageCurrent;
+    }
+
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
     }
 }

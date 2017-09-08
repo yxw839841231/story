@@ -10,6 +10,8 @@ import cn.zjoin.story.business.service.ArticleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created on 2017/8/29.
  *
@@ -23,5 +25,12 @@ public class ArticleServiceImpl extends ArticleService {
     public void audit(Article article){
         article.setIsaudit(Boolean.TRUE);
         mapper.updateByPrimaryKeySelective(article);
+    }
+
+    @Override
+    public List<Article> getByType(Integer type){
+        Article article = new Article();
+        article.setCatalog(type);
+        return mapper.select(article);
     }
 }

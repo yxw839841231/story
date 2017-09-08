@@ -1,5 +1,5 @@
 body {
-    background: #e7e7e7;
+    background: #f8f8f8;
     font-family: '微软雅黑';
 }
 
@@ -12,7 +12,7 @@ body {
 .story-main {
     width: 1140px;
     margin: 0 auto;
-    background: #fcfafe;
+    background: #f8f8f8;
 }
 
 .story-foot {
@@ -42,7 +42,7 @@ body {
 }
 
 .story-icon {
-    font-size: 30px;
+    font-size: 20px;
     color: #5FB878;
     cursor: pointer;
 }
@@ -59,13 +59,19 @@ body {
     cursor: pointer;
 }
 .story-right-comment{
-    background: #f8f8f8;
+    background: #fefefe;
     border-radius: 5px;
 }
 .story-right-comment-li,.story-right-article-li{
     padding: 5px 10px;
     height: 25px;
     line-height: 25px;
+    display: -webkit-box;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:2;
 }
 .zjoin-upload{
     width: 200px;

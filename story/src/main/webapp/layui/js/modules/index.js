@@ -115,6 +115,78 @@ layui.define(['layer', 'form','carousel','jquery','util'], function(exports){
         }
     });
 
+    $.ajax({
+        url: '/story/article/list/1',
+        type: 'get',
+        success: function (data) {
+            if(data.code==0){
+                $("#articleUl").empty()
+                var d = data.data;
+               for(var i = 0;i<d.length;i++){
+                   var li ='';
+                   li +='<li class="story-article-li">'
+                       +'<div class="layui-row">'
+                       +'<div class=" layui-col-md3">'
+                       +'<a href="#"><img src="'+d[i].cover+'" class="story-article-img"></a></div>'
+                       +' <div class=" layui-col-md9 story-right-word">'
+                       +'<a href="#"><span style="font-size: 20px;">'+d[i].title+'</span></a><br><br><p>'
+                       +' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+d[i].describle
+                       +' </p><br><div style="position: relative;bottom: 0px;font-size: 15px" >'
+                       +'<div class="layui-row">'
+                       +'<div class="layui-col-md4 story-article-foot">'
+                       +'<i class="layui-icon story-icon"> &#xe6c6;</i>(0)</div>'
+                       +'<div class="layui-col-md4 story-article-foot">'
+                       +'<i class="layui-icon story-icon"> &#xe63a;</i>(0)</div>'
+                       +'<div class="layui-col-md4 story-article-foot">'
+                       +'<i class="layui-icon story-icon">&#xe612;</i>：<b>'+d[i].author+'</b>'
+                       +'</div></div></div></div></div><hr></li>'
+                   $("#articleUl").append(li);
+               }
+            }
+        }
+    });
+    $.ajax({
+        url: '/story/article/list/2',
+        type: 'get',
+        success: function (data) {
+            if(data.code==0){
+                $("#articleUl2").empty();
+                var d = data.data;
+                for(var i = 0;i<d.length;i++){
+                    var li ='<li class="story-right-article-li">'+d[i].title+'</li>'
+                    $("#articleUl2").append(li);
+                }
+            }
+        }
+    });
+    $.ajax({
+        url: '/story/article/list/4',
+        type: 'get',
+        success: function (data) {
+            if(data.code==0){
+                $("#articleUl4").empty();
+                var d = data.data;
+                for(var i = 0;i<d.length;i++){
+                    var li ='<li class="story-right-article-li">'+d[i].title+'</li>'
+                    $("#articleUl4").append(li);
+                }
+            }
+        }
+    });
 
-    exports('index', {}); //注意，这里是模块输出的核心，模块名必须和use时的模块名一致
+    $.ajax({
+        url: '/story/article/list/3',
+        type: 'get',
+        success: function (data) {
+            if(data.code==0){
+                $("#articleUl23").empty();
+                var d = data.data;
+                for(var i = 0;i<d.length;i++){
+                    var li ='<li class="story-right-article-li">'+d[i].title+'</li>'
+                    $("#articleUl3").append(li);
+                }
+            }
+        }
+    });
+    exports('index', {});
 });

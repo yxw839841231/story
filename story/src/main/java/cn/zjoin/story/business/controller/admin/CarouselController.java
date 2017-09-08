@@ -49,6 +49,12 @@ public class CarouselController extends BaseController {
         carouselService.insert(carousel);
         return new BaseResult();
     }
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult update(Carousel carousel) {
+        carouselService.update(carousel);
+        return new BaseResult();
+    }
 
 
 }

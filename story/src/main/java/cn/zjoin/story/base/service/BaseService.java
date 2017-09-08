@@ -1,6 +1,7 @@
 package cn.zjoin.story.base.service;
 
 import cn.zjoin.story.base.model.Pagination;
+import cn.zjoin.story.util.TimeUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -167,8 +168,98 @@ public abstract class BaseService<T> {
         return pagination;
     }
 
+    public PageInfo<T> pageInfoSimple(PageInfo page,Object entity) {
+        PageHelper.startPage(page.getPageNum(), page.getPageSize(), " id desc ");
+        List<T> list = mapper.selectAll();
+        page = new PageInfo(list);
+        return page;
+    }
+    private void praseCondition(Example.Criteria ec,String name,Object value,String value2){
+        if (value != null) {
+            if(value2.equals("=")){
+                ec.andEqualTo(name, value);
+            }else if(value2.equals("like")){
+                ec.andLike(name,"%"+ value.toString()+"%");
+            }
+        }
+    }
 
-    public List<T> getList(T model) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+
+    public PageInfo<T> pageInfoSimple2(PageInfo page,Object entity,Class clazz) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        Example example = new Example(clazz);
+        Field[] field = entity.getClass().getDeclaredFields();
+        Example.Criteria ec = example.createCriteria();
+
+        for (int j = 0; j < field.length; j++) {     //遍历所有属性
+            String name = field[j].getName();    //获取属性的名字
+            if(name.endsWith("operator")) continue;
+            String type = field[j].getGenericType().toString();    //获取属性的类型
+            if (type.equals("class java.lang.String")) {   //如果type是类类型，则前面包含"class "，后面跟类名
+                Method m = entity.getClass().getMethod("get" + captureName(name));
+                String value = (String) m.invoke(entity);    //调用getter方法获取属性值
+                Method m2 =  entity.getClass().getMethod("get" + captureName(name+"operator"));
+                String value2 = (String) m2.invoke(entity);
+                if (value != null) {
+                    praseCondition(ec,name,value,value2);
+                }
+            } else if (type.equals("class java.lang.Integer")) {
+                Method m = entity.getClass().getMethod("get" + captureName(name));
+                Integer value = (Integer) m.invoke(entity);
+                Method m2 =  entity.getClass().getMethod("get" + captureName(name+"operator"));
+                String value2 = (String) m2.invoke(entity);
+                if (value != null) {
+                    praseCondition(ec,name,value,value2);
+                }
+            } else if (type.equals("class java.lang.Long")) {
+                Method m = entity.getClass().getMethod("get" + captureName(name));
+                Long value = (Long) m.invoke(entity);
+                Method m2 =  entity.getClass().getMethod("get" + captureName(name+"operator"));
+                String value2 = (String) m2.invoke(entity);
+                if (value != null) {
+                    praseCondition(ec,name,value,value2);
+                }
+            } else if (type.equals("class java.lang.Short")) {
+                Method m = entity.getClass().getMethod("get" + captureName(name));
+                Short value = (Short) m.invoke(entity);
+                Method m2 =  entity.getClass().getMethod("get" + captureName(name+"operator"));
+                String value2 = (String) m2.invoke(entity);
+                if (value != null) {
+                    praseCondition(ec,name,value,value2);
+                }
+            } else if (type.equals("class java.lang.Double")) {
+                Method m = entity.getClass().getMethod("get" + captureName(name));
+                Double value = (Double) m.invoke(entity);
+                Method m2 =  entity.getClass().getMethod("get" + captureName(name+"operator"));
+                String value2 = (String) m2.invoke(entity);
+                if (value != null) {
+                    praseCondition(ec,name,value,value2);
+                }
+            } else if (type.equals("class java.lang.Boolean")) {
+                Method m = entity.getClass().getMethod("get" + captureName(name));
+                Boolean value = (Boolean) m.invoke(entity);
+                Method m2 =  entity.getClass().getMethod("get" + captureName(name+"operator"));
+                String value2 = (String) m2.invoke(entity);
+                if (value != null) {
+                    praseCondition(ec,name,value,value2);
+                }
+            } else if (type.equals("class java.util.Date")) {
+                Method m = entity.getClass().getMethod("get" + captureName(name));
+                Date value = (Date) m.invoke(entity);
+                Method m2 =  entity.getClass().getMethod("get" + captureName(name+"operator"));
+                String value2 = (String) m2.invoke(entity);
+                if (value != null) {
+                    praseCondition(ec,name, TimeUtil.format(value),value2);
+                }
+            }
+        }
+        PageHelper.startPage(page.getPageNum(), page.getPageSize(), " id desc ");
+        List<T> list = mapper.selectByExample(example);
+        page = new PageInfo(list);
+        return page;
+    }
+
+
+    public List<T> getList(Object model) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         Example example = new Example(model.getClass());
         Field[] field = model.getClass().getDeclaredFields();
         Example.Criteria ec = example.createCriteria();

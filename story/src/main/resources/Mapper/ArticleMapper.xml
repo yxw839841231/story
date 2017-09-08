@@ -2,9 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.zjoin.story.business.dao.ArticleMapper" >
   <resultMap id="BaseResultMap" type="cn.zjoin.story.business.model.Article" >
-    <!--
-      WARNING - @mbg.generated
-    -->
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="author" property="author" jdbcType="VARCHAR" />
@@ -18,4 +15,25 @@
     <result column="catalog" property="catalog" jdbcType="TINYINT" />
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
+
+  <select id="queryByPage" parameterType="cn.zjoin.story.business.model.ArticleOperator" resultMap="BaseResultMap">
+    select * from article t <include refid="sqlWhere"/>
+    ;
+  </select>
+
+
+  <sql id="sqlWhere">
+    <where>
+      1 = 1
+      <if test="id != null">
+        AND t.ID = #{id}
+      </if>
+      <if test="titleoperator != null">
+        AND t.title LIKE concat('%',#{titleoperator},'%')
+      </if>
+      <if test="authoroperator != null">
+        AND t.author LIKE concat('%',#{authoroperator},'%')
+      </if>
+    </where>
+  </sql>
 </mapper>

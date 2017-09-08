@@ -10,7 +10,7 @@ layui.define(['layer', 'form','layedit','jquery','util','zjoin'], function(expor
         ,util = layui.util
         ,zjoin = layui.zjoin;
 
-    layedit.build('content');
+    var articleEdit = layedit.build('content');
     util.fixbar({
         bar1: '&#xe62f;'
         ,bar2: '&#xe6b2;'
@@ -33,7 +33,7 @@ layui.define(['layer', 'form','layedit','jquery','util','zjoin'], function(expor
             }
         } ,
         content: function (value) {
-            layedit.sync(editIndex);
+            layedit.sync(articleEdit);
         }
     });
 

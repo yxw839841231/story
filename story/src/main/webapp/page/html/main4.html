@@ -1,0 +1,31 @@
+<script type="text/javascript">
+    layui.use(['BJUIajax','BJUIdatagrid','BJUIinitui','BJUIplugins'],function(){
+        var $ = layui.jquery;
+        $('#financil_charge_datagrid').datagrid({
+            local: 'remote',
+            dataUrl: '/story/article/list',
+            dataType: 'json',
+            sortAll: false,
+            loadType: 'get',
+            filterAll: true,
+            height: '94%',
+            columns: [
+                {name: 'title', width: '380', label: '标题'},
+                {name: 'author', width: '120', label: '操作人'},
+                // {name: 'id', width: '90', label: '编码'},
+                {name: 'keywords', width: '150', label: '组织'},
+                {name: 'catalog', width: '250', label: '充值时间'}],
+            paging: {pageSize: 20, selectPageSize: '20,40,100', pageCurrent: 1},
+            columnMenu: true,
+            columnShowhide: true,
+            showCheckboxcol:true,
+            columnFilter: true,
+            columnLock: false,
+            fullGrid: false
+        });
+    });
+
+</script>
+<div class="bjui-pageContent">
+    <table id="financil_charge_datagrid" class="table table-hover" data-width="100%"></table>
+</div>

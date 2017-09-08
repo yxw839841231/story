@@ -7,19 +7,23 @@ package cn.zjoin.story.business.controller.story;
 
 import cn.zjoin.story.base.controller.BaseController;
 import cn.zjoin.story.base.model.BaseResult;
-import cn.zjoin.story.base.model.Pagination;
 import cn.zjoin.story.business.model.Article;
+import cn.zjoin.story.business.model.ArticleOperator;
 import cn.zjoin.story.business.service.ArticleService;
 import cn.zjoin.story.util.QiNiuUtil;
+import com.github.pagehelper.PageInfo;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created on 2017/8/29.
@@ -41,11 +45,28 @@ public class ArticleStoryController extends BaseController {
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     @ResponseBody
-    public Pagination list(Pagination pagination) {
-        Pagination p = articleService.pageInfoSimple(pagination);
-        p.setCode(0);
-        p.setMsg("ok");
-        return p;
+    public BaseResult list(PageInfo<Article> pageInfo, ArticleOperator articleOperator) {
+       PageInfo list = null;
+        try {
+            list= articleService.pageInfoSimple2(pageInfo,articleOperator,Article.class);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        BaseResult result = new BaseResult();
+        result.setData(list);
+        return result;
+    }
+    @RequestMapping(value = "list/{type}", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseResult list2(@PathVariable Integer type) {
+        List<Article> list = articleService.getByType(type);
+        BaseResult result = new BaseResult();
+        result.setData(list);
+        return result;
     }
 
     @RequestMapping("add")

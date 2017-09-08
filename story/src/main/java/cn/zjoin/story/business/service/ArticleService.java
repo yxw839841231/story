@@ -9,6 +9,8 @@ import cn.zjoin.story.base.service.BaseService;
 import cn.zjoin.story.business.model.Article;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created on 2017/8/29.
  *
@@ -17,4 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 public abstract class ArticleService extends BaseService<Article> {
     @Transactional
     public abstract void audit(Article article);
+
+    public abstract List<Article> getByType(Integer type);
 }

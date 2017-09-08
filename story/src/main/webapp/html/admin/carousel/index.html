@@ -1,6 +1,7 @@
 <div class="layui-btn-group demoTable" style="width: 100%">
-    <button class="layui-btn" data-type="addUser">新增</button>
-    <button class="layui-btn" data-type="getCheckLength">删除</button>
+    <button class="layui-btn" data-type="addCarousel">新增</button>
+    <button class="layui-btn" data-type="delCarousel">删除</button>
+    <button class="layui-btn" data-type="ediCarousel">编辑</button>
     <div class="admin-search">
         <input type="text"/>
         <i class="layui-icon">&#xe615;</i>
@@ -25,22 +26,8 @@
             , page: true
             , height: 725
         });
-        //监听工具条
-        table.on('tool(table_carousel_list)', function (obj) {
-            var data = obj.data;
-            if (obj.event === 'detail') {
-                layer.msg('ID：' + data.id + ' 的查看操作');
-            } else if (obj.event === 'del') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del();
-                    layer.close(index);
-                });
-            } else if (obj.event === 'edit') {
-                layer.alert('编辑行：<br>' + JSON.stringify(data))
-            }
-        });
         var $ = layui.$, active = {
-            addUser: function () {
+            addCarousel: function () {
                 layer.open({
                     type: 5,
                     scrollbar: false,
@@ -49,49 +36,32 @@
                     content: '/html/admin/carousel/add.html'
                 });
             }
-            , getCheckLength: function () {
+            , delCarousel: function () {
                 var checkStatus = table.checkStatus('table_carousel_list')
                         , data = checkStatus.data;
                 layer.msg('选中了：' + data.length + ' 个');
+            }
+            , ediCarousel: function () {
+                var checkStatus = table.checkStatus('table_carousel_list')
+                        , data = checkStatus.data;
+               if(data.length==1){
+                   layer.open({
+                       type: 5,
+                       scrollbar: false,
+                       skin: 'layui-layer-rim',
+                       area: ['800px', '550px'],
+                       content: '/html/admin/carousel/edit.html'
+                   });
+               }
             }
             , isAll: function () {
                 var checkStatus = table.checkStatus('table_carousel_list');
                 layer.msg(checkStatus.isAll ? '全选' : '未全选')
             }
-            , reload: function () {
-                var demoReload = $('#demoReload');
-
-                ins1.reload({
-                    where: {
-                        key: {
-                            id: demoReload.val()
-                        }
-                    }
-                });
-            }
-            , parseTable: function () {
-                table.init('parse-table-demo');
-            }
         };
         $('.demoTable .layui-btn').on('click', function () {
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
-        });
-
-        form.on('submit(user-add)', function (data) {
-            //弹出loading
-            layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
-            $.ajax({
-                url: '/admin/carousel/add',
-                type: 'post',
-                data: data.field,
-                success: function () {
-                    layer.closeAll();
-                    layer.msg("操作成功！");
-                    carouselable.reload();
-                }
-            });
-            return false;
         });
     });
 </script>

@@ -1,7 +1,10 @@
 package cn.zjoin.story.business.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "article")
 public class Article {
@@ -45,7 +48,7 @@ public class Article {
 
     private String cover;
 
-    private Byte catalog;
+    private Integer catalog;
 
     /**
      * 内容
@@ -219,14 +222,14 @@ public class Article {
     /**
      * @return catalog
      */
-    public Byte getCatalog() {
+    public Integer getCatalog() {
         return catalog;
     }
 
     /**
      * @param catalog
      */
-    public void setCatalog(Byte catalog) {
+    public void setCatalog(Integer catalog) {
         this.catalog = catalog;
     }
 

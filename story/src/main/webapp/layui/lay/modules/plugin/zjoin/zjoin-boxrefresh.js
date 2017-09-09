@@ -107,8 +107,6 @@ layui.define(['jquery'], function (exports) {
         return this
     }
 
-    // BoxRefresh Data API
-    // =================
     $(window).on('load', function () {
         $(Selector.data).each(function () {
             Plugin.call($(this))

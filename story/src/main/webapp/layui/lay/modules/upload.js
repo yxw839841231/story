@@ -464,7 +464,6 @@ layui.define('layer' , function(exports){
     var inst = new Class(options);
     return thisUpload.call(inst);
   };
-  
   exports(MOD_NAME, upload);
 });
 

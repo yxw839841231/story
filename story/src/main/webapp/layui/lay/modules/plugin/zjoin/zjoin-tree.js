@@ -138,7 +138,7 @@ layui.define(['jquery'], function (exports) {
     // Tree Data API
     // =============
     $(window).on('load', function () {
-        $(Selector.data).each(function () {debugger
+        $(Selector.data).each(function () {
             Plugin.call($(this))
         })
     })

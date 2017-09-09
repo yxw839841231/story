@@ -14,7 +14,7 @@ layui.define('layer', function(exports){
   ,hint = layui.hint()
   ,device = layui.device()
   
-  ,MOD_NAME = 'form', ELEM = '.layui-form', THIS = 'layui-this', SHOW = 'layui-show', HIDE = 'layui-hide', DISABLED = 'layui-disabled'
+  ,MOD_NAME = 'form', ELEM = '.layui-form', THIS = 'layui-this', SHOW = 'layui-show', HIDE = 'layui-hide', DISABLED = 'layui-disabled',VALID=('[lay-verify]')
   
   ,Form = function(){
     this.config = {
@@ -46,6 +46,21 @@ layui.define('layer', function(exports){
         ,identity: [
           /(^\d{15}$)|(^\d{17}(x|X|\d)$)/
           ,'请输入正确的身份证号'
+        ],
+        password: [/^[\S]{6,16}$/
+          , "请填写6-16位字符，不能包含空格"
+        ], //密码
+        chinese: [/^[\u0391-\uFFE5]+$/
+          , "请填写中文字符"
+        ],
+        zipcode: [/^\d{6}$/
+          , "请检查邮政编码格式"
+        ],
+        time: [/^([01]\d|2[0-3])(:[0-5]\d){1,2}$/
+          , "请填写有效的时间，00:00到23:59之间"
+        ],
+        letters: [/^[a-z]+$/i
+          , "请填写字母"
         ]
       }
     };
@@ -251,7 +266,9 @@ layui.define('layer', function(exports){
           ,value = select.value
           ,selected = $(select.options[select.selectedIndex]) //获取当前选中项
           ,optionsFirst = select.options[0];
-          
+          var layverify='';
+          if(othis.attr('lay-verify')!=undefined) layverify=' lay-verify="'+othis.attr('lay-verify')+'"';
+
           if(typeof othis.attr('lay-ignore') === 'string') return othis.show();
           
           var isSearch = typeof othis.attr('lay-search') === 'string'
@@ -261,7 +278,7 @@ layui.define('layer', function(exports){
 
           //替代元素
           var reElem = $(['<div class="layui-unselect '+ CLASS + (disabled ? ' layui-select-disabled' : '') +'">'
-            ,'<div class="'+ TITLE +'"><input type="text" placeholder="'+ placeholder +'" value="'+ (value ? selected.html() : '') +'" '+ (isSearch ? '' : 'readonly') +' class="layui-input layui-unselect'+ (disabled ? (' '+DISABLED) : '') +'">'
+            ,'<div class="'+ TITLE +'"><input type="text" placeholder="'+ placeholder +'" value="'+ (value ? selected.html() : '') +'" '+ (isSearch ? '' : 'readonly') +layverify+' class="layui-input layui-unselect'+ (disabled ? (' '+DISABLED) : '') +'">'
             ,'<i class="layui-edge"></i></div>'
             ,'<dl class="layui-anim layui-anim-upbit'+ (othis.find('optgroup')[0] ? ' layui-select-group' : '') +'">'+ function(options){
               var arr = [];
@@ -417,16 +434,25 @@ layui.define('layer', function(exports){
       layui.each(ver, function(_, thisVer){
         var isFn = typeof verify[thisVer] === 'function';
         if(verify[thisVer] && (isFn ? tips = verify[thisVer](value, item) : !verify[thisVer][0].test(value)) ){
-          layer.msg(tips || verify[thisVer][1], {
+         /* layer.msg(tips || verify[thisVer][1], {
             icon: 5
             ,shift: 6
-          });
+          });*/
+          var html ='<span class="msg-box n-right" for="password">' +
+              '<span role="alert" class="msg-wrap n-error">' +
+              '<span class="n-icon"><i class="layui-icon n-msg">&#xe69c;</i>&nbsp;</span>' +
+              '<span class="n-msg">'+verify[thisVer][1]+'</span>' +
+              '</span>' +
+              '</span>';
+          othis.parent().find('.msg-box').remove(); othis.parent().append(html);
           //非移动设备自动定位焦点
           if(!device.android && !device.ios){
             item.focus();
           }
           othis.addClass(DANGER);
           return stop = true;
+        }else {
+          othis.parent().find('.msg-box').remove();
         }
       });
       if(stop) return stop;
@@ -447,14 +473,42 @@ layui.define('layer', function(exports){
       ,field: field
     });
   };
+  //字段失去焦点校验
+  var blur = function(){
+    var button = $(this), verify = form.config.verify, stop = null
+        ,DANGER = 'layui-form-danger'
+        ,filter = button.attr('lay-filter'); //获取过滤器
+    var othis =button, ver = othis.attr('lay-verify').split('|');
+    var tips = '', value = othis.val();
+    othis.removeClass(DANGER);
+    layui.each(ver, function(_, thisVer){
+      var isFn = typeof verify[thisVer] === 'function';
+      if(verify[thisVer] && (isFn ? tips = verify[thisVer](value,othis) : !verify[thisVer][0].test(value)) ){
+        var html ='<span class="msg-box n-right" for="password">' +
+            '<span role="alert" class="msg-wrap n-error">' +
+            '<span class="n-icon"><i class="layui-icon n-msg">&#xe69c;</i>&nbsp;</span>' +
+            '<span class="n-msg">'+verify[thisVer][1]+'</span>' +
+            '</span>' +
+            '</span>';
+        othis.parent().find('.msg-box').remove(); othis.parent().append(html);
+        if(!device.android && !device.ios){
+          othis.focus();
+        }
+        othis.addClass(DANGER);
+        return stop = true;
+      }else{
+        othis.parent().find('.msg-box').remove();
+      }
+    });
+    if(stop) return stop;
+    if(stop) return false;
+  };
 
-  //自动完成渲染
   var form = new Form()
   ,dom = $(document), win = $(window);
   
   form.render();
   
-  //表单reset重置渲染
   dom.on('reset', ELEM, function(){
     var filter = $(this).attr('lay-filter');
     setTimeout(function(){
@@ -462,10 +516,9 @@ layui.define('layer', function(exports){
     }, 50);
   });
   
-  //表单提交事件
-  dom.on('submit', ELEM, submit)
-  .on('click', '*[lay-submit]', submit);
-  
+  dom.on('submit', ELEM, submit).on('click', '*[lay-submit]', submit);
+  dom.on('blur', VALID,blur);
+
   exports(MOD_NAME, form);
 });
 

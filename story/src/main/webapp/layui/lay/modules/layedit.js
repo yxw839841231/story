@@ -386,25 +386,6 @@ layui.define(['layer', 'form','ZJOINS'], function(exports){
       //图片
       ,image: function(range){
         var that = this;
-        /*layui.use('upload', function(upload){
-          var uploadImage = set.uploadImage || {};
-          upload.render({
-            url: uploadImage.url
-            ,method: uploadImage.type
-            ,elem: $(that).find('input')[0]
-            ,done: function(res){
-              if(res.code == 0){
-                res.data = res.data || {};
-                insertInline.call(iframeWin, 'img', {
-                  src: res.data.src
-                  ,alt: res.data.title
-                }, range);
-              } else {
-                layer.msg(res.msg||'上传失败');
-              }
-            }
-          });
-        });*/
         layer.open({
           type: 1,
           id: 'fly-jie-upload',
@@ -721,7 +702,7 @@ layui.define(['layer', 'form','ZJOINS'], function(exports){
     ,link: '<i class="layui-icon layedit-tool-link" title="插入链接" layedit-event="link"">&#xe64c;</i>'
     ,unlink: '<i class="layui-icon layedit-tool-unlink layui-disabled" title="清除链接" lay-command="unlink" layedit-event="unlink"">&#xe64d;</i>'
     ,face: '<i class="layui-icon layedit-tool-face" title="表情" layedit-event="face"">&#xe650;</i>'
-    ,image: '<i class="layui-icon layedit-tool-image" title="图片" layedit-event="image">&#xe64a;<input type="file" name="file"></i>'
+    ,image: '<i class="layui-icon layedit-tool-image" title="图片" layedit-event="image">&#xe64a;<!--<input type="file" name="file">--></i>'
     ,code: '<i class="layui-icon layedit-tool-code" title="插入代码" layedit-event="code">&#xe64e;</i>'
     
     ,help: '<i class="layui-icon layedit-tool-help" title="帮助" layedit-event="help">&#xe607;</i>'

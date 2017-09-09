@@ -1,6 +1,7 @@
 layui.define('jquery', function (exports) {
     "use strict";
-    var $ = layui.jquery, NS = 'validator',
+    var $ = layui.jquery,
+        NS = 'validator',
         CLS_NS = '.' + NS,
         CLS_NS_RULE = '.rule',
         CLS_NS_FIELD = '.field',
@@ -1526,13 +1527,11 @@ layui.define('jquery', function (exports) {
 
     new Messages({
         fallback: "无效数值",
-        loading: 'Validating...'
+        loading: '校验中...'
     });
 
 
     new Rules({
-
-
         required: function (element, params) {
             var me = this,
                 val = trim(me.value),
@@ -1586,7 +1585,6 @@ layui.define('jquery', function (exports) {
 
             return isValid && !!val;
         },
-
         integer: function (element, params) {
             var re, z = '0|',
                 p = '[1-9]\\d*',
@@ -1611,11 +1609,6 @@ layui.define('jquery', function (exports) {
             re = '^(?:' + re + ')$';
             return new RegExp(re).test(this.value) || this.messages.integer[key];
         },
-
-        number: function () {
-            var re = '^\d+$';
-            return new RegExp(re).test(this.value) || "只允许数字";
-        },
         email: function () {
             var re = '^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$';
             return new RegExp(re).test(this.value) || "邮箱格式不正确";
@@ -1628,7 +1621,6 @@ layui.define('jquery', function (exports) {
             var re = '(^\d{15}$)|(^\d{17}(x|X|\d)$)';
             return new RegExp(re).test(this.value) || "身份证格式不正确";
         },
-
         match: function (element, params) {
             if (!params) return;
 
@@ -1697,12 +1689,9 @@ layui.define('jquery', function (exports) {
                     return (a === b) || msg;
             }
         },
-
-
         range: function (element, params) {
             return this.getRangeMsg(this.value, params);
         },
-
         checked: function (element, params) {
             if (!_checkable(element)) return;
 
@@ -1726,19 +1715,14 @@ layui.define('jquery', function (exports) {
                 return !!count || _getDataMsg(elem, me, '') || me.messages.required;
             }
         },
-
-
         length: function (element, params) {
             var value = this.value,
                 len = (params[1] === 'true' ? value.replace(rDoubleBytes, 'xx') : value).length;
 
             return this.getRangeMsg(len, params, (params[1] ? '_2' : ''));
         },
-
-
         remote: function (element, params) {
             if (!params) return;
-
             var me = this,
                 arr = rAjaxType.exec(params[0]),
                 rule = me._rules[me._i],
@@ -1785,16 +1769,12 @@ layui.define('jquery', function (exports) {
                 dataType: dataType
             });
         },
-
-
         filter: function (element, params) {
             var value = this.value,
                 temp = value.replace(params ? (new RegExp("[" + params[0] + "]", "gm")) : rUnsafe, '');
             if (temp !== value) this.setValue(temp);
         }
     });
-
-
     Validator.config = function (key, value) {
         if (isObject(key)) {
             $.each(key, _config);
@@ -1802,7 +1782,6 @@ layui.define('jquery', function (exports) {
         else if (isString(key)) {
             _config(key, value);
         }
-
         function _config(k, o) {
             if (k === 'rules') {
                 new Rules(o);
@@ -1828,8 +1807,6 @@ layui.define('jquery', function (exports) {
             themes[name] = $.extend(themes[name], obj);
         }
     };
-
-
     Validator.load = function (str) {
         if (!str) return;
         var doc = document,
@@ -1865,7 +1842,6 @@ layui.define('jquery', function (exports) {
             node.parentNode.insertBefore(el, node);
         }
     };
-
     (function () {
         var scripts = document.scripts,
             i = scripts.length, node, arr,
@@ -2004,5 +1980,5 @@ layui.define('jquery', function (exports) {
 
     return $[NS] = Validator;
 
-    exports('validator', Validator);
+    exports('validator');
 });

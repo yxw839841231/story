@@ -521,7 +521,7 @@ layui.define(['jquery','ZJOINdropdown'], function (exports) {
 
         setWidth: function () {
             if (this.options.width == 'auto') {
-                this.$menu.css('min-width', '0');
+                //this.$menu.css('min-width', '0');
 
                 // Get correct width if element hidden
                 var selectClone = this.$newElement.clone().appendTo('body');

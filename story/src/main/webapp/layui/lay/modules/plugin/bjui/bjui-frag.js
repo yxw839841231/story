@@ -63,17 +63,17 @@ layui.define(['BJUIcore','BJUIregional'], function(exports){
         all       : 'All',
         'true'    : 'True',
         'false'   : 'False',
-        noData    : 'No data!',
+        noData    : '无数据!',
         fAndS     : 'Filter && Sort!',
         expandMsg : 'Click here to expand the tr!',
         shrinkMsg : 'Click here to shrink the tr!',
-        selectMsg : 'Not selected any rows!',
-        saveMsg   : 'No rows need to save!',
-        editMsg   : 'Please save the edited row!',
-        delMsg    : 'Sure you want to delete this row?',
-        delMsgM   : 'Sure you want to delete selected rows?',
-        errorData : 'Did not get the correct data!',
-        failData  : 'Request data failed!'
+        selectMsg : '未选择数据！',
+        saveMsg   : '无可保存数据!',
+        editMsg   : '请先保存正在编辑的数据!',
+        delMsg    : '确定删除?',
+        delMsgM   : '确定删除所选数据?',
+        errorData : '未取得正确数据!',
+        failData  : '请求数据失败!'
     })
     
     BJUI.setRegional('findgrid', {
@@ -181,26 +181,26 @@ layui.define(['BJUIcore','BJUIregional'], function(exports){
                     '</div>'
         ,
         gridPaging: '<ul class="pagination">' +
-                    '    <li class="page-total">' +
-                    '        <span title="#total#">#count#</span>' +
-                    '    </li>' +
-                    '    <li class="page-jumpto"><span class="page-input"><input class="form-control input-sm-pages" type="text" size="3.2" value="#pageNum#" title="#jumpto#"></span></li>' +
-                    '    <li class="page-first btn-nav">' +
-                    '        <a href="javascript:;" title="#first#"><i class="fa fa-step-backward"></i></a>' +
-                    '    </li>' +
-                    '    <li class="page-prev btn-nav">' +
-                    '        <a href="javascript:;" title="#prev#"><i class="fa fa-backward"></i></a>' +
-                    '    </li>' +
-                    '    #pageNumFrag#' +
-                    '    <li class="page-next btn-nav">' +
-                    '        <a href="javascript:;" title="#next#"><i class="fa fa-forward"></i></a>' +
-                    '    </li>' +
-                    '    <li class="page-last btn-nav">' +
-                    '        <a href="javascript:;" title="#last#"><i class="fa fa-step-forward"></i></a>' +
-                    '    </li>' +
-                    '</ul>'
+        '    <li class="page-total">' +
+        '        <span title="#total#">#count#</span>' +
+        '    </li>' +
+        '    <li class="page-jumpto"><span class="page-input"><input class="form-control input-sm-pages" type="text" size="3.2" value="#pageCurrent#" title="#jumpto#"></span></li>' +
+        '    <li class="page-first btn-nav">' +
+        '        <a href="javascript:;" title="#first#"><i class="layui-icon">&#xea4d;</i></a>' +
+        '    </li>' +
+        '    <li class="page-prev btn-nav">' +
+        '        <a href="javascript:;" title="#prev#"><i class="layui-icon">&#xea49;</i></a>' +
+        '    </li>' +
+        '    #pageCurrentFrag#' +
+        '    <li class="page-next btn-nav">' +
+        '        <a href="javascript:;" title="#next#"><i class="layui-icon">&#xea4e;</i></a>' +
+        '    </li>' +
+        '    <li class="page-last btn-nav">' +
+        '        <a href="javascript:;" title="#last#"><i class="layui-icon">&#xea4a;</i></a>' +
+        '    </li>' +
+        '</ul>'
         ,
-        gridPageNum : '<li class="page-num#active#"><a href="javascript:;">#num#</a></li>',
+        gridpageCurrent : '<li class="page-num#active#"><a href="javascript:;">#num#</a></li>',
         gridMenu : '<div class="datagrid-menu-box">'
                  + '    <ul>'
                  + '        <li class="datagrid-li-asc"><a href="javascript:;"><span class="icon"><i class="fa fa-sort-amount-asc"></i></span><span class="title">#asc#</span></a></li>'

@@ -1,5 +1,5 @@
 
-layui.define(['jquery','ZJOINdropdown','ZJOINsidebar','ZJOINlayout','ZJOINpushmenu'], function (exports) {
+layui.define(['jquery','ZJOINdropdown','ZJOINsidebar','ZJOINlayout','ZJOINpushmenu','cookie'], function (exports) {
     "use strict";
 
  var $= layui.jquery;
@@ -32,20 +32,12 @@ layui.define(['jquery','ZJOINdropdown','ZJOINsidebar','ZJOINlayout','ZJOINpushme
   ]
 
   function get(name) {
-    if (typeof (Storage) !== 'undefined') {
-      return localStorage.getItem(name)
-    } else {
-      window.alert('Please use a modern browser to properly view this template!')
-    }
+      return $.cookie(name);
   }
 
 
   function store(name, val) {
-    if (typeof (Storage) !== 'undefined') {
-      localStorage.setItem(name, val)
-    } else {
-      window.alert('Please use a modern browser to properly view this template!')
-    }
+      $.cookie(name,val)
   }
 
   function changeLayout(cls) {
@@ -59,6 +51,7 @@ layui.define(['jquery','ZJOINdropdown','ZJOINsidebar','ZJOINlayout','ZJOINpushme
   }
 
   function changeSkin(cls) {
+      if($('body').hasClass(cls)) return;
     $.each(mySkins, function (i) {
       $('body').removeClass(mySkins[i])
     })
@@ -136,13 +129,14 @@ layui.define(['jquery','ZJOINdropdown','ZJOINsidebar','ZJOINlayout','ZJOINpushme
       + '<i class="fa fa-wrench"></i>'
       + '</a>')
 
-  $('[href="#control-sidebar-home-tab"]')
+  /*$('[href="#control-sidebar-home-tab"]')
     .parent()
-    .before($tabButton)
+    .before($tabButton)*/
+  $("#control-sidebar-rightbar").append($tabButton)
 
   var $demoSettings = $('<div />')
 
-  $demoSettings.append(
+  /*$demoSettings.append(
     '<h4 class="control-sidebar-heading">'
     + '布局选项'
     + '</h4>'
@@ -194,7 +188,7 @@ layui.define(['jquery','ZJOINdropdown','ZJOINsidebar','ZJOINlayout','ZJOINpushme
     + '</label>'
     + '<p>在右侧和右侧皮肤之间切换</p>'
     + '</div>'
-  )
+  )*/
   var $skinsList = $('<ul />', { 'class': 'list-unstyled clearfix' })
 
   // Dark sidebar skins
@@ -303,7 +297,10 @@ layui.define(['jquery','ZJOINdropdown','ZJOINsidebar','ZJOINlayout','ZJOINpushme
   $tabPane.append($demoSettings)
   $('#control-sidebar-home-tab').after($tabPane)
 
-  setup()
+    $(function () {
+        setup()
+    });
+
 
   //$('[data-toggle="tooltip"]').tooltip()
     exports('ZJOINtheme');

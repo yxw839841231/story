@@ -12,10 +12,9 @@ layui.define('BJUIextends', function(exports){
     var $ = layui.jquery,BJUI=layui.BJUIcore;
 
 
-    $(document).on(BJUI.eventType.initUI, function (e) {
+    $(document).on(BJUI.eventType.initUI, function(e) {
         var $box = $(e.target)
 
-        // UI init begin...
 
         /* i-check */
         if ($.fn.iCheck) {
@@ -39,8 +38,8 @@ layui.define('BJUIextends', function(exports){
                         $ilabel.attr('data-icheck', name)
                     })
                     .iCheck({
-                        checkboxClass: 'datagrid-icheck',
-                        radioClass: 'datagrid-icheck',
+                        checkboxClass: 'icheckbox_minimal-purple datagrid-icheck',
+                        radioClass: 'iradio_minimal-purple',
                         increaseArea: '20%' // optional
                     })
                     .on('ifChanged', function () {
@@ -60,22 +59,22 @@ layui.define('BJUIextends', function(exports){
 
         /* fixed ui style */
         $box.find('button').each(function () {
-            var $element = $(this), icon = $element.data('icon')
-
+            var $element = $(this), icon = $element.attr('data-icon')
             $element.addClass('btn')
-
             if (icon && !$element.find('> i').length) {
-                icon = 'fa-' + icon.replace('fa-', '')
-
+                icon = '&#x' + icon
                 if (!$element.data('bjui.icon')) {
-                    $element.html('<i class="fa ' + icon + '"></i> ' + $element.html()).data('bjui.icon', true)
+                    $element.html('<i class="layui-icon">'+icon+'</i> ' + $element.html()).data('bjui.icon', true)
                 }
             }
         })
 
         $box.find('input:text, input:password').each(function () {
-            var $element = $(this).addClass('form-control'), size = $element.attr('size') || 0, width = size * 10
-
+            var $element = $(this).addClass('form-control').removeAttr('lay-verify'), size = $element.attr('size') || 0, width = size * 10
+            if($element.parents('th').length>0){
+                $element = $(this).addClass('zjoin-filter')
+            }
+            if($(this).hasClass('layui-btn-input')) $(this).css({'height':'30px'})
             width && $element.css('width', width)
         })
 
@@ -100,57 +99,44 @@ layui.define('BJUIextends', function(exports){
             }
         })
 
-        /* form validate */
-        if ($.fn.validator) {
-            $box.find('form[data-toggle="validate"]').each(function () {
-                var $element = $(this)
+        $box.find('.zjoin-filter').bind('focus',function(){
+            var $this = $(this);
+            if($this.attr('readonly')) return
+            if(!$this.attr('filter-op')) $this.attr('filter-op','like')
 
-                $(this)
-                    .validator({
-                        valid: function (form) {
-                            $(form).bjuiajax('_ajaxform', $(form), $(form).data())
-                        },
-                        validClass: 'ok',
-                        msgClass: 'n-bottom',
-                        theme: 'red_bottom_effect_grid'
-                    })
-                    .on('invalid.form', function (e, form, errors) {
-                        if ($(form).data('alertmsg')) $(form).alertmsg('error', BJUI.regional.validatemsg.replaceMsg(errors.length))
-                    })
-            })
-        }
-
-        /* moreSearch */
-        $box.find('[data-toggle="moresearch"]').each(function () {
-            var $element = $(this),
-                $parent = $element.closest('.bjui-pageHeader'),
-                $more = $parent && $parent.find('.bjui-moreSearch'),
-                name = $element.data('name')
-
-            if (!$element.attr('title')) $element.attr('title', '更多查询条件')
-            $element.click(function (e) {
-                if (!$more.length) {
-                    BJUI.debug('Not created \'moresearch\' box[class="bjui-moreSearch"]!')
-                    return
+            if( $this.parent('th').find('div').length>0){
+                $this.parent('th').find('div').removeClass('layui-hide');
+            }else{
+                var zindex =3;
+                var w = $this.width()+3,t = $this.offset().top+$this.height()+4,l=$this.offset().left;
+                if(layer.zIndex) {
+                    zindex=layer.zIndex+1;
+                    var $l = layer.current()
+                    l = l -(window.innerWidth-$l.width())/2
+                    t = t- (window.innerHeight -$l.height()-42-45)/2
                 }
-                $more.css('top', $parent.outerHeight() - 1)
-                if ($more.is(':visible')) {
-                    $element.html('<i class="fa fa-angle-double-down"></i>')
-                    if (name) $('body').data('moresearch.' + name, false)
-                } else {
-                    $element.html('<i class="fa fa-angle-double-up"></i>')
-                    if (name) $('body').data('moresearch.' + name, true)
-                }
-                $more.fadeToggle('slow', 'linear')
-
-                e.preventDefault()
-            })
-
-            if (name && $('body').data('moresearch.' + name)) {
-                $more.css('top', $parent.outerHeight() - 1).fadeIn()
-                $element.html('<i class="fa fa-angle-double-up"></i>')
+                var $div = $('<div class="zjoin-filter-box" style="width:'+w+'px;top:'+t+'px;left: '+l+'px;z-index:'+zindex+';height: auto;"></div>');
+                var $ul = $('<ul class="filter-ul"></ul>')
+                $('<li filter-data = "like" class="selected">包含</li>').appendTo($ul);
+                $('<li filter-data = "=">等于</li>').appendTo($ul);
+                $('<li filter-data = ">">大于</li>').appendTo($ul);
+                $('<li filter-data = "<">小于</li>').appendTo($ul);
+                $ul.appendTo($div);
+                $ul.find('li').bind('click',function () {
+                    $ul.find('li').removeClass('selected')
+                    $(this).addClass('selected');
+                    $(this).parents('th').find('.zjoin-filter').attr('filter-op',$(this).attr('filter-data'))
+                    $(this).parents('th').find('.zjoin-filter').change();
+                })
+                $this.after($div);
             }
-        })
+        }).bind('blur',function () {
+            var $this = $(this);
+            setTimeout(function () {
+                $this.parent('th').find('div').addClass('layui-hide');
+            },150)
+        });
+
 
         /* bootstrap - select */
         if ($.fn.selectpicker) {
@@ -250,11 +236,314 @@ layui.define('BJUIextends', function(exports){
                 }
             })
         }
+        if ($.fn.zTree) {
+            /* zTree - plugin */
+            $box.find('[data-toggle="ztree"]').each(function () {
+                var $this = $(this),
+                    op = $this.data(),
+                    options = op.options, _setting;
+
+                if (options && typeof options === 'string') options = options.toObj()
+                if (options) $.extend(op, typeof options === 'object' && options)
+
+                _setting = op.setting
+
+                if (!op.nodes) {
+                    op.nodes = []
+                    $this.find('> li').each(function () {
+                        var $li = $(this)
+                        var node = $li.data()
+
+                        if (node.pid) node.pId = node.pid
+                        node.name = $li.html()
+                        op.nodes.push(node)
+                    })
+                    $this.empty()
+                } else {
+                    if (typeof op.nodes === 'string') {
+                        if (op.nodes.trim().startsWith('[') || op.nodes.trim().startsWith('{')) {
+                            op.nodes = op.nodes.toObj()
+                        }else {
+                            op.nodes = op.nodes.toFunc()
+                        }
+                    }
+                    if (typeof op.nodes === 'function') {
+                        op.nodes = op.nodes.call(this)
+                    }
+
+                    $this.removeAttr('data-nodes')
+                }
+
+                if (!op.showRemoveBtn) op.showRemoveBtn = false
+                if (!op.showRenameBtn) op.showRenameBtn = false
+                if (op.addHoverDom && typeof op.addHoverDom !== 'function')       op.addHoverDom = (op.addHoverDom === 'edit') ? _addHoverDom : op.addHoverDom.toFunc()
+                if (op.removeHoverDom && typeof op.removeHoverDom !== 'function') op.removeHoverDom = (op.removeHoverDom === 'edit') ? _removeHoverDom : op.removeHoverDom.toFunc()
+                if (!op.maxAddLevel)   op.maxAddLevel = 2
+
+                var setting = {
+                    view: {
+                        addHoverDom: op.addHoverDom || null,
+                        removeHoverDom: op.removeHoverDom || null,
+                        addDiyDom: op.addDiyDom ? op.addDiyDom.toFunc() : null
+                    },
+                    edit: {
+                        enable: op.editEnable,
+                        showRemoveBtn: op.showRemoveBtn,
+                        showRenameBtn: op.showRenameBtn
+                    },
+                    check: {
+                        enable: op.checkEnable,
+                        chkStyle: op.chkStyle,
+                        radioType: op.radioType
+                    },
+                    callback: {
+                        onClick: op.onClick ? op.onClick.toFunc() : null,
+                        beforeDrag: op.beforeDrag ? op.beforeDrag.toFunc() : _beforeDrag,
+                        beforeDrop: op.beforeDrop ? op.beforeDrop.toFunc() : _beforeDrop,
+                        onDrop: op.onDrop ? op.onDrop.toFunc() : null,
+                        onCheck: op.onCheck ? op.onCheck.toFunc() : null,
+                        beforeRemove: op.beforeRemove ? op.beforeRemove.toFunc() : null,
+                        onRemove: op.onRemove ? op.onRemove.toFunc() : null,
+                        onNodeCreated: _onNodeCreated,
+                        onCollapse: _onCollapse,
+                        onExpand: _onExpand
+                    },
+                    data: {
+                        simpleData: {
+                            enable: op.simpleData || true
+                        },
+                        key: {
+                            title: op.title || ''
+                        }
+                    }
+                }
+
+                if (_setting && typeof _setting === 'string') _setting = _setting.toObj()
+                if (_setting) $.extend(true, setting, typeof _setting === 'object' && _setting)
+
+                $.fn.zTree.init($this, setting, op.nodes)
+
+                var IDMark_A = '_a'
+                var zTree = $.fn.zTree.getZTreeObj($this.attr('id'))
+
+                if (op.expandAll) zTree.expandAll(true)
+
+                // onCreated
+                function _onNodeCreated(event, treeId, treeNode) {
+                    if (treeNode.faicon) {
+                        var $a = $('#' + treeNode.tId + '_a')
+
+                        if (!$a.data('faicon')) {
+                            $a.data('faicon', true)
+                                .addClass('faicon')
+                                .find('> span.button').append('<i class="fa fa-' + treeNode.faicon + '"></i>')
+                        }
+                    }
+                    if (op.onNodeCreated) {
+                        op.onNodeCreated.toFunc().call(this, event, treeId, treeNode)
+                    }
+                }
+
+                // onCollapse
+                function _onCollapse(event, treeId, treeNode) {
+                    if (treeNode.faiconClose) {
+                        $('#' + treeNode.tId + '_ico').find('> i').attr('class', 'fa fa-' + treeNode.faiconClose)
+                    }
+
+                    if (op.onCollapse) {
+                        op.onCollapse.toFunc().call(this, event, treeId, treeNode)
+                    }
+                }
+
+                // onExpand
+                function _onExpand(event, treeId, treeNode) {
+                    if (treeNode.faicon && treeNode.faiconClose) {
+                        $('#' + treeNode.tId + '_ico').find('> i').attr('class', 'fa fa-' + treeNode.faicon)
+                    }
+                    if (op.onExpand) {
+                        op.onExpand.toFunc().call(this, event, treeId, treeNode)
+                    }
+                }
+
+                // add button, del button
+                function _addHoverDom(treeId, treeNode) {
+                    var level = treeNode.level
+                    var $obj = $('#' + treeNode.tId + IDMark_A)
+                    var $add = $('#diyBtn_add_' + treeNode.id)
+                    var $del = $('#diyBtn_del_' + treeNode.id)
+
+                    if (!$add.length) {
+                        if (level < op.maxAddLevel) {
+                            $add = $('<span class="tree_add" id="diyBtn_add_' + treeNode.id + '" title="添加"></span>')
+                            $add.appendTo($obj);
+                            $add.on('click', function () {
+                                zTree.addNodes(treeNode, {name: '新增Item'})
+                            })
+                        }
+                    }
+
+                    if (!$del.length) {
+                        return
+                        var $del = $('<span class="tree_del" id="diyBtn_del_' + treeNode.id + '" title="删除"></span>')
+
+                        $del
+                            .appendTo($obj)
+                            .on('click', function (event) {
+                                    var delFn = function () {
+                                        $del.alertmsg('confirm', '确认要删除 ' + treeNode.name + ' 吗？', {
+                                            okCall: function () {
+                                                zTree.removeNode(treeNode)
+                                                if (op.onRemove) {
+                                                    var fn = op.onRemove.toFunc()
+
+                                                    if (fn) fn.call(this, event, treeId, treeNode)
+                                                }
+                                            },
+                                            cancelCall: function () {
+                                                return
+                                            }
+                                        })
+                                    }
+
+                                    if (op.beforeRemove) {
+                                        var fn = op.beforeRemove.toFunc()
+
+                                        if (fn) {
+                                            var isdel = fn.call(fn, treeId, treeNode)
+
+                                            if (isdel && isdel == true) delFn()
+                                        }
+                                    } else {
+                                        delFn()
+                                    }
+                                }
+                            )
+                    }
+                }
+
+                // remove add button && del button
+                function _removeHoverDom(treeId, treeNode) {
+                    var $add = $('#diyBtn_add_' + treeNode.id)
+                    var $del = $('#diyBtn_del_' + treeNode.id)
+
+                    if ($add && $add.length) {
+                        $add.off('click').remove()
+                    }
+
+                    if ($del && $del.length) {
+                        $del.off('click').remove()
+                    }
+                }
+
+                // Drag
+                function _beforeDrag(treeId, treeNodes) {
+                    for (var i = 0; i < treeNodes.length; i++) {
+                        if (treeNodes[i].drag === false) {
+                            return false
+                        }
+                    }
+                    return true
+                }
+
+                function _beforeDrop(treeId, treeNodes, targetNode, moveType) {
+                    return targetNode ? targetNode.drop !== false : true
+                }
+            })
+
+            /* zTree - drop-down selector */
+
+            var $selectzTree = $box.find('[data-toggle="selectztree"]')
+
+            $selectzTree.each(function () {
+                var $this = $(this)
+                var options = $this.data(),
+                    $tree = $(options.tree),
+                    w = parseFloat($this.css('width')),
+                    h = $this.outerHeight()
+
+                options.width = options.width || $this.outerWidth()
+                options.height = options.height || 'auto'
+
+                if (!$tree || !$tree.length) return
+
+                var treeid = $tree.attr('id')
+                var $box = $('#' + treeid + '_select_box')
+                var setPosition = function ($box) {
+                    var top = $this.offset().top,
+                        left = $this.offset().left,
+                        $clone = $tree.clone().appendTo($('body')),
+                        treeHeight = $clone.outerHeight()
+
+                    $clone.remove()
+
+                    var offsetBot = $(window).height() - treeHeight - top - h,
+                        maxHeight = $(window).height() - top - h
+
+                    if (options.height == 'auto' && offsetBot < 0) maxHeight = maxHeight + offsetBot
+                    $box.css({top: (top + h), left: left, 'max-height': maxHeight})
+                }
+
+                $this.click(function () {
+                    if ($box && $box.length) {
+                        setPosition($box)
+                        $box.show()
+                        return
+                    }
+
+                    var zindex = 2
+                    var dialog = $.CurrentDialog
+                    if (dialog && dialog.length) {
+                        zindex = dialog.css('zIndex') + 1
+                    }
+                    zindex= layer.zIndex+1
+                    $box = $('<div id="' + treeid + '_select_box" class="tree-box"></div>')
+                        .css({
+                            position: 'absolute',
+                            'zIndex': zindex,
+                            'min-width': options.width,
+                            height: options.height,
+                            overflow: 'auto',
+                            background: '#FAFAFA',
+                            border: '1px #EEE solid'
+                        })
+                        .hide()
+                        .appendTo($('body'))
+
+                    $tree.appendTo($box).css('width', '100%').data('fromObj', $this).removeClass('hide').show()
+                    setPosition($box)
+                    $box.show()
+                })
+
+                $('body').on('mousedown', function (e) {
+                    var $target = $(e.target)
+
+                    if (!($this[0] == e.target || ($box && $box.length > 0 && $target.closest('.tree-box').length > 0))) {
+                        $box.hide()
+                    }
+                })
+
+                var $scroll = $this.closest('.bjui-pageContent')
+
+                if ($scroll && $scroll.length) {
+                    $scroll.scroll(function () {
+                        if ($box && $box.length) {
+                            setPosition($box)
+                        }
+                    })
+                }
+
+                //destroy selectzTree
+                $this.on('destroy.bjui.selectztree', function () {
+                    $box.remove()
+                })
+            })
+        }
+
 
         /* tooltip */
         $box.find('[data-toggle="tooltip"]').each(function () {
             $(this).tooltip()
-        });
+        })
 
         $box.find('[data-toggle="popover"]').each(function () {
             var $element = $(this), target = $element.data('target')
@@ -264,8 +553,19 @@ layui.define('BJUIextends', function(exports){
             }
 
             $element.popover()
-        });
-    })
+        })
 
+
+        /* fixed dropdown-menu width */
+        $box.find('[data-toggle="dropdown"]').parent().on('show.bs.dropdown', function (e) {
+            var $this = $(this), width = $this.outerWidth(), $menu = $this.find('> .dropdown-menu'), menuWidth = $menu.outerWidth()
+
+            if (width > menuWidth) {
+                $menu.css('min-width', width)
+            }
+        })
+
+
+    });
     exports('BJUIplugins');
 });

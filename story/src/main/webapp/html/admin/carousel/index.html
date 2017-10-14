@@ -1,72 +1,103 @@
-<div class="layui-btn-group demoTable" style="width: 100%">
-    <button class="layui-btn" data-type="addCarousel">新增</button>
-    <button class="layui-btn" data-type="delCarousel">删除</button>
-    <button class="layui-btn" data-type="ediCarousel">编辑</button>
-    <div class="admin-search">
-        <input type="text"/>
-        <i class="layui-icon">&#xe615;</i>
-    </div>
-</div>
-<table class="layui-hide" id="table_carousel_list" lay-filter="table_carousel_list"></table>
-
 <script type="text/javascript">
-    layui.use('table', function () {
-        var table = layui.table,form = layui.form,layer = layui.layer;
+    layui.define(['jquery', 'BJUIajax', 'BJUIdatagrid', 'BJUIinitui', 'BJUIplugins'], function () {
+        var $ = layui.jquery;
+        var user_btn = ''
+        var toolbarCustom_btn = ''
+        user_btn += 'del,'
+        toolbarCustom_btn += '<button type="button" class="layui-btn layui-btn-small carousel_add_btn"style="margin-left: 5px;"  >';
+        toolbarCustom_btn += '<i class="layui-icon">&#xe8e8;</i>';
+        toolbarCustom_btn += '&nbsp;添加</button>'
 
-        //方法级渲染
-        var carouselable = table.render({
-            elem: '#table_carousel_list'
-            , id: 'table_carousel_list'
-            , url: '/admin/carousel/list'
-            , cols: [[
-                {checkbox: true, fixed: true}
-                , {field: 'title', title: '名称', width: 200}
-                , {field: 'picture', title: '头像', sort: true, width: 400,templet: '#carouselpictureTpl'}
-            ]]
-            , page: true
-            , height: 725
+        var user_datagrid_data = {
+            local: 'remote',
+            dataUrl: '/admin/carousel/list',
+            dataType: 'json',
+            sortAll: false,
+            columnFilter: true,
+            loadType: 'get',
+            height: '100%',
+            columns: [
+                {name: 'title', width: '150', label: '标题', align: 'center', rule: 'required'},
+                {
+                    name: 'picture', width: '300', align: 'center', label: '图片', render: function (value) {
+                    return '<img style="max-width: 300px;max-height: 200px;" src="' + value + '"/>';
+                }, attrs: {'readonly': "true"}
+                },
+                {
+                    name: 'isdelete',
+                    width: '150',
+                    label: '是否删除',
+                    type: 'select',
+                    align: 'center',
+                    items: [{true: '是'}, {false: '否'}],render:function (value) {
+                    var html = '';
+                    if(value) html = '<font color="green"><b>是</b></font>';
+                    else html = '否'
+                    return html;
+                }
+                },{name:'createtime', width: '150', label: '创建时间', align: 'center',render:function (value) {
+                    return zjoin.timetrans(value)
+                }}
+            ],
+            paging: {pageSize: 50, selectPageSize: '50,100,200', pageCurrent: 1},
+            fullGrid: true,
+            showToolbar: true,
+            toolbarItem: user_btn,
+            inlineEditMult: false,
+            toolbarCustom: toolbarCustom_btn,
+        }
+
+
+        if (user_btn.indexOf('del') != -1) {
+            user_datagrid_data.delConfirm = true
+            user_datagrid_data.delPK = 'id'
+            user_datagrid_data.delType = 'POST'
+            user_datagrid_data.delUrl = '/admin/carousel/delete'
+            user_datagrid_data.delCallback = 'del_user_back'
+        }
+
+        $('#carousel_list_table').datagrid(user_datagrid_data);
+        window.manage_user_back_edit = manage_user_back_edit
+        function manage_user_back_edit(result) {
+            if (result.code != 1) {
+                if (result.data instanceof Array) {
+                    $.each(result.data, function (index, value) {
+                        layer.warn(value.errorMsg)
+                    });
+                } else {
+                    layer.warn(result.data)
+                }
+            } else {
+                layer.ok('操作成功')
+            }
+            $('#carousel_list_table').datagrid('refresh_part');
+        }
+
+        function del_user_back(d) {
+            if (d.code == 1) {
+                layer.ok("删除成功")
+            } else {
+                layer.err(d.data)
+            }
+            $('#carousel_list_table').datagrid('refresh_part');
+        }
+        $(".carousel_add_btn").bind( 'click', function () {
+            layer.open({
+                type: 5,
+                title: '新增轮换图',
+                area: ['1200px', '540px'],
+                content: '/html/admin/carousel/add.html',
+                btn: ['保存', '取消'],
+                btnAlign: 'r',
+                moveType: 1,//拖拽模式，0或者1
+                yes:function(){
+                }
+            });
         });
-        var $ = layui.$, active = {
-            addCarousel: function () {
-                layer.open({
-                    type: 5,
-                    scrollbar: false,
-                    skin: 'layui-layer-rim', //加上边框
-                    area: ['800px', '550px'], //宽高
-                    content: '/html/admin/carousel/add.html'
-                });
-            }
-            , delCarousel: function () {
-                var checkStatus = table.checkStatus('table_carousel_list')
-                        , data = checkStatus.data;
-                layer.msg('选中了：' + data.length + ' 个');
-            }
-            , ediCarousel: function () {
-                var checkStatus = table.checkStatus('table_carousel_list')
-                        , data = checkStatus.data;
-               if(data.length==1){
-                   layer.open({
-                       type: 5,
-                       scrollbar: false,
-                       skin: 'layui-layer-rim',
-                       area: ['800px', '550px'],
-                       content: '/html/admin/carousel/edit.html'
-                   });
-               }
-            }
-            , isAll: function () {
-                var checkStatus = table.checkStatus('table_carousel_list');
-                layer.msg(checkStatus.isAll ? '全选' : '未全选')
-            }
-        };
-        $('.demoTable .layui-btn').on('click', function () {
-            var type = $(this).data('type');
-            active[type] ? active[type].call(this) : '';
-        });
+       
     });
 </script>
-
-<script type="text/html" id="carouselpictureTpl">
-    <img src="{{d.picture}}" />
-</script>
-
+<div class="bjui-pageContent">
+    <input type="hidden" id="user_select_id">
+    <table id="carousel_list_table" class="table table-hover" data-width="100%"></table>
+</div>

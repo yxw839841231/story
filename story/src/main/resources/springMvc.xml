@@ -13,6 +13,9 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <mvc:view-controller path="/" view-name="/index"/>
+
     <!-- 静态资源默认servlet配置 1、加入对静态资源的处理:js,css,gif,png 2、允许使用"/"做整体映射 -->
     <mvc:default-servlet-handler/>
     <!-- 开启注解 -->
@@ -43,8 +46,8 @@
     <!-- 定义跳转的文件的前后缀 ，视图模式配置-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
-        <property name="prefix" value="/WEB-INF/html/"/>
-        <property name="suffix" value=".html"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
     <!-- 开启AOP拦截 -->
     <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->

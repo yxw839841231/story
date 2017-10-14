@@ -33,7 +33,7 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     @ResponseBody
-    public Pagination list(Pagination pagination) {
+    public BaseResult list(Pagination pagination) {
         Pagination p = userService.pageInfoSimple(pagination);
         p.setCode(0);
         p.setMsg("ok");

@@ -57,7 +57,16 @@
             , zjoin: 'modules/zjoin' //（自定义工具类）
             , ZJOINS: 'modules/ZJOINS' //（自定义工具类）
             , context: 'modules/context' //右键菜单
-            , validator: 'modules/plugin/validator/validator' //表单验证
+            , cookie: 'modules/cookie' //缓存
+
+
+            , editormd: 'modules/plugin/editormd/editormd' //缓存
+
+
+            , ztree: 'modules/plugin/ztree/ztree' //
+            , ztreecheck: 'modules/plugin/ztree/ztreecheck' //
+            , ztreeedit: 'modules/plugin/ztree/ztreeedit' //
+
 
             , BJUIcore: 'modules/plugin/bjui/bjui-core'
             , BJUIregional: 'modules/plugin/bjui/bjui-regional'
@@ -83,6 +92,7 @@
             ,ZJOINtodoList:'modules/plugin/zjoin/zjoin-todoList'
             ,ZJOINtree:'modules/plugin/zjoin/zjoin-tree'
             ,ZJOINtheme:'modules/plugin/zjoin/zjoin-theme'
+            ,ZJOINicon:'modules/plugin/zjoin/zjoin-icon'
 
             , mobile: 'modules/mobile' //移动大模块 | 若当前为开发目录，则为移动模块入口，否则为移动模块集合
             , 'layui.all': 'dest/layui.all' //PC模块合并版

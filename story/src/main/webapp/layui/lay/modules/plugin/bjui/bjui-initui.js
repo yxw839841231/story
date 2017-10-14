@@ -315,5 +315,5 @@ layui.define('BJUIextends', function(exports){
         })
     })
 
-    exports('BJUIinitui', new Initui());
+    exports('BJUIinitui');
 });

@@ -53,7 +53,7 @@ layui.define('jquery', function (exports) {
                             $menu.append('<li class="nav-header">' + data[i].header + '</li>');
                         } else {
                             if (typeof data[i].href == 'undefined') {
-                                data[i].href = '#';
+                                data[i].href = 'javascript:void(0)';
                             }
                             if (typeof data[i].target !== 'undefined') {
                                 linkTarget = ' target="' + data[i].target + '"';

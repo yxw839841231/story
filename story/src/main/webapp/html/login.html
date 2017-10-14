@@ -1,22 +1,110 @@
-<form class="layui-form">
-    <div class="layui-form-item">
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户名</label>
-            <div class="layui-input-inline">
-                <input type="text" name="loginname"  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">密码</label>
-            <div class="layui-input-inline">
-                <input type="password" name="loginpass" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn" lay-submit="" lay-filter="login">立即提交</button>
-                <button type="button" class="layui-btn layui-btn-primary" lay-filter="cancle">取消</button>
-            </div>
-        </div>
-    </div>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>登录</title>
+    <meta name="author" content="DeathGhost">
+    <link rel="stylesheet" type="text/css" href="../layui/login/login.css">
+    <style>
+        body {
+            height: 100%;
+            background: #16a085;
+            overflow: hidden;
+        }
+
+        canvas {
+            z-index: -1;
+            position: absolute;
+        }
+    </style>
+    <script src="../layui/login/jquery.js"></script>
+    <link href="../layui/css/ie7.css" rel="stylesheet"><!---->
+    <script src="../layui/layui.js"></script>
+    <script src="../layui/login/Particleground.js" ></script>
+    <script>
+
+        layui.define(['jquery','cookie','layer'],function () {
+            var $ = layui.jquery;
+            $(function() {
+                $("#login_ok").click(function(){
+                    var issubmit = true;
+                    var i_index  = 0;
+                    $('.in').each(function(i){
+                        if ($.trim($(this).val()).length == 0) {
+                            $(this).css('background', '#bf4722');
+                            issubmit = false;
+                            if (i_index == 0)
+                                i_index  = i;
+                        }
+                    });
+                    if (!issubmit) {
+                        $('.in').eq(i_index).focus();
+                        return false;
+                    }
+
+                    $.ajax({
+                        url: '/story/user/login',
+                        dataType: 'json',
+                        type: 'POST',
+                        data:{
+                            loginname:$("#j_username").val(),
+                            loginpass:$("#j_password").val(),
+                            rememberMe:$("#rememberMe").checked
+                        },
+                        success: function(d){
+                            if(d.code == 0) {
+                                $.cookie("nickname",d.data.nickname)
+                                window.location.href = 'admin/index.html';
+                            }else{
+                                layer.err(d.data)
+                                $("#login_ok").attr("disabled", false).val('登陆');
+                            }
+                        },
+                        error:function(){
+                            $("#login_tip").text("数据访问错误");
+                            setTimeout(function(){
+                                $("#login_tip").text("");
+                            },4000);
+                        }
+                    });
+                    return false;
+                });
+                $('body').particleground({
+                    dotColor: '#5cbdaa',
+                    lineColor: '#5cbdaa'
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<canvas class="pg-canvas" width="1920" height="974"></canvas>
+<dl class="admin_login">
+    <dt>
+        <strong><font color="#771720">美窝ERP管理系统</font></strong>
+        <em>MEIWO ERP Management System</em>
+    </dt>
+    <dd class="user_icon">
+        <input type="text" placeholder="账号" class="login_txtbx in" id="j_username">
+    </dd>
+    <dd class="pwd_icon">
+        <input type="password" placeholder="密码" class="login_txtbx in" id="j_password">
+    </dd>
+    <dd align="center">
+        <span for="rememberMe" title="下次不需要再登录"><input type="checkbox" id="rememberMe" name="rememberMe"> 记住我（公共场所慎用）</span>
+    </dd>
+
+    <dd>
+        <input type="button" value="立即登陆" class="submit_btn" id="login_ok">
+    </dd>
+    <dd>
+        <p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+    </dd>
+    <hr>
+    <dd>
+        <p>Copyright © 2016 - 2017 美窝科技ERP</p>
+    </dd>
+</dl>
+
+</body>
+</html>

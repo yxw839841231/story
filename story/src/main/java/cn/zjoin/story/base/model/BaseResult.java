@@ -29,14 +29,14 @@ public class BaseResult {
 
 
 
-    private Integer code;
-    private String msg;
-    private Object data;
-    private Integer pageSize;
+    protected Integer code;
+    protected String msg;
+    protected Object data;
+    protected Integer pageSize;
 
-    private Integer pageCurrent;
+    protected Integer pageCurrent;
 
-    private Integer total;
+    protected Long total;
 
     public Integer getCode() {
         return code;
@@ -78,11 +78,11 @@ public class BaseResult {
         this.pageCurrent = pageCurrent;
     }
 
-    public Integer getTotal() {
+    public Long getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(Long total) {
         this.total = total;
     }
 }

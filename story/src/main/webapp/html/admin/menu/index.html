@@ -1,0 +1,413 @@
+<script>
+    layui.define(['BJUIajax', 'BJUIdatagrid', 'BJUIinitui', 'BJUIplugins', 'ztreeedit', 'form','ZJOINicon'], function () {
+        var $ = layui.jquery, form = layui.form ,ZJOINicon=layui.ZJOINicon;
+        form.render('radio');
+        form.render('checkbox');
+        var p_add_num = 100000;
+        var permission_del_treeNode
+        var permission_data = new Array()
+        var permission_object = new Object()
+        var permission_treeNode;
+
+        permission_object.nodes = 'ajaxDataFilter'
+        window.ajaxDataFilter = ajaxDataFilter
+        permission_object.maxAddLevel = 3
+        permission_object.removeHoverDom = 'edit'
+        permission_object.editEnable = 'true'
+
+        for (var data of window.user_data) {
+
+            var value = data.path
+            permission_data[value] = value
+            switch (value) {
+                case 'upms:permission:create':
+                    permission_object.addHoverDom = 'edit'
+                    permission_object.onClick = 'S_NodeCheck'
+                    break;
+                case 'upms:permission:update':
+                    permission_object.editEnable = 'true'
+                    permission_object.onDrop = 'p_ztree_onDrop'
+                    permission_object.onClick = 'S_NodeCheck'
+                    break;
+                case 'upms:permission:delete':
+                    permission_object.showRemoveBtn = 'true'
+                    permission_object.beforeRemove = 'p_ztree_onRemove'
+                    break;
+            }
+        }
+        window.S_NodeCheck = S_NodeCheck
+        window.p_ztree_onDrop = p_ztree_onDrop
+        window.p_ztree_onRemove=p_ztree_onRemove
+        $('#permission_ztree').append('<ul id="menu-ztree" class="ztree" data-toggle="ztree" data-radio-type="all" data-expand-all="true" data-options=' + JSON.stringify(permission_object) + '></ul>')
+        $("#permission_ztree").initui();
+        form.on('submit(permission-from)',function () {
+            var id = permission_treeNode.id
+
+            var pid = permission_treeNode.pId
+
+            //新增
+            if (id == undefined && pid != null) {
+                premission_create()
+            }
+
+            //编辑
+            if (id != undefined && pid != null) {
+                premission_update()
+            }
+            return false;
+
+        });
+
+        function permission_check(check) {
+            return check in permission_data
+        }
+
+        function S_NodeCheck(event, treeId, treeNode, clickFlag) {
+            var id = treeNode.id
+
+            var pid = treeNode.pId
+
+            var type = treeNode.type
+
+            var status = treeNode.status
+
+            //新增菜单
+            if (id == undefined && pid != null) {
+                if (permission_check('upms:permission:create'))
+                    $('#permission_right').fadeIn();
+                $('#permissin_save').html('<i class="layui-icon">&#xe161;</i>&nbsp; 保存')
+                permission_treeNode = treeNode
+                $('#itemclass_name').val('');
+                $('#itemclass_permissionValue').val('')
+                $('#itemclass_uri').val('')
+                $('#itemclass_icon').val('')
+                $('#itemclass_orders').val('')
+                $('#item_type1').iCheck('check');
+                $('#itemclass_status').iCheck('check');
+            }
+            //系统层级
+            if (id != undefined && pid == null) {
+                $('#permission_right').fadeOut();
+            }
+            //编辑
+            if (id != undefined && pid != null) {
+                if (permission_check('upms:permission:update'))
+                    $('#permission_right').fadeIn();
+                $('#permissin_save').html('<i class="layui-icon">&#xe923;</i>&nbsp; 更新')
+                permission_treeNode = treeNode
+                $('#itemclass_name').val(treeNode.name);
+                $('#itemclass_permissionValue').val(treeNode.path)
+                $('#itemclass_uri').val(treeNode.uri)
+                $('#itemclass_icon').val(treeNode.icon)
+                $('#itemclass_orders').val(treeNode.orders)
+                $(":radio[name=type][value=" + type + "]").click();
+                form.render('radio');
+                if (status) {
+                    $('#itemclass_status').attr('checked', true);
+                } else {
+                    $('#itemclass_status').removeAttr('checked');
+                }
+                form.render('checkbox');
+            }
+
+            if (id == undefined && pid == undefined) {
+                $('#permission_right').fadeOut();
+            }
+            ZJOINicon.init();
+        }
+        function ajaxDataFilter() {
+            var datas = new Array();
+            $.ajax({
+                url:  '/menu/list',
+                type: 'get',
+                async: false,
+                success: function (responseData) {
+
+                    if (responseData) {
+                        if (responseData.code != 0) {
+                            return datas;
+                        }
+
+                        datas.push({'id':0,'pId':0,'name':'基础系统'});
+                        var permissions = responseData.data.system;
+                        for (var i = 0; i < permissions.length; i++) {
+                            datas[1 + i] = permissions[i]
+                            datas[1 + i]['id'] = permissions[i].id;
+                            datas[1 + i]['pId'] =  0;
+                        }
+                        var sysl = permissions.length+1;
+                        permissions = responseData.data.menu;
+                        for (var i = 0; i < permissions.length; i++) {
+                            datas[sysl + i] = permissions[i]
+                            datas[sysl + i]['id'] = permissions[i].id+p_add_num;
+                             if (permissions[i].pid == 0) {
+                             datas[sysl + i]['pId'] = permissions[i].systemid;
+                             } else {
+                            datas[sysl + i]['pId'] =  permissions[i].pid+p_add_num;
+                            }
+                        }
+                        return datas;
+                    }
+
+                }
+            });
+            return datas;
+        }
+
+
+        function p_ztree_onDrop(treeId, treeNodes, targetNode, moveType, isCopy) {
+            var pid = targetNode[0].pId
+            if (pid == null) {
+                $('#permission_right').fadeOut();
+                layer.err( '拖拽错误,无法成为父级')
+                return
+            }
+        }
+
+        function p_ztree_onRemove(treeId, treeNode) {
+
+            if (treeNode.level == 0) {
+                return false
+            }
+            if (treeNode.id == undefined) {
+                return true
+            }
+            permission_del_treeNode = treeNode
+            layer.confirm('确定删除?', {icon: 3},
+                    function (index) {
+                        p_show_remove()
+                        layer.close(index);
+                    }, function () {
+                    });
+
+            return false;
+        }
+
+        function p_show_remove() {
+            var zTree = $.fn.zTree.getZTreeObj("menu-ztree")
+            $('#permission_pagecontent').trigger('bjui.ajaxStart')
+            $.ajax({
+                        url: $.cookie("tudou-upms-server") + '/manage/permission/delete/' + permission_del_treeNode.id,
+                        type: 'GET',
+                        success: function (d) {
+                            if (d.code == 1) {
+                                zTree.removeNode(permission_del_treeNode);
+                                $('#permission_right').fadeOut();
+                            } else {
+                                layer.warn( d.data);
+                            }
+                            $('#permission_pagecontent').trigger('bjui.ajaxStop')
+                        },
+                        error: function () {
+                            $('#permission_pagecontent').trigger('bjui.ajaxStop')
+                        }
+                    }
+            );
+
+        }
+
+        function premission_update() {
+            debugger
+            var id, systemId, pid, name, type, permissionValue, uri, icon, status, orders
+            id = permission_treeNode.id
+            id = id >p_add_num ?id - p_add_num :id;
+            /*systemId = permission_treeNode.pId
+            systemId = systemId > p_add_num ? systemId - p_add_num : permission_treeNode.getParentNode().systemId*/
+
+            pid = permission_treeNode.pId
+            pid = pid > p_add_num ? pid - p_add_num  : pid
+
+            name = $('#itemclass_name').val()
+            permissionValue = $('#itemclass_permissionValue').val()
+            uri = $('#itemclass_uri').val()
+            icon = $('#itemclass_icon').val()
+            orders = $('#itemclass_orders').val()
+            type = $('input:radio[name="type"]:checked').val()
+            status = $('#itemclass_status').is(':checked') == true ? 1 : 0
+            $('#permission_pagecontent').trigger('bjui.ajaxStart')
+            $.ajax({
+                        url: '/menu/update',
+                        dataType: 'json',
+                        type: 'POST',
+                        data: {
+                            id: id,
+                            /*systemId: systemId,
+                            pid: pid,*/
+                            name: name,
+                            type: type,
+                            permissionValue: permissionValue,
+                            uri: uri,
+                            icon: icon,
+                            status: status,
+                            orders: orders
+                        },
+                        success: function (d) {
+                            var zTree = $.fn.zTree.getZTreeObj("menu-ztree")
+                            var upNode = zTree.getSelectedNodes()[0];
+                            if (d.code == 0) {
+                                upNode.id = d.data
+                                upNode.permissionId = d.data
+                                upNode.pid = pid
+                                upNode.name = name
+                                upNode.type = type;
+                                upNode.permissionValue = permissionValue
+                                upNode.uri = uri
+                                upNode.icon = icon
+                                upNode.status = status
+                                upNode.orders = orders
+                                zTree.updateNode(upNode)
+                                zTree.cancelSelectedNode();
+                                $('#permission_right').fadeOut();
+                            } else {
+                                if (d.data instanceof Array) {
+                                    $.each(d.data, function (index, value) {
+
+                                        layer.err(value)
+                                    });
+                                } else {
+                                    layer.warn( d.data)
+                                }
+                            }
+                            $('#permission_pagecontent').trigger('bjui.ajaxStop')
+                        },
+                        error: function () {
+                            $('#permission_pagecontent').trigger('bjui.ajaxStop')
+                        }
+                    }
+            );
+        }
+
+        function premission_create() {
+            var permissionId, systemId, pid, name, type, permissionValue, uri, icon, status, orders
+
+            systemId = permission_treeNode.getParentNode().systemid
+            pid = permission_treeNode.pId
+            pid = pid > p_add_num ? pid - p_add_num  : pid
+
+            name = $('#itemclass_name').val()
+            permissionValue = $('#itemclass_permissionValue').val()
+            uri = $('#itemclass_uri').val()
+            icon = $('#itemclass_icon').val()
+            orders = $('#itemclass_orders').val()
+            type = $('input:radio[name="type"]:checked').val()
+            status = $('#itemclass_status').is(':checked') == true ? 1 : 0
+            $('#permission_pagecontent').trigger('bjui.ajaxStart')
+            $.ajax({
+                        url: '/menu/save',
+                        dataType: 'json',
+                        type: 'POST',
+                        data: {
+                            systemid: systemId,
+                            pid: pid,
+                            name: name,
+                            type: type,
+                            path: permissionValue,
+                            uri: uri,
+                            icon: icon,
+                            status: status,
+                            orders: orders
+                        },
+                        success: function (d) {
+                            var zTree = $.fn.zTree.getZTreeObj("menu-ztree")
+                            var upNode = zTree.getSelectedNodes()[0];
+                            if (d.code == 0) {
+                                upNode.id = d.data
+                                upNode.permissionId = d.data
+                                upNode.pid = pid
+                                upNode.name = name
+                                upNode.type = type;
+                                upNode.path = permissionValue
+                                upNode.uri = uri
+                                upNode.icon = icon
+                                upNode.status = status
+                                upNode.orders = orders
+                                upNode.systemid = systemId
+                                zTree.updateNode(upNode)
+                                zTree.cancelSelectedNode();
+                                $('#permission_right').fadeOut();
+                            } else {
+                                if (d.data instanceof Array) {
+                                    $.each(d.data, function (index, value) {
+                                       layer.err(value)
+                                    });
+                                } else {
+                                    layer.err( d.data)
+                                }
+                            }
+                            $('#permission_pagecontent').trigger('bjui.ajaxStop')
+                        }, error: function () {
+                            $('#permission_pagecontent').trigger('bjui.ajaxStop')
+                        }
+                    }
+            );
+        }
+    });
+</script>
+
+
+<div class="bjui-pageContent" id="permission_pagecontent">
+    <div class="roleLeft" style="width: 250px !important;position: relative;height: 100%;float: left;">
+        <div id="permission_ztree" class="bjui-pageContent" style="top: 0px;">
+        </div>
+
+    </div>
+    <div id="permission_right" class="roleRight"
+         style="width: 55% !important;position: relative;height: 100%;float: left;margin: 0px 10px;display:none">
+        <div class="bjui-pageContent" style="top: 0px;">
+            <div class="bs-example" data-content="详细信息">
+                <form id="permission_from" class="layui-form" lay-filter="permission-from">
+                    <fieldset>
+                        <legend>详细信息</legend>
+                        <div class="layui-form-item">
+                            <label for="itemclass_name" class="layui-form-label">名称：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" size="23" class="layui-input" name="name" id="itemclass_name" ></div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="itemclass_permissionValue" class="layui-form-label">权限值：</label>
+                            <div class="layui-input-inline">
+                                <input type="text"  class="layui-input" name="path"
+                                       id="itemclass_permissionValue"></div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="itemclass_uri" class="layui-form-label">路径：</label>
+                            <div class="layui-input-inline">
+                                <input type="text"  class="layui-input" name="uri" id="itemclass_uri"
+                                       style="width: 300px;"></div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="itemclass_icon" class="layui-form-label">图标：</label>
+                            <div class="layui-input-inline">
+                                <input type="text"  class="layui-input zjoin-icon-pick" name="icon" id="itemclass_icon" >
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="itemclass_orders" class="layui-form-label">排序：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" size="23" class="layui-input" name="orders" id="itemclass_orders"
+                                       ></div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">类型：</label>
+                            <div class="">
+                                <input type="radio" name="type" value="1" title="目录">
+                                <input type="radio" name="type" value="2" title="菜单">
+                                <input type="radio" name="type" value="3" title="按钮">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">是否生效：</label>
+                            <div class="layui-input-inline">
+                                <input type="checkbox" lay-filter='permission-from' name="status" title="生效" value="1" id="itemclass_status">
+                            </div>
+                        </div>
+                        <div class="layui-form-item" style="padding-top:8px; border-top:1px #DDD solid;">
+                            <label class="layui-form-label"></label>
+                            <button class="layui-btn layui-btn-small" id="permissin_save" layui-submit()></button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

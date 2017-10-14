@@ -11,7 +11,7 @@
 
 layui.define('BJUInavtab', function(exports){
     "use strict";
-    var $ = layui.BJUIextends,BJUI=layui.BJUIcore;
+    var $ = layui.BJUIextends,BJUI=layui.BJUIcore,layer = layui.layer;
 
     var autorefreshTimer
 
@@ -51,7 +51,10 @@ layui.define('BJUInavtab', function(exports){
             BJUI.alertmsg('info', (json[BJUI.keys.message] || BJUI.regional.sessiontimeout))
             BJUI.loadLogin()
         } else {
-            if (json[BJUI.keys.message]) BJUI.alertmsg('correct', json[BJUI.keys.message])
+            if (json[BJUI.keys.message]){
+                //layer.msg(json[BJUI.keys.message],{icon:6})
+                //BJUI.alertmsg('correct', json[BJUI.keys.message])
+            }
         }
     }
     
@@ -600,7 +603,7 @@ layui.define('BJUInavtab', function(exports){
         }
     }
     
-    Bjuiajax.prototype.ajaxsearch = function(option) {
+    /*Bjuiajax.prototype.ajaxsearch = function(option) {
         var that     = this,
             options  = $.extend({}, typeof option === 'object' && option),
             $element = that.$element,
@@ -645,8 +648,113 @@ layui.define('BJUInavtab', function(exports){
         } else {
             that._ajaxsearch($form, options)
         }
+    }*/
+    Bjuiajax.prototype.ajaxsearch = function(option) {
+        var that = this, options = $.extend({}, typeof option === 'object' && option), $element = that.$element, form = null, op = {pageCurrent:1}, $form, $target, isValid = options.isValid
+
+        if (options.target) $target = $(options.target)
+        if ($element[0] === $('body')[0]) {
+            $form = options.form
+
+            if (!($form instanceof jQuery)) {
+                $form = $(options.form)
+            }
+            if (!$form || !$form.length || !($form.isTag('form'))) {
+                BJUI.debug('Bjuiajax Plugin: \'ajaxsearch\' method: Not set the form!')
+                return
+            }
+            if (options.target) {
+                $target = options.target
+
+                if (!($target instanceof jQuery))
+                    $target = $($target)
+            } else {
+                $target = $form.closest('.bjui-layout')
+            }
+
+            if (!$target || !$target.length)
+                $target = $.CurrentDialog || $.CurrentNavtab
+        } else {
+            $form   = $element
+            $target = $form.closest('.bjui-layout')
+
+            if (!($form.isTag('form'))) {
+                BJUI.debug('Bjuiajax Plugin: \'ajaxsearch\' method: Not set the form!')
+                return
+            }
+            if (!$target || !$target.length) {
+                $target = $.CurrentDialog || $.CurrentNavtab
+            }
+
+            if (!options.url)
+                options.url = $form.attr('action')
+        }
+
+        that.$target = $target
+
+        if (!options.url)
+            options.url = $form.attr('action')
+
+        if (!options.url) {
+            BJUI.debug('Bjuiajax Plugin: \'ajaxsearch\' method: The form\'s action or url is undefined!')
+            return
+        } else {
+            options.url = decodeURI(options.url).replacePlh($form.closest('.unitBox'))
+
+            if (!options.url.isFinishedTm()) {
+                BJUI.alertmsg('error', (options.warn || BJUI.regional.plhmsg))
+                BJUI.debug('Bjuiajax Plugin: \'ajaxsearch\' method: The form\'s action or url is incorrect: '+ options.url)
+                return
+            }
+
+            options.url = encodeURI(options.url)
+        }
+
+        if (!options.type)
+            options.type = $form.attr('method') || 'POST'
+
+        that.tools.getPagerForm($target, op, $form[0])
+        options.form = $form
+
+        $.extend(that.options, options)
+
+        var search = function() {
+            if ($target.hasClass('bjui-layout')) {
+                var data = $form.serializeJson(), _data = {}
+
+                if (options.clearQuery) {
+                    var pageInfo = BJUI.pageInfo
+
+                    for (var key in pageInfo) {
+                        _data[pageInfo[key]] = data[pageInfo[key]]
+                    }
+
+                    data = _data
+                }
+
+                that.reloadlayout({target:$target[0], type:that.options.type, url:that.options.url, data:data, loadingmask:that.options.loadingmask})
+            } else {
+                if ($target[0] === ($.CurrentNavtab)[0]) {
+                    BJUI.navtab('reloadForm', that.options.clearQuery, options)
+                } else {
+                    BJUI.dialog('reloadForm', that.options.clearQuery, options)
+                }
+            }
+        }
+
+        if (!isValid) {
+            if ($.fn.validator) {
+                $form.isValid(function(v) {
+                    if (v) search()
+                })
+            } else {
+                search()
+            }
+        } else {
+            search()
+        }
     }
-    
+
     Bjuiajax.prototype.doload = function(option) {
         var that = this, $target = null, options = that.options
             

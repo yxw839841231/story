@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>说出你的故事</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="故事,灵魂深处有故事,易天下,story,story521,说出你的故事">
+    <link rel="shortcut icon" type="image/x-icon" href="http://ovkuoveh9.bkt.clouddn.com/logo.ico"/>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/layui/css/story.css">
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.config({
+            base: '/layui/js/modules/'
+        }).use('index');
+    </script>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header story-header">
+        <ul class="layui-nav layui-layout-center">
+            <div class="story-nav">
+                <li class="layui-nav-item"><a href="javascript:void (0)">首页</a></li>
+            </div>
+        </ul>
+    </div>
+    <div class="layui-container story-container" >
+        <div class="layui-row">
+            <div class="layui-col-md9">
+                <div class="layui-carousel story-carousel" id="test1">
+                    <div carousel-item id="carousel-item1"></div>
+                </div>
+                <div class="story-main-item">
+                    <ul id="story-newest-article"></ul>
+                </div>
+            </div>
+            <div class="layui-col-md3">
+                <div class="story-main-right-box" style="background-color: #009688;color: #ffffff;text-align: center;line-height: 50px;font-size: 20px;">
+                    我有酒，你有故事。<br>
+                    共饮一杯无？
+                </div>
+                <div class="story-main-right-box">
+                    <blockquote class="layui-elem-quote story-right-title">最新讲述
+                        <i class="layui-icon " style="float: right;color: #08a623">&#xe05e;</i>
+                    </blockquote>
+                    <ul class="story-main-right-hidden" id="newestArticle">
+                        <li><i style="color: #66b56c" class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#xe021;</i>加快软件计算速度和存储，以色列公司ScaleMP获1000万美元F轮融资。</li>
+                        <li><i style="color: #66b56c" class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#xe021;</i>社评：澳大利亚成了竖在亚太的一支美国喇叭</li>
+                        <li><i style="color: #66b56c" class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#xe021;</i>美窝家装美窝家装美窝家装</li>
+                        <li><i style="color: #66b56c" class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#xe021;</i>美窝家装美窝家装美窝家装</li>
+                        <li><i style="color: #66b56c" class="layui-icon layui-anim layui-anim-rotate layui-anim-loop">&#xe021;</i>美窝家装美窝家装美窝家装</li>
+                    </ul>
+                </div>
+                <!--<div class="layui-carousel story-main-right-box" id="test2">
+                    &lt;!&ndash;<div carousel-item>
+                        <div>条目1</div>
+                        <div>条目2</div>
+                        <div>条目3</div>
+                        <div>条目4</div>
+                        <div>条目5</div>
+                    </div>&ndash;&gt;
+                </div>-->
+                <div class="story-main-right-box ">
+                    <blockquote class="layui-elem-quote story-right-title">热议分享
+                    <i class="layui-icon" style="float: right;color: #f13207">&#xe9d3;</i>
+                    </blockquote>
+                    <ul class="story-main-right-hidden" id ="newestComment">
+                        <li>
+                            <p>以色列公司ScaleMP获1000万美元F轮融资</p>
+                            <span><i class="layui-icon">&#xe91d;</i>33</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span><i class="layui-icon">&#xe998;</i>12</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span><i class="layui-icon">&#xe7fd;</i>佚名</span>
+                        </li>
+                        <li>
+                            <p>澳大利亚成了竖在亚太的一支美国喇叭</p>
+                            <span><i class="layui-icon">&#xe91d;</i>33</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span><i class="layui-icon">&#xe998;</i>12</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span><i class="layui-icon">&#xe7fd;</i>佚名</span>
+                        </li>
+                        <li>
+                            <p>企业上云催生第三方融合云平台</p>
+                            <span><i class="layui-icon">&#xe91d;</i>33</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span><i class="layui-icon">&#xe998;</i>12</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span><i class="layui-icon">&#xe7fd;</i>佚名</span>
+                        </li>
+                        <li>
+                            <p>闪迪为iPhone用户推出可自动本地备份照片的iXpand Base</p>
+                            <span><i class="layui-icon">&#xe91d;</i>33</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span><i class="layui-icon">&#xe998;</i>12</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span><i class="layui-icon">&#xe7fd;</i>佚名</span>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="story-main-right-box ">
+                    <blockquote class="layui-elem-quote story-right-title">有感而发
+                        <i class="layui-icon" style="float: right;color: #b9c31f">&#xe6dd;</i>
+                    </blockquote>
+                    <ul class="" id="newestTalk">
+                        <li>
+                            <p><b>如果没有那些默默无名之辈的负重前行，哪来的岁月静好！</b></p>
+                            <p><span><i class="layui-icon">&#xe1e2;</i>老王</span>&nbsp;&nbsp;<span><i class="layui-icon">&#xe87d;</i>2017-10-22</span>&nbsp;&nbsp;<span><i class="layui-icon">&#xe87d;</i>99+</span></p>
+                        </li>
+                        <li>
+                            <p><b>不是理所当然，只是真情切意</b></p>
+                            <p><span><i class="layui-icon">&#xe1e2;</i>老王</span>&nbsp;&nbsp;<span><i class="layui-icon">&#xe87d;</i>2017-10-22</span>&nbsp;&nbsp;<span><i class="layui-icon">&#xe87d;</i>99+</span></p>
+                        </li>
+                        <li>
+                            <p><b>如果没有那些默默无名之辈的负重前行，哪来的岁月静好！</b></p>
+                            <p><span><i class="layui-icon">&#xe1e2;</i>老王</span>&nbsp;&nbsp;<span><i class="layui-icon">&#xe87d;</i>2017-10-22</span>&nbsp;&nbsp;<span><i class="layui-icon">&#xe87d;</i>99+</span></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="" style="position: relative;top: 60px;height: 45px;">
+        <hr class="layui-bg-gray">
+        <div style="text-align: center">
+            Copyright © 2016-2017 易天下. All rights reserved. |  浙ICP备17039224号-1
+        </div>
+    </div>
+</div>
+</body>
+</html>

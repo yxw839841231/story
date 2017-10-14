@@ -56,7 +56,9 @@
 
       ,laydate = {
         v: '5.0.4'
-        ,config: {} //全局配置项
+        ,config: {
+      elem:'.laydate'
+        } //全局配置项
         ,index: (window.laydate && window.laydate.v) ? 100000 : 0
         ,path: ready.getPath
 
@@ -100,7 +102,7 @@
         that.index = ++laydate.index;
         that.config = lay.extend({}, that.config, laydate.config, options);
         laydate.ready(function(){
-          that.init();
+            that.init();
         });
       }
 
@@ -434,8 +436,7 @@
       ,time: 'HH:mm:ss'
       ,datetime: 'yyyy-MM-dd HH:mm:ss'
     };
-
-    options.elem = lay(options.elem);
+    options.elem = lay(options.elem );
     options.eventElem = lay(options.eventElem);
 
     if(!options.elem[0]) return;

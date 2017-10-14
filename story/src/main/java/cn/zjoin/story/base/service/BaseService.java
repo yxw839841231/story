@@ -158,13 +158,13 @@ public abstract class BaseService<T> {
      */
     public Pagination<T> pageInfoSimple(Pagination pagination) {
 
-        PageHelper.startPage(pagination.getPage(), pagination.getLimit(), " id desc ");
+        PageHelper.startPage(pagination.getPageCurrent(), pagination.getPageSize(), " id desc ");
         List<T> list = mapper.selectAll();
         PageInfo<T> page = new PageInfo(list);
-        pagination.setCurr(page.getPageNum());
+        pagination.setPageCurrent(page.getPageNum());
         pagination.setData(list);
         pagination.setPages(page.getPages());
-        pagination.setCount(page.getTotal());
+        pagination.setTotal(page.getTotal());
         return pagination;
     }
 

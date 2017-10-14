@@ -25,9 +25,9 @@ layui.define('BJUIextends', function(exports){
         width          : '100%',
         pageSize       : 30,
         selectPageSize : '30,60,90',
-        pageNum    : 1,
+        pageCurrent    : 1,
         total          : 0,
-        showPagenum    : 5,
+        showpageCurrent    : 5,
         form           : null,
         callback       : null,
         page            :'页'
@@ -39,44 +39,44 @@ layui.define('BJUIextends', function(exports){
             getPageCount: function(pageSize, total) {
                 return Math.ceil(total / pageSize)
             },
-            getPageInterval: function(count, pageNum, showPageNum) {
-                var half  = Math.ceil(showPageNum / 2), limit = count - showPageNum,
-                    start = pageNum > half ? Math.max(Math.min(pageNum - half, limit), 0) : 0,
-                    end   = pageNum > half ? Math.min((pageNum + half), count) : Math.min(showPageNum, count)
+            getPageInterval: function(count, pageCurrent, showpageCurrent) {
+                var half  = Math.ceil(showpageCurrent / 2), limit = count - showpageCurrent,
+                    start = pageCurrent > half ? Math.max(Math.min(pageCurrent - half, limit), 0) : 0,
+                    end   = pageCurrent > half ? Math.min((pageCurrent + half), count) : Math.min(showpageCurrent, count)
                 
-                if (end - start == showPageNum) end = end + 1
-                if (end < showPageNum) end = end + 1
+                if (end - start == showpageCurrent) end = end + 1
+                if (end < showpageCurrent) end = end + 1
                 if (start + 1 == end) end = end + 1
                 
                 return {start:start + 1, end:end}
             },
             // jump to page
-            jumpPage: function(pageNum, pageSize) {
+            jumpPage: function(pageCurrent, pageSize) {
                 var callback = that.options.callback
                 
                 if (typeof callback === 'string')
                     callback = callback.toFunc()
                 
-                if (pageNum) {
-                    that.options.pageNum = pageNum
+                if (pageCurrent) {
+                    that.options.pageCurrent = pageCurrent
                 }
                 if (pageSize) {
                     that.options.pageSize = pageSize
                     that.pageCount = this.getPageCount(pageSize, that.options.total)
                     
-                    if (that.options.pageNum > that.pageCount)
-                        that.options.pageNum = that.pageCount
+                    if (that.options.pageCurrent > that.pageCount)
+                        that.options.pageCurrent = that.pageCount
                 }
                 
                 if (callback && typeof callback === 'function') {
-                    callback.call(that, that.options.pageNum, pageSize)
+                    callback.call(that, that.options.pageCurrent, pageSize)
                 } else {
-                    this.setPaging(that.options.pageNum, pageSize, true)
+                    this.setPaging(that.options.pageCurrent, pageSize, true)
                 }
                 
                 that.$element.trigger('bjui.pagination.jump')
             },
-            setPaging: function(pageNum, pageSize, isSubmit) {
+            setPaging: function(pageCurrent, pageSize, isSubmit) {
                 var $form = that.options.form, paging = {}
                 
                 if ($form) {
@@ -88,7 +88,7 @@ layui.define('BJUIextends', function(exports){
                         return
                     }
                     
-                    paging[BJUI.pageInfo.pageNum] = pageNum
+                    paging[BJUI.pageInfo.pageCurrent] = pageCurrent
                     paging[BJUI.pageInfo.pageSize]    = pageSize
                     
                     $form.data('bjui.paging', paging)
@@ -101,37 +101,37 @@ layui.define('BJUIextends', function(exports){
         return tools
     }
     
-    Pagination.prototype.jumpPage = function(pageNum, pageSize) {
+    Pagination.prototype.jumpPage = function(pageCurrent, pageSize) {
         var that = this, options = that.options, pageCount = that.pageCount
         
-        if (pageNum && isNaN(pageNum)) return
+        if (pageCurrent && isNaN(pageCurrent)) return
         if (pageSize && isNaN(pageSize))       return
-        if (pageNum) {
-            pageNum = parseInt(pageNum, 10)
+        if (pageCurrent) {
+            pageCurrent = parseInt(pageCurrent, 10)
             
-            if (pageNum < 1)         pageNum = 1
-            if (pageNum > pageCount) pageNum = pageCount
-            if (pageNum == options.pageNum) return
+            if (pageCurrent < 1)         pageCurrent = 1
+            if (pageCurrent > pageCount) pageCurrent = pageCount
+            if (pageCurrent == options.pageCurrent) return
         }
         if (pageSize) {
             pageSize = parseInt(pageSize, 10)
         }
         
-        that.tools.jumpPage(pageNum || options.pageNum, pageSize || options.pageSize)
+        that.tools.jumpPage(pageCurrent || options.pageCurrent, pageSize || options.pageSize)
     }
     
     Pagination.prototype.init = function() {
-        var that = this, tools = that.tools, options = that.options, pr = BJUI.regional.pagination, btnpaging = FRAG.gridPaging, pageNums = [], interval, selectPages = [], pagingHtml = BJUI.StrBuilder()
+        var that = this, tools = that.tools, options = that.options, pr = BJUI.regional.pagination, btnpaging = FRAG.gridPaging, pageCurrents = [], interval, selectPages = [], pagingHtml = BJUI.StrBuilder()
         
         that.pageCount = tools.getPageCount(options.pageSize, options.total)
         
-        interval = tools.getPageInterval(that.pageCount, options.pageNum, options.showPagenum)
+        interval = tools.getPageInterval(that.pageCount, options.pageCurrent, options.showpageCurrent)
         
         for (var i = interval.start; i < interval.end; i++) {
-            pageNums.push(FRAG.gridPageNum.replace('#num#', i).replace('#active#', (options.pageNum == i ? ' active' : '')))
+            pageCurrents.push(FRAG.gridpageCurrent.replace('#num#', i).replace('#active#', (options.pageCurrent == i ? ' active' : '')))
         }
         
-        btnpaging = BJUI.doRegional(btnpaging.replaceAll('#pageNum#', options.pageNum).replaceAll('#count#', options.total +'/'+ parseInt((that.pageCount || 0), 10)), pr)
+        btnpaging = BJUI.doRegional(btnpaging.replaceAll('#pageCurrent#', options.pageCurrent).replaceAll('#count#', options.total +'/'+ parseInt((that.pageCount || 0), 10)), pr)
         
         pagingHtml
             .add('<div class="paging-content">')
@@ -139,19 +139,19 @@ layui.define('BJUIextends', function(exports){
             .add('<select data-toggle="selectpicker"></select>')
             .add('</div>')
             .add('<div class="paging-box">')
-            .add(btnpaging.replace('#pageNumFrag#', pageNums.join('')))
+            .add(btnpaging.replace('#pageCurrentFrag#', pageCurrents.join('')))
             .add('</div>')
             .add('</div>')
         
         that.$element.addClass('bjui-paging-box').html(pagingHtml.toString())
         that.$element.find('> .paging-content').width(options.width).initui()
         
-        tools.setPaging(options.pageNum, options.pageSize)
+        tools.setPaging(options.pageCurrent, options.pageSize)
         
         //events
         var $select    = that.$element.find('div.paging-pagesize > select'),
-            $pagenum   = that.$element.find('ul.pagination'),
-            $pagetotal = $pagenum.find('> li.page-total'),
+            $pageCurrent   = that.$element.find('ul.pagination'),
+            $pagetotal = $pageCurrent.find('> li.page-total'),
             $jumpto    = $pagetotal.next(),
             $first     = $jumpto.next(),
             $prev      = $first.next(),
@@ -201,15 +201,15 @@ layui.define('BJUIextends', function(exports){
             $select.html(opts.join('')).selectpicker('refresh')
         }
         
-        if (options.pageNum == 1) pageFirst()
-        if (options.pageNum == that.pageCount) {
+        if (options.pageCurrent == 1) pageFirst()
+        if (options.pageCurrent == that.pageCount) {
             pageLast()
-            if (options.pageNum == 1) disablePrev()
+            if (options.pageCurrent == 1) disablePrev()
         }
         if (!options.total) disableNext()
         setPageSize()
         
-        that.$element.on('click.bjui.pagination.pagenum', 'li.page-num', function(e) {
+        that.$element.on('click.bjui.pagination.pageCurrent', 'li.page-num', function(e) {
             var $num = $(this)
             
             if (!$num.hasClass('active')) {
@@ -220,27 +220,27 @@ layui.define('BJUIextends', function(exports){
         }).on('click.bjui.pagination.refresh', 'button.btn-refresh', function() {
             that.jumpPage()
         }).on('bjui.pagination.jump', function(e) {
-            var pageNum = that.options.pageNum, interval = tools.getPageInterval(that.pageCount, pageNum, options.showPagenum), pageNums = []
+            var pageCurrent = that.options.pageCurrent, interval = tools.getPageInterval(that.pageCount, pageCurrent, options.showpageCurrent), pageCurrents = []
             
             for (var i = interval.start; i < interval.end; i++) {
-                pageNums.push(FRAG.gridPageNum.replace('#num#', i).replace('#active#', (pageNum == i ? ' active' : '')))
+                pageCurrents.push(FRAG.gridpageCurrent.replace('#num#', i).replace('#active#', (pageCurrent == i ? ' active' : '')))
             }
             
-            $pagenum.find('> li.page-num').remove()
-            $prev.after(pageNums.join(''))
+            $pageCurrent.find('> li.page-num').remove()
+            $prev.after(pageCurrents.join(''))
             
-            if (pageNum == 1) {
+            if (pageCurrent == 1) {
                 pageFirst()
-                if (pageNum == that.pageCount) disableNext()
+                if (pageCurrent == that.pageCount) disableNext()
                 if (!that.options.total) disableNext()
-            } else if (pageNum == that.pageCount) {
+            } else if (pageCurrent == that.pageCount) {
                 pageLast()
             } else {
                 enablePrev()
                 enableNext()
             }
             
-            $jumpto.find('input').val(pageNum)
+            $jumpto.find('input').val(pageCurrent)
             $pagetotal.find('> span').html(that.options.total +'/'+ that.pageCount)
         }).on('bjui.pagination.pageSize', function(e, pageSize) {
             setPageSize(pageSize)
@@ -261,22 +261,22 @@ layui.define('BJUIextends', function(exports){
         })
         
         $first.on('click', function() {
-            if (that.options.pageNum > 1) 
+            if (that.options.pageCurrent > 1)
                 that.jumpPage(1)
         })
         
         $prev.on('click', function() {
-            if (that.options.pageNum > 1)
-                that.jumpPage(that.options.pageNum - 1)
+            if (that.options.pageCurrent > 1)
+                that.jumpPage(that.options.pageCurrent - 1)
         })
         
         $next.on('click', function() {
-            if (that.options.pageNum < that.pageCount)
-                that.jumpPage(that.options.pageNum + 1)
+            if (that.options.pageCurrent < that.pageCount)
+                that.jumpPage(that.options.pageCurrent + 1)
         })
         
         $last.on('click', function() {
-            if (that.options.pageNum < that.pageCount)
+            if (that.options.pageCurrent < that.pageCount)
                 that.jumpPage(that.pageCount)
         })
     }

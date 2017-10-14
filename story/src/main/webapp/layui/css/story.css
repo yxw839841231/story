@@ -1,82 +1,56 @@
-body {
-    background: #f8f8f8;
-    font-family: '微软雅黑';
+body{
+    background-color: #f3fafb;
 }
+@media only screen and (min-width: 640px) {
 
-.story-header {
+}
+.story-header{
     position: fixed;
     width: 100%;
-    top: 0px;
+    z-index: 10000;
 }
-
-.story-main {
-    width: 1140px;
+.story-container{
+    top: 60px;
+    background-color: #fefefe;
+}
+.story-nav {
+    width: 100%;
+    max-width: 1000px;
     margin: 0 auto;
-    background: #f8f8f8;
 }
 
-.story-foot {
-    position: fixed;
+.story-carousel .carousel-item div {
+    text-align: center
+}
+
+.story-carousel img {
+    max-width: 100%;
+    max-height: 100%
+}
+
+.story-main-item ul li {
+    padding: 3px 5px;
+    line-height: 35px;
+    height: 155px;
+}
+
+.story-main-right-box {
     width: 100%;
-    bottom: 0px;
-    height: 45px;
-    line-height: 45px;
-    background: #2F4056;
-    text-align: center;
-    color: #c2c2c2;
+    margin: 10px 15px;
+    min-height: 100px;
 }
 
-.story-article-li {
-    padding: 10px 5px;
-    font-size: 15px;
+.story-main-right-box ul li {
+    line-height: 25px;
 }
-
-.story-article-img {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}
-
-.story-article-foot {
-    text-align: center;
-}
-
-.story-icon {
-    font-size: 20px;
-    color: #5FB878;
-    cursor: pointer;
-}
-.story-right-word{
-    padding:10px;
+.story-main-right-hidden li{
+    font-size: 14px;
+    width: 284px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow: hidden;
 }
 .story-right-title{
-    font-size: 20px;
-    color: #1f897f;
-}
-.story-right-title-icon{
-    float: right;
-    color: #1f897f;
-    cursor: pointer;
-}
-.story-right-comment{
-    background: #fefefe;
-    border-radius: 5px;
-}
-.story-right-comment-li,.story-right-article-li{
     padding: 5px 10px;
-    height: 25px;
-    line-height: 25px;
-    display: -webkit-box;
-    word-break: break-all;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp:2;
-}
-.zjoin-upload{
-    width: 200px;
-    height: 100px;
-}
-.zjoin-upload img{
-    max-width: 100%;max-height: 100%;
 }

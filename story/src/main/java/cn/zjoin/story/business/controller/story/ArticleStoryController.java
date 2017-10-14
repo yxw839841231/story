@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.lang.reflect.InvocationTargetException;
@@ -58,6 +59,16 @@ public class ArticleStoryController extends BaseController {
         }
         BaseResult result = new BaseResult();
         result.setData(list);
+        return result;
+    }
+    @RequestMapping(value = "newest", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseResult newest() {
+        Example example = new Example(Article.class);
+        example.createCriteria().andEqualTo("isaudit",true);
+        example.orderBy("createtime desc");
+        BaseResult result = new BaseResult();
+        result.setData(articleService.getByExample(example));
         return result;
     }
     @RequestMapping(value = "list/{type}", method = RequestMethod.GET)

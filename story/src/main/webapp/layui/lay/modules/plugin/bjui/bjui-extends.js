@@ -136,8 +136,7 @@ layui.define('BJUIfrag', function(exports){
             }
             op.statusCode = {
                 0  : function(xhr, ajaxOptions, thrownError) {
-                    BJUI.alertmsg('error', BJUI.regional.ajaxnosend)
-                    
+                    layer.err(BJUI.regional.ajaxnosend)
                     $this.data('holdSubmit', false)
                 },
                 503: function(xhr, ajaxOptions, thrownError) {

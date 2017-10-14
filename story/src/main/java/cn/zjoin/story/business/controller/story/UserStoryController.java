@@ -37,6 +37,7 @@ public class UserStoryController extends BaseController {
         BaseResult result = new BaseResult();
         user = TokenManager.login(user,false);
         if (user == null) result.setCode(-1);
+        else result.setData(user);
         return result;
     }
 

@@ -56,5 +56,15 @@ public class CarouselController extends BaseController {
         return new BaseResult();
     }
 
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult delete(Long id) {
+        Carousel carousel = new Carousel();
+        carousel.setId(id);
+        carousel.setIsdelete(true);
+        carouselService.update(carousel);
+        return new BaseResult();
+    }
+
 
 }

@@ -1,61 +1,73 @@
-<form class="layui-form">
-    <div class="layui-form-item">
-        <div class="layui-inline">
-            <label class="layui-form-label">标题</label>
-            <div class="layui-input-inline">
-                <input type="text" name="title" lay-verify="title" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-inline">
-            <label style="margin-top: 28.5px" class="layui-form-label">封图</label>
-            <div class="layui-input-inline zjoin-upload" >
-                <img src="/layui/images/default-cover.png"  id="picture-image">
-                <input type="hidden" name="picture" id="picture">
-            </div>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">内容</label>
-        <div class="layui-input-block">
-            <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="content"></textarea>
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="carousel-add">立即提交</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-        </div>
-    </div>
-</form>
-<script src="/layui/js/modules/qiniu.js"></script>
 <script>
-    layui.use(['layedit','zjoin','jquery','form','layer','table'], function(){
-        var layedit = layui.layedit,zjoin=layui.zjoin,$=layui.jquery,form=layui.form,layer=layui.layer,table=layui.table;
-        var contentEdit = layedit.build('content'); //建立编辑器
-        zjoin({image:$("#picture-image"),input:$("#picture")});
-        form.verify({
-            title: function(value){
-                if(value.length < 5){
-                    return '标题至少得5个字符啊';
-                }
-            }
-            ,content: function(value){
-                layedit.sync(contentEdit);
-            }
-        });
+    layui.define(['laydate', 'layedit','editormd'], function () {
+        var $ = layui.jquery, form = layui.form, layedit = layui.layedit,editormd = layui.editormd;
 
-        form.on("submit(carousel-add)",function(data){
-            $.ajax({
+        form.render(null, 'carousel_form');
+        var editIndex = layedit.build('carousel_edit');
+        zjoin.set({image: $("#carousel_image"), input: $("#carousel_input")});
+        $(".layui-layer-btn0").click(function () {
+            layedit.sync(editIndex);
+            $("#carousel_save").click();
+        })
+        form.on('submit(carousel_save)',function (data) {
+           $.ajax({
                 url:'/admin/carousel/add',
                 type:'post',
                 data:data.field,
-                success:function(){
-                    layer.msg("发表成功！");
-                    layer.closeAll();
-                    table.reload('table_carousel_list', { });
+                success:function () {
+                    $('#carousel_list_table').datagrid('refresh_part');
+                    layer.closeCurrent();
                 }
-            });
+            })
             return false;
+        });
+        editormd("test-editormd", {
+            width: "98%",
+            height: 730,
+            markdown : 'md',
+            codeFold : true,
+            saveHTMLToTextarea : true,
+            searchReplace : true,
+            htmlDecode : "style,script,iframe|on*",
+            emoji : true,
+            taskList : true,
+            tocm            : true,         // Using [TOCM]
+            tex : true,                   // 开启科学公式TeX语言支持，默认关闭
+            flowChart : true,             // 开启流程图支持，默认关闭
+            sequenceDiagram : true,       // 开启时序/序列图支持，默认关闭,
+            imageUpload : true,
+            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL : "examples/php/upload.php",
+            onload : function() {
+                console.log('onload', this);
+            }
         });
     });
 </script>
+<div class="bjui-pageContent">
+    <form class="layui-form" lay-filter="carousel_form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-inline">
+                <input type="text" name="title" lay-verify="required" autocomplete="off" class="layui-input"
+                       value="">
+            </div>
+            <label class="layui-form-label">封面</label>
+            <div class="layui-input-inline">
+                <!--<input type="text" name="companyEmail" lay-verify="required|email" placeholder="" autocomplete="off" class="layui-input" value="">-->
+                <img class="zjoin-upload" style="max-height: 150px;max-width: 150px;" src="/layui/images/default-cover.png" id="carousel_image">
+                <input type="hidden" id="carousel_input" name="picture">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">内容</label>
+            <div class="layui-input-block" style="width: 85%">
+                <!--<textarea class="layui-textarea layui-hide" name="content" id="carousel_edit"></textarea>-->
+                <div id="test-editormd">
+                    <textarea name="content"  style="display:none;"></textarea>
+                </div>
+            </div>
+        </div>
+        <button id="carousel_save" lay-submit="" class="layui-hide" lay-filter="carousel_save"></button>
+    </form>
+</div>

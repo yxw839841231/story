@@ -35,6 +35,11 @@ public class BaseController {
         return result;
     }
 
+    @RequestMapping("admin")
+    public String admin() {
+        return "admin";
+    }
+
     protected User getUser(){
         User user = TokenManager.getToken();
         return user;

@@ -43,6 +43,8 @@ public class ArticleController extends BaseController {
     @ResponseBody
     public BaseResult audit(Article article) {
         BaseResult result = new BaseResult();
+        article.setIsaudit(true);
+        article.setCreatetime(null);
         articleService.audit(article);
         return result;
     }

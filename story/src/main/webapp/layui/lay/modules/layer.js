@@ -146,7 +146,146 @@ var layer = {
        return options;
     }()));  
   },
-  
+  ok: function(content){ //最常用提示层
+    var end;
+    var options = {icon:1};
+    var type = typeof options === 'function', rskin = ready.config.skin;
+    var skin = (rskin ? rskin + ' ' + rskin + '-msg' : '')||'layui-layer-msg';
+    var anim = doms.anim.length - 1;
+    if(type) end = options;
+    return layer.open($.extend({
+      content: content?content:'ok',
+      time: 2500,
+      shade: false,
+      skin: skin,
+      title: false,
+      closeBtn: false,
+      btn: false,
+      resize: false,
+      end: end
+    }, (type && !ready.config.skin) ? {
+      skin: skin + ' layui-layer-hui',
+      anim: anim
+    } : function(){
+      options = options || {};
+      if(options.icon === -1 || options.icon === undefined && !ready.config.skin){
+        options.skin = skin + ' ' + (options.skin||'layui-layer-hui');
+      }
+      return options;
+    }()));
+  },
+  err: function(content){ //最常用提示层
+    var end;
+    var options = {icon:2};
+    var type = typeof options === 'function', rskin = ready.config.skin;
+    var skin = (rskin ? rskin + ' ' + rskin + '-msg' : '')||'layui-layer-msg';
+    var anim = doms.anim.length - 1;
+    if(type) end = options;
+    return layer.open($.extend({
+      content: content,
+      time: 2500,
+      shade: false,
+      skin: skin,
+      title: false,
+      closeBtn: false,
+      btn: false,
+      resize: false,
+      end: end
+    }, (type && !ready.config.skin) ? {
+      skin: skin + ' layui-layer-hui',
+      anim: anim
+    } : function(){
+      options = options || {};
+      if(options.icon === -1 || options.icon === undefined && !ready.config.skin){
+        options.skin = skin + ' ' + (options.skin||'layui-layer-hui');
+      }
+      return options;
+    }()));
+  },
+  warn: function(content){ //最常用提示层
+    var end;
+    var options = {icon:0};
+    var type = typeof options === 'function', rskin = ready.config.skin;
+    var skin = (rskin ? rskin + ' ' + rskin + '-msg' : '')||'layui-layer-msg';
+    var anim = doms.anim.length - 1;
+    if(type) end = options;
+    return layer.open($.extend({
+      content: content,
+      time: 2500,
+      shade: false,
+      skin: skin,
+      title: false,
+      closeBtn: false,
+      btn: false,
+      resize: false,
+      end: end
+    }, (type && !ready.config.skin) ? {
+      skin: skin + ' layui-layer-hui',
+      anim: anim
+    } : function(){
+      options = options || {};
+      if(options.icon === -1 || options.icon === undefined && !ready.config.skin){
+        options.skin = skin + ' ' + (options.skin||'layui-layer-hui');
+      }
+      return options;
+    }()));
+  },
+  info: function(content){ //最常用提示层
+    var end;
+    var options = {icon:6};
+    var type = typeof options === 'function', rskin = ready.config.skin;
+    var skin = (rskin ? rskin + ' ' + rskin + '-msg' : '')||'layui-layer-msg';
+    var anim = doms.anim.length - 1;
+    if(type) end = options;
+    return layer.open($.extend({
+      content: content,
+      time: 2500,
+      shade: false,
+      skin: skin,
+      title: false,
+      closeBtn: false,
+      btn: false,
+      resize: false,
+      end: end
+    }, (type && !ready.config.skin) ? {
+      skin: skin + ' layui-layer-hui',
+      anim: anim
+    } : function(){
+      options = options || {};
+      if(options.icon === -1 || options.icon === undefined && !ready.config.skin){
+        options.skin = skin + ' ' + (options.skin||'layui-layer-hui');
+      }
+      return options;
+    }()));
+  },
+  sure: function(content){ //最常用提示层
+    var end;
+    var options = {icon:3};
+    var type = typeof options === 'function', rskin = ready.config.skin;
+    var skin = (rskin ? rskin + ' ' + rskin + '-msg' : '')||'layui-layer-msg';
+    var anim = doms.anim.length - 1;
+    if(type) end = options;
+    return layer.open($.extend({
+      content: content,
+      time: 2500,
+      shade: false,
+      skin: skin,
+      title: false,
+      closeBtn: false,
+      btn: false,
+      resize: false,
+      end: end
+    }, (type && !ready.config.skin) ? {
+      skin: skin + ' layui-layer-hui',
+      anim: anim
+    } : function(){
+      options = options || {};
+      if(options.icon === -1 || options.icon === undefined && !ready.config.skin){
+        options.skin = skin + ' ' + (options.skin||'layui-layer-hui');
+      }
+      return options;
+    }()));
+  },
   load: function(icon, options){
     return layer.open($.extend({
       type: 3,
@@ -202,7 +341,7 @@ Class.pt.config = {
   isOutAnim: true,
   icon: -1,
   moveType: 1,
-  resize: true,
+  resize: false,
   scrollbar: true, //是否允许浏览器滚动条
   tips: 2
 };
@@ -213,7 +352,7 @@ Class.pt.vessel = function(conType, callback){
   var zIndex = config.zIndex + times, titype = typeof config.title === 'object';
   var ismax = config.maxmin && (config.type === 1 || config.type === 2);
   var titleHTML = (config.title ? '<div class="layui-layer-title" style="'+ (titype ? config.title[1] : '') +'">' 
-    + (titype ? config.title[0] : config.title) 
+    + (titype ? config.title[0] : config.title)
   + '</div>' : '');
   
   config.zIndex = zIndex;
@@ -300,7 +439,7 @@ Class.pt.creat = function(){
         url : config.content,
         async : false,
         success : function(data){
-          config.content = data;
+          config.content=data.replace(/bjui-pageContent/,"bjui-pageContent zjoin-pageContent")
         }
       });
       break;
@@ -310,7 +449,7 @@ Class.pt.creat = function(){
   that.vessel(conType, function(html, titleHTML, moveElem){
     body.append(html[0]);
     conType ? function(){
-      (config.type == 2 || config.type == 4) ? function(){
+      (config.type == 2 || config.type == 4 || config.type == 5) ? function(){
         $('body').append(html[1]);
       }() : function(){
         if(!content.parents('.'+doms[0])[0]){
@@ -526,7 +665,6 @@ Class.pt.move = function(){
   ,moveElem = layero.find(config.move)
   ,resizeElem = layero.find('.layui-layer-resize')
   ,dict = {};
-  
   if(config.move){
     moveElem.css('cursor', 'move');
   }
@@ -752,10 +890,20 @@ layer.getChildFrame = function(selector, index){
   return $('#'+ doms[0] + index).find('iframe').contents().find(selector);  
 };
 
+layer.current = function () {
+  var index = $('.'+doms[0]).attr('times');
+  return $('#'+ doms[0] + index).find('.layui-layer-content')
+}
+layer.closeCurrent = function () {
+  var index = $('.'+doms[0]).attr('times');
+  layer.close(index);
+}
+
 //得到当前iframe层的索引，子iframe时使用
 layer.getFrameIndex = function(name){
   return $('#'+ name).parents('.'+doms[4]).attr('times');
 };
+
 
 //iframe层自适应宽高
 layer.iframeAuto = function(index){

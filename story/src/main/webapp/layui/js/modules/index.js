@@ -57,11 +57,12 @@ layui.define(['layer', 'carousel','zjoin','util'], function (exports) {
                     html += ' <hr>'
                     html += ' </li>'
                     $("#story-newest-article").append(html);
+
                 }
 
             }
         }
-    })
+    });
     util.fixbar({
         bar1: true
         ,click: function(type){

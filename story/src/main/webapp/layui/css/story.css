@@ -45,12 +45,20 @@ body{
 }
 .story-main-right-hidden li{
     font-size: 14px;
-    width: 284px;
     white-space:nowrap;
     text-overflow:ellipsis;
     -o-text-overflow:ellipsis;
     overflow: hidden;
 }
+.story-main-right-hidden li p:hover,.newestTalk li p:hover{cursor: pointer;text-decoration: underline;color: #ff4121;}
 .story-right-title{
     padding: 5px 10px;
 }
+.newestTalk div,.story-main-right-hidden div{font-size: 12px;text-align: right;}
+.newestTalk div.layui-icon,.story-main-right-hidden div.layui-icon{font-size: 12px;text-align: right;}
+.story-main-right-hidden .layui-icon.author{color: #00a157;font-size: 13px;}
+.story-main-right-hidden .layui-icon.browse{color: #c0c5bb;font-size: 13px;}
+.story-main-right-hidden .layui-icon.comment{color: #a18a62;font-size: 13px;}
+.newestTalk .layui-icon.author{color: #00a157;font-size: 13px;}
+.newestTalk .layui-icon.date{color: #5c68a1;font-size: 13px;}
+.newestTalk .layui-icon.good{color: #ff80e1;font-size: 13px;}

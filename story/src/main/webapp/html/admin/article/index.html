@@ -11,9 +11,8 @@
                     break;
             }
         }
-        toolbarCustom_btn += '<button type="button" class="layui-btn layui-btn-small article_verify_btn"style="margin-left: 5px;"  >';
-        toolbarCustom_btn += '<i class="layui-icon">&#xe8e8;</i>';
-        toolbarCustom_btn += '&nbsp;审核</button>'
+        toolbarCustom_btn += '<button type="button" class="layui-btn layui-btn-small article_verify_btn"style="margin-left: 5px;"><i class="layui-icon">&#xe8e8;</i>&nbsp;审核</button>';
+        toolbarCustom_btn += '<button type="button" class="layui-btn layui-btn-small article_add_btn"style="margin-left: 5px;"><i class="layui-icon">&#xe3ba;</i>&nbsp;添加</button>';
 
         var user_datagrid_data = {
             local: 'remote',
@@ -99,6 +98,20 @@
             }
             $('#article_list_table').datagrid('refresh_part');
         }
+
+        $(".article_add_btn").bind( 'click', function () {
+            layer.open({
+                type: 5,
+                title: '新增文章',
+                area: ['800px', '600px'],
+                content: '/html/admin/article/add.html',
+                btn: ['保存', '取消'],
+                btnAlign: 'r',
+                moveType: 1,//拖拽模式，0或者1
+                yes:function(){
+                }
+            });
+        });
 
         $('body').delegate(".article_verify_btn", 'click', function () {
             var selected = $('#article_list_table').data('selectedDatas');

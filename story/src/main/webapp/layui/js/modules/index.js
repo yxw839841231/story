@@ -37,9 +37,10 @@ layui.define(['layer', 'carousel','zjoin','util'], function (exports) {
         success: function (data) {
             if (data.code == 0) {
                 $("#story-newest-article").empty();
+                $("#newestArticle").empty();
                 for (var d of data.data) {
                     var html = '';
-                    html += '<li>'
+                    html += '<li style="cursor:pointer;" class="testli" dd="'+d.id+'">'
                     html += '    <h1 style="font-weight: bold">' + d.title + '</h1>'
                     html += '    <div style="width: 110px;height: 110px;line-height: 110px;float: left">'
                     html += '        <img style="max-height: 100%;max-width: 100%;"'
@@ -50,15 +51,22 @@ layui.define(['layer', 'carousel','zjoin','util'], function (exports) {
                     html += d.describle
                     html += '     </div>'
                     html += '    <div style="width:100%;height: 35px;">'
-                    html += '       作者：' + d.author
+                    html += '       来源：' + d.author
                     html += '<div style="display: inline-block;float: right">时间：'+zjoin.timetrans(d.createtime)+'</div>'
                     html += ' </div>'
                     html += ' </div>'
                     html += ' <hr>'
-                    html += ' </li>'
+                    html += ' </li>';
+                    var $li = $('<li><p>&nbsp;'+d.title+'</p></li>');
+
+
+                    $("#newestArticle").append($li);
                     $("#story-newest-article").append(html);
 
                 }
+                $("body").delegate('.testli','click',function () {
+                    window.open("/html/story/article/detail.html?id="+$(this).attr("dd"));
+                });
 
             }
         }

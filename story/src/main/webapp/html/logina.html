@@ -1,0 +1,47 @@
+<script type="text/javascript">
+    layui.define(function () {
+        var $ = layui.jquery, form = layui.form;
+
+        $(".layui-layer-btn0").bind('click', function () {
+            $("#logind").click();
+        })
+        form.on('submit(logind)', function (data) {
+            layer.load()
+            $.ajax({
+                url: '/story/user/login',
+                type: 'post',
+                data: data.field,
+                success: function (d) {debugger
+                    layer.closeAll('loading')
+                    if (d.code == 0) {
+                        $.cookie("flowerName", $("#login_username").val())
+                        layer.ok('登录成功');
+                        window.location.reload();
+                    } else {
+                        layer.warn(d.data);
+                    }
+                },error :function (e) {
+                    layer.closeAll('loading')
+                }
+            })
+            return false;
+        });
+    });
+</script>
+
+<form class="layui-form" style="width: 90%;margin: 0px auto;padding-top: 20px">
+    <div class="layui-form-item">
+        <label for="login_username" class="layui-form-label">账 号</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" id="login_username" name="loginname" value="" lay-verify="required">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label for="login_password" class="layui-form-label">密 码</label>
+        <div class="layui-input-block">
+            <input type="password" class="layui-input" id="login_password" name="loginpass" value=""
+                   lay-verify="required">
+        </div>
+    </div>
+    <button class="layui-btn layui-hide" lay-submit="" lay-filter="logind" id="logind"></button>
+</form>

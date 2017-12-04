@@ -21,7 +21,8 @@ layui.define(['layer', 'element', 'table', 'zjoin', 'ZJOINdropdown', 'ZJOINselec
             var res = XMLHttpRequest.responseText;
             try {
                 var jsonData = JSON.parse(res);
-                if (jsonData.code == 10000) {
+                console.log(jsonData.code == -10000)
+                if (jsonData.code == -10000) {
                     //自定页
                     layer.open({
                         title:'用户登录',
@@ -30,17 +31,17 @@ layui.define(['layer', 'element', 'table', 'zjoin', 'ZJOINdropdown', 'ZJOINselec
                         area: ['500px', '300px'],
                         anim: 5,
                         shadeClose: true, //开启遮罩关闭
-                        content:'/resources/erp/logind.html'
+                        content:'/html/logina.html'
                         , btn: ['登录', '取消']
                         , yes: function (index, layero) {
                             //按钮【按钮一】的回调
                         }
                         , btn2: function (index, layero) {
-                            window.location.href = 'login.html';
+                            window.location.href = '/html/login.html';
                             //return false 开启该代码可禁止点击该按钮关闭
                         }
                         , cancel: function () {
-                            window.location.href = 'login.html';
+                            window.location.href = '/html/login.html';
                             //return false 开启该代码可禁止点击该按钮关闭
                         }
                     });
@@ -170,11 +171,11 @@ layui.define(['layer', 'element', 'table', 'zjoin', 'ZJOINdropdown', 'ZJOINselec
     $("#customer_timeout").click(function () {
         //退出登录
         $.ajax({
-            url: '/sso/logout',
+            url: '/story/user/logout',
             type: 'get',
             success: function (d) {
-                if (d.code == 1) {
-                    window.location.href = 'login.html';
+                if (d.code == 0) {
+                    window.location.href = '/html/login.html';
                     localStorage.removeItem("timeNmu");
                 } else {
                     layer.msg("退出失败", {icon: 5})

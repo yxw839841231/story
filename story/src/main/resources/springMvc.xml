@@ -50,6 +50,6 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     <!-- 开启AOP拦截 -->
-    <!--<aop:aspectj-autoproxy proxy-target-class="true"/>-->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
 </beans>

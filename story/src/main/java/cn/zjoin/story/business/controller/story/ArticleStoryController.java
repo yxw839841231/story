@@ -66,7 +66,7 @@ public class ArticleStoryController extends BaseController {
     public BaseResult newest() {
         Example example = new Example(Article.class);
         example.createCriteria().andEqualTo("isaudit",true);
-        example.orderBy("createtime desc");
+        example.orderBy("id").desc();
         BaseResult result = new BaseResult();
         result.setData(articleService.getByExample(example));
         return result;
@@ -102,4 +102,32 @@ public class ArticleStoryController extends BaseController {
         }
         return result;
     }
+
+    @RequestMapping(value = "detail", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseResult detail( Long id) {
+        Article list = articleService.getById(id);
+        BaseResult result = new BaseResult();
+        result.setData(list);
+        return result;
+    }
+
+    @RequestMapping(value = "similar", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseResult getSimilar( ArticleOperator articleOperator) {
+        PageInfo list = null;
+        PageInfo<Article> pageInfo = new PageInfo<Article>();
+        pageInfo.setPageSize(5);
+        pageInfo.setPageNum(1);
+        articleOperator.setCatalogoperator("=");
+        try {
+            list= articleService.pageInfoSimple2(pageInfo,articleOperator,Article.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        BaseResult result = new BaseResult();
+        result.setData(list.getList());
+        return result;
+    }
+
 }

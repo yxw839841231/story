@@ -1,0 +1,68 @@
+<script>
+    layui.define(['laydate', 'layedit'], function () {
+        var $ = layui.jquery, form = layui.form, layedit = layui.layedit;
+
+        form.render(null, 'article_form');
+        var editIndex = layedit.build('article_edit');
+        zjoin.set({image: $("#article_image"), input: $("#article_input")});
+        $(".layui-layer-btn0").click(function () {
+            layedit.sync(editIndex);
+            $("#article_save").click();
+        })
+        form.on('submit(article_save)',function (data) {
+           $.ajax({
+                url:'/admin/article/add',
+                type:'post',
+                data:data.field,
+                success:function () {
+                    $('#article_list_table').datagrid('refresh_part');
+                    layer.closeCurrent();
+                }
+            })
+            return false;
+        });
+        
+    });
+</script>
+<div class="bjui-pageContent">
+    <form class="layui-form" lay-filter="article_form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-inline">
+                <input type="text" name="title" lay-verify="required" class="layui-input" value="">
+            </div>
+            <label class="layui-form-label">封面</label>
+            <div class="layui-input-inline">
+                <img class="zjoin-upload" style="max-height: 150px;max-width: 150px;" src="/layui/images/default-cover.png" id="article_image">
+                <input type="hidden" id="article_input" name="picture">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">关键字</label>
+            <div class="layui-input-inline">
+                <input type="text" name="keywords" lay-verify="required" class="layui-input" value="">
+            </div>
+            <label class="layui-form-label">类别</label>
+            <div class="layui-input-inline">
+                <select>
+                    <option value="1">心灵鸡汤</option>
+                    <option value="2">奇闻逸事</option>
+                    <option value="3">天下大事</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-block">
+                <input type="text" name="describle" lay-verify="required" class="layui-input" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">内容</label>
+            <div class="layui-input-block" style="width: 85%">
+                <textarea class="layui-textarea layui-hide" name="content" id="article_edit"></textarea>
+            </div>
+        </div>
+        <button id="article_save" lay-submit="" class="layui-hide" lay-filter="article_save"></button>
+    </form>
+</div>

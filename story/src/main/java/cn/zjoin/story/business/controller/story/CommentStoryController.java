@@ -9,6 +9,7 @@ import cn.zjoin.story.base.controller.BaseController;
 import cn.zjoin.story.base.model.BaseResult;
 import cn.zjoin.story.business.model.Comment;
 import cn.zjoin.story.business.service.CommentService;
+import cn.zjoin.story.core.aspet.Login;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,10 +43,15 @@ public class CommentStoryController extends BaseController {
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     @ResponseBody
+    @Login
     public BaseResult add(Comment comment) {
         BaseResult result = new BaseResult();
         comment.setCreatetime(new Date());
         comment.setUserid(getUser().getId());
+        commentService.insert(comment);
+        getRedisOperationManager().setData("",1);
         return result;
     }
+
+
 }

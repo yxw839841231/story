@@ -252,7 +252,7 @@ public abstract class BaseService<T> {
                 }
             }
         }
-        PageHelper.startPage(page.getPageNum(), page.getPageSize(), " id desc ");
+        PageHelper.startPage(page.getPageNum(), page.getPageSize(), " id asc ");
         List<T> list = mapper.selectByExample(example);
         page = new PageInfo(list);
         return page;

@@ -10,13 +10,16 @@ import cn.zjoin.story.base.model.BaseResult;
 import cn.zjoin.story.base.model.Pagination;
 import cn.zjoin.story.business.model.Article;
 import cn.zjoin.story.business.service.ArticleService;
+import cn.zjoin.story.util.QiNiuUtil;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
  * Created on 2017/8/29.
@@ -46,6 +49,31 @@ public class ArticleController extends BaseController {
         article.setIsaudit(true);
         article.setCreatetime(null);
         articleService.audit(article);
+        return result;
+    }
+
+    @RequestMapping("add")
+    @ResponseBody
+    public BaseResult add(Article article) {
+        BaseResult result = new BaseResult();
+        article.setAuthor(getUser().getNickname());
+        article.setAuthorid(getUser().getId());
+        article.setCreatetime(new Date());
+        Byte b1 = 1;
+        article.setBrowsepermission(b1);
+        if (StringUtils.isEmpty(article.getCover())) {
+            try {
+                String path = QiNiuUtil.uploadAndCreateImage(article.getKeywords());
+                article.setCover(path);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            articleService.insert(article);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return result;
     }
 }

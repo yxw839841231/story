@@ -37,11 +37,11 @@ public class RedisOperationManager {
         }
     }
 
-    public void setDate(String key, Object value) {
+    public void setData(String key, Object value) {
         redisManager.set(key.getBytes(),SerializeUtils.serialize(value));
     }
 
-    public void setDate(String key, Object value, int expire) {
+    public void setData(String key, Object value, int expire) {
         redisManager.set(key.getBytes(),SerializeUtils.serialize(value),expire);
     }
 

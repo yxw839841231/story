@@ -9,17 +9,17 @@
     <script src="/layui/layui.js"></script>
     <!--<script src="/layui/js/modules/logincheck.js.js"></script>-->
     <script type="text/javascript">
-        layui.define(['layer','jquery','layedit','cookie'], function () {
-            var $ = layui.jquery,layedit = layui.layedit,cookie=layui.cookie;
+        layui.define(['layer', 'jquery', 'layedit', 'cookie'], function () {
+            var $ = layui.jquery, layedit = layui.layedit, cookie = layui.cookie;
             var id = getUrlParam("id");
-            $.get("/story/article/detail?id="+id, function (data) {
+            $.get("/story/article/detail?id=" + id, function (data) {
                 console.log(data)
                 document.title = data.data.title;
                 $("#detail_title").html(data.data.title)
                 $("#detail_content").html(data.data.content);
 
-                $.get("/story/article/similar?catalog="+data.data.catalog, function (data2) {
-                    for(var dd of data2.data){
+                $.get("/story/article/similar?catalog=" + data.data.catalog, function (data2) {
+                    for (var dd of data2.data) {
                         var $li = ' <li>\n' +
                             '                            <p>' + dd.title + '</p>\n' +
                             '                            <div>\n' +
@@ -34,28 +34,30 @@
                 });
 
 
-
             });
+
             function getUrlParam(name) {
                 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
                 var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-                if (r != null) return unescape(r[2]); return null; //返回参数值
+                if (r != null) return unescape(r[2]);
+                return null; //返回参数值
             }
+
             //layedit.build("comment_edit");
             $("#claer_comment").click(function () {
                 $("#comment_edit").val('');
             });
             $("#submit_comment").click(function () {
                 var comment = $("#comment_edit").val();
-                var pat=new RegExp("[[^?!@#$%\\^&*()]+","i");
-                if(pat.test(comment)==true) {
+                var pat = new RegExp("[[^?!@#$%\\^&*()]+", "i");
+                if (pat.test(comment) == true) {
                     layer.msg("评论中含有非法字符！");
                     //return false;
-                }else if(comment==''){
+                } else if (comment == '') {
                     return;
                 }
                 console.log($.cookie("nickname"))
-                if(!$.cookie("nickname")) {
+                if (!$.cookie("nickname")) {
                     layer.open({
                         type: 5,
                         title: '登录',
@@ -64,28 +66,28 @@
                         btn: ['登录', '取消'],
                         btnAlign: 'r',
                         moveType: 1,//拖拽模式，0或者1
-                        yes:function(){
+                        yes: function () {
                         }
                     });
                 }
-                $.post("/story/comment/add",{articleid:id,content:comment},function (data) {
-                    if (data.code==0){
+                $.post("/story/comment/add", {articleid: id, content: comment}, function (data) {
+                    if (data.code == 0) {
                         $("#comment_edit").val('');
                     }
                 })
             });
-            $('body').delegate(".layui-layer-btn0",'click',function () {
+            $('body').delegate(".layui-layer-btn0", 'click', function () {
                 $.ajax({
                     url: '/story/user/login',
                     dataType: 'json',
                     type: 'POST',
-                    data:{
-                        loginname:$("#loginname").val(),
-                        loginpass:$("#loginpass").val()
+                    data: {
+                        loginname: $("#loginname").val(),
+                        loginpass: $("#loginpass").val()
                     },
-                    success: function(d){
-                        if(d.code == 0) {
-                            $.cookie("nickname",d.data.nickname);
+                    success: function (d) {
+                        if (d.code == 0) {
+                            $.cookie("nickname", d.data.nickname);
                             layer.closeCurrent();
                         }
 
@@ -103,13 +105,13 @@
                         if (jsonData.code == -10000) {
                             //自定页
                             layer.open({
-                                title:'请登录',
+                                title: '请登录',
                                 type: 5,
                                 closeBtn: 1, //不显示关闭按钮
                                 area: ['500px', '300px'],
                                 anim: 5,
                                 shadeClose: true, //开启遮罩关闭
-                                content:'/html/logind.html'
+                                content: '/html/logind.html'
                                 , btn: ['登录', '取消']
                                 , yes: function (index, layero) {
                                     //按钮【按钮一】的回调
@@ -123,13 +125,17 @@
         });
     </script>
     <style type="text/css">
-        #detail_content{
+        #detail_content {
             border: 0px solid #eae1e1;
         }
-        #detail_content img{
+
+        #detail_content img {
             max-width: 100%;
         }
-        #detail_title{text-align: center}
+
+        #detail_title {
+            text-align: center
+        }
     </style>
 </head>
 <body>
@@ -146,7 +152,7 @@
             <div class="layui-col-md9" style="">
                 <div style="background: #ffffff;">
                     <h1 id="detail_title"></h1>
-                    <div style="height: 40px;line-height: 40px;text-align: center" >
+                    <div style="height: 40px;line-height: 40px;text-align: center">
                         <p>
                             时间：<span>2017-01-02 12:23:34</span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -154,35 +160,75 @@
                         </p>
                     </div>
                     <hr>
-                    <div class="story-main-item" id="detail_content" ></div>
-                    <div style="color: #9a9a9a;text-align: right"><br>版权声明：本文为原创文章，未经允许不得转载！</div>
+                    <div class="story-main-item" id="detail_content"></div>
+                    <div style="color: #9a9a9a;text-align: right;height: 40px;line-height: 35px;">版权声明：本文为原创文章，未经允许不得转载！</div>
+
+                </div>
+                <div style="background: #ffffff;">
                     <fieldset class="layui-elem-field layui-field-title">
                         <legend>网友评论</legend>
                         <div class="layui-field-box">
                             <ul style="margin-bottom: 30px;">
-                                <li data-id="83544" class="jieda-daan"style="position: relative;padding: 20px 0 10px;border-bottom: 1px dotted #DFDFDF">
+                                <li data-id="83544" class="jieda-daan"
+                                    style="position: relative;padding: 20px 0 10px;border-bottom: 1px dotted #DFDFDF">
                                     <a name="item-1512121996572"></a>
-                                    <div class="detail-about detail-about-reply" style=" position: relative;line-height: 20px;padding: 0 0 0 55px;background: none;">
+                                    <div class="detail-about detail-about-reply"
+                                         style=" position: relative;line-height: 20px;padding: 0 0 0 20px;background: none;">
                                         <a class="fly-avatar" href="/u/3279696/" style="position: absolute;">
-                                            <img style="display: block;width: 45px; height: 45px; margin: 0; border-radius: 2px;" src="http://image.story521.cn/logo.png"alt="Jim0090">
+                                            <img style="display: block;width: 45px; height: 45px; margin: 0; border-radius: 2px;"src="http://image.story521.cn/logo.png" />
                                         </a>
-                                        <div class="fly-detail-user" style="white-space: nowrap;overflow: hidden;position: relative;line-height: 20px;padding: 15px 15px 15px 75px;font-size: 13px;background-color: #f8f8f8;color: #999;">
-                                            <a href="/u/3279696/" class="fly-link" style="padding-right: 10px;
-    font-size: 14px;"> <cite>Jim0090</cite> </a>
+                                        <div class="fly-detail-user"
+                                             style="white-space: nowrap;overflow: hidden;position: relative;line-height: 20px;padding: 0px 15px 0px 50px;font-size: 13px;color: #999;">
+                                            <a href="" class="fly-link" style="padding-right: 10px;font-size: 14px;color: #01AAED;"> 易天下</a>
                                         </div>
-                                        <div class="detail-hits" style="position: relative;top: 5px; line-height: 20px;    left: 0;
-    bottom: 0;"> <span style="eight: 20px;
-    line-height: 20px;position: relative;
-    top: 5px;">1天前</span></div>
-                                        <i class="iconfont icon-caina" title="最佳答案"></i>
+                                        <div class="detail-hits"
+                                             style="position: relative;line-height: 20px;left: 50px;bottom: 0;">
+                                            <span style="height: 20px;line-height: 20px;position: relative;top: 5px;">2017-09-12 23:32:32</span>
+                                        </div>
                                     </div>
-                                    <div class="detail-body jieda-body photos" style="margin: 25px 0 20px;min-height: 0; line-height: 24px; font-size: 14px;color: #333;word-wrap: break-word">
-                                        VUE需要用到的一些 this.$nextTick, this.$refs等,再无其他用到）。
+                                    <div class="detail-body jieda-body photos"
+                                         style="margin: 25px 0 20px 20px;min-height: 0; line-height: 24px; font-size: 14px;color: #333;word-wrap: break-word">
+                                        VUE需要用到的一些 this.$nextTick, this.$refs等,再无其他用到）。a
                                         <br>至于如何选择，得看团队结构了，传统的JQ模式，前端后端人员都熟悉，现在流行的Angular，React和Vue，就需要比较专业的前端知识和架构能力了。
                                     </div>
-                                    <div class="jieda-reply" style="position: relative;">
-                                        <span class="jieda-zan " type="zan" style="padding-right: 20px;color: #999;cursor: pointer;"><i class="layui-icon">&#xe8dc;</i> <em>0</em> </span>
-                                        <span type="reply" style="padding-right: 20px;color: #999;cursor: pointer;"> <i class="layui-icon">&#xeac9;</i> 回复 </span>
+                                    <div class="jieda-reply" style="position: relative;margin-left: 20px">
+                                        <span class="jieda-zan " type="zan"
+                                              style="padding-right: 20px;color: #999;cursor: pointer;"><i
+                                                class="layui-icon">&#xe8dc;</i> <em>0</em> </span>
+                                        <span type="reply" style="padding-right: 20px;color: #999;cursor: pointer;"> <i
+                                                class="layui-icon">&#xeac9;</i> 回复 </span>
+                                    </div>
+                                </li>
+                                <li data-id="83544" class="jieda-daan"
+                                    style="position: relative;padding: 20px 0 10px;border-bottom: 1px dotted #DFDFDF">
+                                    <a name="item-1512121996572"></a>
+                                    <div class="detail-about detail-about-reply"
+                                         style=" position: relative;line-height: 20px;padding: 0 0 0 20px;background: none;">
+                                        <a class="fly-avatar" href="/u/3279696/" style="position: absolute;">
+                                            <img style="display: block;width: 45px; height: 45px; margin: 0; border-radius: 2px;"src="http://image.story521.cn/yitianxia.png" />
+                                        </a>
+                                        <div class="fly-detail-user"
+                                             style="white-space: nowrap;overflow: hidden;position: relative;line-height: 20px;padding: 0px 15px 0px 50px;font-size: 13px;color: #999;">
+                                            <a href="/u/3279696/" class="fly-link"
+                                               style="padding-right: 10px;font-size: 14px;"> <cite>易天下</cite> </a>
+                                        </div>
+                                        <div class="detail-hits"
+                                             style="position: relative;line-height: 20px;left: 50px;bottom: 0;">
+                                            <span style="height: 20px;line-height: 20px;position: relative;top: 5px;">2017-09-12 23:32:32</span>
+                                        </div>
+                                        <i class="iconfont icon-caina" title="最佳答案"></i>
+                                    </div>
+                                    <div class="detail-body jieda-body photos"
+                                         style="margin: 25px 0 20px 20px;min-height: 0; line-height: 24px; font-size: 14px;color: #333;word-wrap: break-word">
+                                        VUE需要用到的一些 this.$nextTick, this.$refs等,再无其他用到）。a
+                                        <br>至于如何选择，得看团队结构了，传统的JQ模式，前端后端人员都熟悉，现在流行的Angular，React和Vue，就需要比较专业的前端知识和架构能力了。
+                                    </div>
+                                    <div class="jieda-reply" style="position: relative;margin-left: 20px">
+                                        <span class="jieda-zan " type="zan"
+                                              style="padding-right: 20px;color: #999;cursor: pointer;"><i
+                                                class="layui-icon">&#xe8dc;</i> <em>0</em> </span>
+                                        <span type="reply" style="padding-right: 20px;color: #999;cursor: pointer;"> <i
+                                                class="layui-icon">&#xeac9;</i> 回复 </span>
                                     </div>
                                 </li>
                             </ul>
@@ -190,7 +236,9 @@
                         </div>
                         <div style="float: right;margin-right: 20px;">
                             <button class="layui-btn layui-btn-radius layui-btn-sm" id="submit_comment">提交评论</button>
-                            <button class="layui-btn layui-btn-radius layui-btn-primary layui-btn-sm" id="claer_comment">清空内容</button>
+                            <button class="layui-btn layui-btn-radius layui-btn-primary layui-btn-sm"
+                                    id="claer_comment">清空内容
+                            </button>
                         </div>
                     </fieldset>
                 </div>
@@ -207,10 +255,10 @@
                 </div>-->
                 <div class="story-main-right-box ">
                     <div style="background: #ffffff;">
-                    <blockquote class="layui-elem-quote story-right-title">同类推荐
-                        <i class="layui-icon" style="float: right;color: #f13207">&#xe9d3;</i>
-                    </blockquote>
-                    <ul class="story-main-right-hidden" id ="newestComment"></ul>
+                        <blockquote class="layui-elem-quote story-right-title">同类推荐
+                            <i class="layui-icon" style="float: right;color: #f13207">&#xe9d3;</i>
+                        </blockquote>
+                        <ul class="story-main-right-hidden" id="newestComment"></ul>
                     </div>
                 </div>
             </div>
@@ -220,7 +268,7 @@
     <div class="" style="position: relative;top: 60px;height: 45px;">
         <hr class="layui-bg-gray">
         <div style="text-align: center">
-            Copyright © 2016-2017 易天下. All rights reserved. |  浙ICP备17039224号-1
+            Copyright © 2016-2017 易天下. All rights reserved. | 浙ICP备17039224号-1
         </div>
     </div>
 </div>

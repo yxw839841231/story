@@ -53,5 +53,18 @@ public class CommentStoryController extends BaseController {
         return result;
     }
 
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseResult list(Comment comment) {
+
+        BaseResult result = new BaseResult();
+        try {
+            result.setData(commentService.getArticleCommentList(comment.getArticleid()));
+        }catch (Exception e){
+            result.setCode(500);
+        }
+        return result;
+    }
+
 
 }

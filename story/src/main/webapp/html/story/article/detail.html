@@ -6,27 +6,28 @@
     <link rel="shortcut icon" type="image/x-icon" href="http://ovkuoveh9.bkt.clouddn.com/logo.ico"/>
     <link rel="stylesheet" href="/layui/css/layui2.css">
     <link rel="stylesheet" href="/layui/css/story.css">
+    <link rel="stylesheet" href="/layui/css/article.css">
     <script src="/layui/layui.js"></script>
     <!--<script src="/layui/js/modules/logincheck.js.js"></script>-->
     <script type="text/javascript">
-        layui.define(['layer', 'jquery', 'layedit', 'cookie'], function () {
-            var $ = layui.jquery, layedit = layui.layedit, cookie = layui.cookie;
+        layui.define(['layer', 'jquery', 'layedit', 'cookie','zjoin'], function () {
+            var $ = layui.jquery, layedit = layui.layedit, cookie = layui.cookie,zjoin = layui.zjoin;
             var id = getUrlParam("id");
             $.get("/story/article/detail?id=" + id, function (data) {
-                console.log(data)
                 document.title = data.data.title;
                 $("#detail_title").html(data.data.title)
                 $("#detail_content").html(data.data.content);
-
+                $("#detail_author").html(data.data.author);
+                $("#detail_time").html(zjoin.timetrans(data.data.createtime));
                 $.get("/story/article/similar?catalog=" + data.data.catalog, function (data2) {
                     for (var dd of data2.data) {
-                        var $li = ' <li>\n' +
-                            '                            <p>' + dd.title + '</p>\n' +
-                            '                            <div>\n' +
-                            '                                <span><i class="layui-icon browse">&#xe91d;</i>&nbsp;33</span>&nbsp;&nbsp;&nbsp;&nbsp;\n' +
-                            '                                <span><i class="layui-icon comment">&#xe998;</i>&nbsp;12</span>&nbsp;&nbsp;&nbsp;&nbsp;\n' +
-                            '                                <span><i class="layui-icon author">&#xe7fd;</i>&nbsp;佚名</span>&nbsp;&nbsp;\n' +
-                            '                            </div>\n' +
+                        var $li = ' <li>' +
+                            '                            <p>' + dd.title + '</p>' +
+                            '                            <div>' +
+                            '                                <span><i class="layui-icon browse">&#xe91d;</i>&nbsp;33</span>&nbsp;&nbsp;&nbsp;&nbsp;' +
+                            '                                <span><i class="layui-icon comment">&#xe998;</i>&nbsp;12</span>&nbsp;&nbsp;&nbsp;&nbsp;' +
+                            '                                <span><i class="layui-icon author">&#xe7fd;</i>&nbsp;佚名</span>&nbsp;&nbsp;' +
+                            '                            </div>' +
                             '                        </li>';
                         $("#newestComment").append($li);
                     }
@@ -34,6 +35,33 @@
                 });
 
 
+            });
+
+            $.get("/story/comment/list?articleid=" + id, function (data) {
+                if(data.code==0) {
+                    for (var dd of data.data) {
+                        var $li = '';
+                        $li +='<li class="comment-li" >' +
+                        '                                    <div class="comment-li-user">' +
+                        '                                        <a class="" href="javascript:void(0)">' +
+                        '                                            <img style=""src="'+dd.picture+'" />' +
+                        '                                        </a>' +
+                        '                                        <div class="comment-li-user-name" >' +
+                        '                                            <a href="javascript:void(0)"> '+dd.nickname+'</a>' +
+                        '                                        </div>' +
+                        '                                        <div class="comment-li-user-time">' +
+                        '                                            <span>'+zjoin.timetrans(dd.createtime)+'</span>' +
+                        '                                        </div>' +
+                        '                                    </div>' +
+                        '                                    <div class="comment-li-content">'+dd.content+'</div>' +
+                        '                                    <div class="comment-li-foot">' +
+                        '                                        <span class="good" data-id="'+dd.id+'"><i class="layui-icon">&#xe8dc;</i> <em>'+dd.dz+'</em> </span>' +
+                        '                                        <span class="reply"> <i class="layui-icon">&#xeac9;</i> 回复 </span>' +
+                        '                                    </div>' +
+                        '                                </li>';
+                        $("#comment_list").append($li);
+                    }
+                }
             });
 
             function getUrlParam(name) {
@@ -56,7 +84,6 @@
                 } else if (comment == '') {
                     return;
                 }
-                console.log($.cookie("nickname"))
                 if (!$.cookie("nickname")) {
                     layer.open({
                         type: 5,
@@ -89,6 +116,22 @@
                         if (d.code == 0) {
                             $.cookie("nickname", d.data.nickname);
                             layer.closeCurrent();
+                        }
+
+                    }
+                });
+            })
+            $('body').delegate(".good", 'click', function () {
+                $.ajax({
+                    url: '/story/comment/dz',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: {
+                        id: $(this).attr("data-id")
+                    },
+                    success: function (d) {
+                        if (d.code == 0) {
+                            layer.ok("点赞成功！");
                         }
 
                     }
@@ -150,13 +193,13 @@
     <div class="layui-container story-container" style="padding: 0">
         <div class="layui-row layui-col-space15" style="background: #f6f6f6">
             <div class="layui-col-md9" style="">
-                <div style="background: #ffffff;">
+                <div style="background: #ffffff;padding: 20px;">
                     <h1 id="detail_title"></h1>
-                    <div style="height: 40px;line-height: 40px;text-align: center">
+                    <div style="height: 40px;line-height: 40px;text-align: center;">
                         <p>
-                            时间：<span>2017-01-02 12:23:34</span>
+                            时间：<span id="detail_time">2017-01-02 12:23:34</span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            来源：<span>易天下</span>
+                            来源：<span id="detail_author">易天下</span>
                         </p>
                     </div>
                     <hr>
@@ -168,70 +211,7 @@
                     <fieldset class="layui-elem-field layui-field-title">
                         <legend>网友评论</legend>
                         <div class="layui-field-box">
-                            <ul style="margin-bottom: 30px;">
-                                <li data-id="83544" class="jieda-daan"
-                                    style="position: relative;padding: 20px 0 10px;border-bottom: 1px dotted #DFDFDF">
-                                    <a name="item-1512121996572"></a>
-                                    <div class="detail-about detail-about-reply"
-                                         style=" position: relative;line-height: 20px;padding: 0 0 0 20px;background: none;">
-                                        <a class="fly-avatar" href="/u/3279696/" style="position: absolute;">
-                                            <img style="display: block;width: 45px; height: 45px; margin: 0; border-radius: 2px;"src="http://image.story521.cn/logo.png" />
-                                        </a>
-                                        <div class="fly-detail-user"
-                                             style="white-space: nowrap;overflow: hidden;position: relative;line-height: 20px;padding: 0px 15px 0px 50px;font-size: 13px;color: #999;">
-                                            <a href="" class="fly-link" style="padding-right: 10px;font-size: 14px;color: #01AAED;"> 易天下</a>
-                                        </div>
-                                        <div class="detail-hits"
-                                             style="position: relative;line-height: 20px;left: 50px;bottom: 0;">
-                                            <span style="height: 20px;line-height: 20px;position: relative;top: 5px;">2017-09-12 23:32:32</span>
-                                        </div>
-                                    </div>
-                                    <div class="detail-body jieda-body photos"
-                                         style="margin: 25px 0 20px 20px;min-height: 0; line-height: 24px; font-size: 14px;color: #333;word-wrap: break-word">
-                                        VUE需要用到的一些 this.$nextTick, this.$refs等,再无其他用到）。a
-                                        <br>至于如何选择，得看团队结构了，传统的JQ模式，前端后端人员都熟悉，现在流行的Angular，React和Vue，就需要比较专业的前端知识和架构能力了。
-                                    </div>
-                                    <div class="jieda-reply" style="position: relative;margin-left: 20px">
-                                        <span class="jieda-zan " type="zan"
-                                              style="padding-right: 20px;color: #999;cursor: pointer;"><i
-                                                class="layui-icon">&#xe8dc;</i> <em>0</em> </span>
-                                        <span type="reply" style="padding-right: 20px;color: #999;cursor: pointer;"> <i
-                                                class="layui-icon">&#xeac9;</i> 回复 </span>
-                                    </div>
-                                </li>
-                                <li data-id="83544" class="jieda-daan"
-                                    style="position: relative;padding: 20px 0 10px;border-bottom: 1px dotted #DFDFDF">
-                                    <a name="item-1512121996572"></a>
-                                    <div class="detail-about detail-about-reply"
-                                         style=" position: relative;line-height: 20px;padding: 0 0 0 20px;background: none;">
-                                        <a class="fly-avatar" href="/u/3279696/" style="position: absolute;">
-                                            <img style="display: block;width: 45px; height: 45px; margin: 0; border-radius: 2px;"src="http://image.story521.cn/yitianxia.png" />
-                                        </a>
-                                        <div class="fly-detail-user"
-                                             style="white-space: nowrap;overflow: hidden;position: relative;line-height: 20px;padding: 0px 15px 0px 50px;font-size: 13px;color: #999;">
-                                            <a href="/u/3279696/" class="fly-link"
-                                               style="padding-right: 10px;font-size: 14px;"> <cite>易天下</cite> </a>
-                                        </div>
-                                        <div class="detail-hits"
-                                             style="position: relative;line-height: 20px;left: 50px;bottom: 0;">
-                                            <span style="height: 20px;line-height: 20px;position: relative;top: 5px;">2017-09-12 23:32:32</span>
-                                        </div>
-                                        <i class="iconfont icon-caina" title="最佳答案"></i>
-                                    </div>
-                                    <div class="detail-body jieda-body photos"
-                                         style="margin: 25px 0 20px 20px;min-height: 0; line-height: 24px; font-size: 14px;color: #333;word-wrap: break-word">
-                                        VUE需要用到的一些 this.$nextTick, this.$refs等,再无其他用到）。a
-                                        <br>至于如何选择，得看团队结构了，传统的JQ模式，前端后端人员都熟悉，现在流行的Angular，React和Vue，就需要比较专业的前端知识和架构能力了。
-                                    </div>
-                                    <div class="jieda-reply" style="position: relative;margin-left: 20px">
-                                        <span class="jieda-zan " type="zan"
-                                              style="padding-right: 20px;color: #999;cursor: pointer;"><i
-                                                class="layui-icon">&#xe8dc;</i> <em>0</em> </span>
-                                        <span type="reply" style="padding-right: 20px;color: #999;cursor: pointer;"> <i
-                                                class="layui-icon">&#xeac9;</i> 回复 </span>
-                                    </div>
-                                </li>
-                            </ul>
+                            <ul style="margin-bottom: 30px;" id="comment_list"></ul>
                             <textarea placeholder="我说两句～" class="layui-textarea" id="comment_edit"></textarea>
                         </div>
                         <div style="float: right;margin-right: 20px;">
@@ -244,15 +224,6 @@
                 </div>
             </div>
             <div class="layui-col-md3" style="background: #ffffff;">
-                <!--<div class="layui-carousel story-main-right-box" id="test2">
-                    &lt;!&ndash;<div carousel-item>
-                        <div>条目1</div>
-                        <div>条目2</div>
-                        <div>条目3</div>
-                        <div>条目4</div>
-                        <div>条目5</div>
-                    </div>&ndash;&gt;
-                </div>-->
                 <div class="story-main-right-box ">
                     <div style="background: #ffffff;">
                         <blockquote class="layui-elem-quote story-right-title">同类推荐

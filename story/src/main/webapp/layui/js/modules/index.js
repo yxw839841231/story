@@ -40,7 +40,7 @@ layui.define(['layer', 'carousel','zjoin','util'], function (exports) {
                 $("#newestArticle").empty();
                 for (var d of data.data) {
                     var html = '';
-                    html += '<li style="cursor:pointer;" class="testli" dd="'+d.id+'">'
+                    html += '<li style="cursor:pointer;" class="testli layui-elip" dd="'+d.id+'">'
                     html += '    <h1 style="font-weight: bold">' + d.title + '</h1>'
                     html += '    <div style="width: 110px;height: 110px;line-height: 110px;float: left">'
                     html += '        <img style="max-height: 100%;max-width: 100%;"'
@@ -59,7 +59,6 @@ layui.define(['layer', 'carousel','zjoin','util'], function (exports) {
                     html += ' </li>';
                     var $li = $('<li><p>&nbsp;'+d.title+'</p></li>');
 
-
                     $("#newestArticle").append($li);
                     $("#story-newest-article").append(html);
 
@@ -67,7 +66,39 @@ layui.define(['layer', 'carousel','zjoin','util'], function (exports) {
                 $("body").delegate('.testli','click',function () {
                     window.open("/html/story/article/detail.html?id="+$(this).attr("dd"));
                 });
+            }
+        }
+    });
 
+    $.get('/story/maxCommentArticle',function (data) {
+        if(data.code ==0){
+            $("#newestComment").empty();
+            for(var dd of data.data){
+                var $li ='<li class="layui-elip">' +
+                    '                            <p><a href="/html/story/article/detail.html?id='+dd.id+'" target="_blank">'+dd.title+'</a></p>' +
+                    '                            <div>' +
+                    '                            <span><i class="layui-icon browse">&#xe91d;</i>&nbsp;'+dd.browse+'</span>&nbsp;&nbsp;&nbsp;&nbsp;' +
+                    '                            <span><i class="layui-icon comment">&#xe998;</i>&nbsp;'+dd.totals+'</span>&nbsp;&nbsp;&nbsp;&nbsp;' +
+                    '                            <span><i class="layui-icon author">&#xe7fd;</i>&nbsp;'+dd.author+'</span>&nbsp;&nbsp;' +
+                    '                             </div>' +
+                    '                        </li>';
+                $("#newestComment").append($li)
+            }
+        }
+    });
+    $.get('/story/maxDzArticle',function (data) {
+        if(data.code ==0){
+            $("#newestTalk").empty();
+            for(var dd of data.data){
+                var $li ='<li>' +
+                    '                            <p><a href="/html/story/article/detail.html?id='+dd.id+'" target="_blank">'+dd.title+'</a></p>' +
+                    '                            <div>' +
+                    '                                <span><i class="layui-icon author">&#xe91f;</i>&nbsp;'+dd.author+'</span>&nbsp;&nbsp;&nbsp;&nbsp;' +
+                    '                                <span><i class="layui-icon date">&#xe8b5;</i>&nbsp;'+zjoin.timetrans(dd.createtime)+'</span>&nbsp;&nbsp;&nbsp;&nbsp;' +
+                    '                                <span><i class="layui-icon good">&#xe87d;</i>&nbsp;'+dd.totals+'</span>&nbsp;&nbsp;' +
+                    '                            </div>' +
+                    '                        </li>';
+                $("#newestTalk").append($li)
             }
         }
     });

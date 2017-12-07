@@ -8,7 +8,10 @@ package cn.zjoin.story.business.controller.story;
 import cn.zjoin.story.base.controller.BaseController;
 import cn.zjoin.story.base.model.BaseResult;
 import cn.zjoin.story.business.model.Carousel;
+import cn.zjoin.story.business.model.Comment;
 import cn.zjoin.story.business.service.CarouselService;
+import cn.zjoin.story.business.service.CommentService;
+import cn.zjoin.story.core.aspet.Login;
 import cn.zjoin.story.util.word.WordGenerator;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -39,6 +42,9 @@ public class StoryController extends BaseController {
 
     @Resource
     CarouselService carouselService;
+
+    @Resource
+    CommentService commentService;
 
     @RequestMapping(value = "carousel", method = RequestMethod.POST)
     @ResponseBody
@@ -85,6 +91,45 @@ public class StoryController extends BaseController {
         }
     }
 
+
+    /**
+     * 获取近期热议评论的文章
+     * @return
+     */
+    @RequestMapping(value = "maxCommentArticle", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseResult maxCommentArticle() {
+        BaseResult result = new BaseResult();
+        result.setData(commentService.maxCommentArticle());
+        return result;
+    }
+
+
+    /**
+     * 获取近期热议评论的文章
+     * @return
+     */
+    @RequestMapping(value = "maxDzArticle", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseResult maxDzArticle() {
+        BaseResult result = new BaseResult();
+        result.setData(commentService.maxDzArticle());
+        return result;
+    }
+
+    @RequestMapping(value = "comment/dz", method = RequestMethod.POST)
+    @ResponseBody
+    @Login
+    public BaseResult dz(Comment comment) {
+
+        BaseResult result = new BaseResult();
+        try {
+            commentService.dz(comment.getId());
+        }catch (Exception e){
+            result.setCode(500);
+        }
+        return result;
+    }
 
 
 }

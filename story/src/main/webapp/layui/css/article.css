@@ -1,0 +1,15 @@
+.comment-li{
+    position: relative;padding: 20px 0 10px;border-bottom: 1px dotted #DFDFDF;
+}
+.comment-li-user{
+    position: relative;line-height: 20px;padding: 0 0 0 20px;background: none;
+}
+.comment-li-user a{position: absolute;}
+.comment-li-user a img{display: block;width: 45px; height: 45px; margin: 0; border-radius: 5px;}
+.comment-li-user-name{white-space: nowrap;overflow: hidden;line-height: 20px;height: 20px;padding: 0px 15px 0px 50px;font-size: 13px;color: #999;  }
+.comment-li-user-name a{padding-right: 10px;font-size: 14px;color: #01AAED;}
+.comment-li-user-time{ position: relative;line-height: 20px;left: 50px;bottom: 0;}
+.comment-li-user-time span{height: 20px;line-height: 20px;position: relative;top: 5px;}
+.comment-li-content{margin:20px;line-height: 24px; font-size: 14px;color: #333;word-wrap: break-word;}
+.comment-li-foot{position: relative;margin-left: 20px;}
+.comment-li-foot span{padding-right: 20px;color: #999;cursor: pointer;}

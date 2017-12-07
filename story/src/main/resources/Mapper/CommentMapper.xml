@@ -12,4 +12,32 @@
     <result column="dz" property="dz" jdbcType="INTEGER" />
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
+
+  <select id="maxCommentArticle" resultType="cn.zjoin.story.business.model.view.ViewCommentArticle">
+    SELECT a.id,a.title,count(c.articleid) totals,a.author,a.browsepermission browse from article a LEFT JOIN comment c
+      on a.id = c.articleid
+    where c.createtime > date_sub(now(), interval 60 day)
+    GROUP BY c.articleid  ORDER BY totals desc
+    LIMIT 5
+  </select>
+
+  <select id="maxDzArticle" resultType="cn.zjoin.story.business.model.view.ViewCommentArticle">
+    SELECT c.content title,c.dz totals ,u.nickname author,c.createtime,c.articleid id from comment c LEFT JOIN user u
+      on c.userid = u.id
+    WHERE c.createtime > date_sub(now(), INTERVAL 60 DAY)
+    ORDER BY totals DESC
+    LIMIT 5;
+
+  </select>
+
+  <update id="dz" parameterType="java.lang.Long">
+    UPDATE comment set dz = dz+1 WHERE id =#{id};
+  </update>
+
+  <select id="getArticleCommentList" parameterType="java.lang.Long" resultType="cn.zjoin.story.business.model.view.ViewComment">
+    SELECT c.*,u.nickname,u.picture FROM comment c
+    LEFT JOIN user u on c.userid = u.id
+    WHERE articleid =#{id};
+
+  </select>
 </mapper>

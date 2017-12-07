@@ -12,6 +12,7 @@ body{
 .story-container{
     top: 60px;
     background-color: #fefefe;
+    padding: 0px;
 }
 .story-nav {
     width: 100%;
@@ -36,8 +37,9 @@ body{
 
 .story-main-right-box {
     width: 100%;
-    margin: 10px 15px;
     min-height: 100px;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .story-main-right-box ul li {

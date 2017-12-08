@@ -385,7 +385,12 @@ layui.define(['layer', 'form','ZJOINS'], function(exports){
       }
       //图片
       ,image: function(range){
-        var that = this;
+            if($("#qiniujs").length==0){
+                var head = $("head").remove("script[id='qiniujs']");
+                $("<scri" + "pt>" + "</scr" + "ipt>").attr({ id: 'qiniujs', src: '/layui/js/modules/qiniu.js', type: 'text/javascript' }).appendTo(head);
+            }
+
+            var that = this;
         layer.open({
           type: 1,
           id: 'fly-jie-upload',

@@ -14,7 +14,7 @@
   </resultMap>
 
   <select id="maxCommentArticle" resultType="cn.zjoin.story.business.model.view.ViewCommentArticle">
-    SELECT a.id,a.title,count(c.articleid) totals,a.author,a.browsepermission browse from article a LEFT JOIN comment c
+    SELECT a.id,a.title,count(c.articleid) totals,a.author,a.browse from article a LEFT JOIN comment c
       on a.id = c.articleid
     where c.createtime > date_sub(now(), interval 60 day)
     GROUP BY c.articleid  ORDER BY totals desc

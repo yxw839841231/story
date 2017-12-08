@@ -4,4 +4,6 @@ import cn.zjoin.story.business.model.Article;
 import tk.mybatis.mapper.common.Mapper;
 
 public interface ArticleMapper extends Mapper<Article> {
+
+    public void updateBrowse(Long id);
 }

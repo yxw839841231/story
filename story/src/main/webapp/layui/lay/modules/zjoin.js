@@ -19,8 +19,10 @@ layui.define(['layer', 'form', 'ZJOINS'], function (exports) {
         return that;
     };
     var upload = function () {
-        var head = $("head").remove("script[role='reload']");
-        $("<scri" + "pt>" + "</scr" + "ipt>").attr({ role: 'reload', src: '/layui/js/modules/qiniu.js', type: 'text/javascript' }).appendTo(head);
+        if($("#qiniujs").length==0){
+            var head = $("head").remove("script[id='qiniujs']");
+            $("<scri" + "pt>" + "</scr" + "ipt>").attr({ id: 'qiniujs', src: '/layui/js/modules/qiniu.js', type: 'text/javascript' }).appendTo(head);
+        }
 
         layer.open({
             type: 1,
@@ -128,7 +130,44 @@ layui.define(['layer', 'form', 'ZJOINS'], function (exports) {
         var D = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
         return Y + M + D;
     }
+    Zjoin.prototype.timeago = function (dateTimeStamp) {   //dateTimeStamp是一个时间毫秒，注意时间戳是秒的形式，在这个毫秒的基础上除以1000，就是十位数的时间戳。13位数的都是时间毫秒。
+        var minute = 1000 * 60;      //把分，时，天，周，半个月，一个月用毫秒表示
+        var hour = minute * 60;
+        var day = hour * 24;
+        var week = day * 7;
+        var halfamonth = day * 15;
+        var month = day * 30;
 
+        var now = new Date().getTime();   //获取当前时间毫秒
+        var diffValue = now - dateTimeStamp;//时间差
+
+        if (diffValue < 0) {
+            return;
+        }
+
+        var minC = diffValue / minute;  //计算时间差的分，时，天，周，月
+        var hourC = diffValue / hour;
+        var dayC = diffValue / day;
+        var weekC = diffValue / week;
+        var monthC = diffValue / month;
+        result = "刚刚";
+        if (parseInt(minC) >= 1) {
+            result = " " + parseInt(minC) + "分钟前";
+        }
+        if (parseInt(hourC) >= 1) {
+            result = " " + parseInt(hourC) + "小时前";
+        }
+        if (parseInt(dayC) >= 1) {
+            result = " " + parseInt(dayC) + "天前";
+        }
+        if (parseInt(weekC) >= 1) {
+            result = " " + parseInt(weekC) + "周前";
+        }
+        if (parseInt(monthC) >= 1) {
+            result = " " + parseInt(monthC) + "个月前";
+        }
+        return result;
+    }
     window.zjoin = new Zjoin();
     exports('zjoin',new Zjoin()); //注意，这里是模块输出的核心，模块名必须和use时的模块名一致
 }); 

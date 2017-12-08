@@ -44,7 +44,7 @@ public class Article {
     /**
      * 浏览权限
      */
-    private Byte browsepermission;
+    private Integer browse;
 
     private String cover;
 
@@ -187,22 +187,12 @@ public class Article {
         this.describle = describle;
     }
 
-    /**
-     * 获取浏览权限
-     *
-     * @return browsepermission - 浏览权限
-     */
-    public Byte getBrowsepermission() {
-        return browsepermission;
+    public Integer getBrowse() {
+        return browse;
     }
 
-    /**
-     * 设置浏览权限
-     *
-     * @param browsepermission 浏览权限
-     */
-    public void setBrowsepermission(Byte browsepermission) {
-        this.browsepermission = browsepermission;
+    public void setBrowse(Integer browse) {
+        this.browse = browse;
     }
 
     /**

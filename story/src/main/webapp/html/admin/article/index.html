@@ -23,7 +23,7 @@
             loadType: 'get',
             height: '100%',
             columns: [
-                {name: 'id', width: '150', label: '编号', align: 'center', attrs: {'readonly': "true"}},
+                {name: 'id', width: '150', label: '编号', align: 'center', hide:true},
                 {name: 'title', width: '150', label: '标题', align: 'center', rule: 'required'},
                 {name: 'author', width: '150', label: '作者', align: 'center', rule: 'required'},
                 {
@@ -46,12 +46,10 @@
                 }
                 },
                 {
-                    name: 'browsepermission',
+                    name: 'browse',
                     width: '150',
-                    label: '浏览权限',
-                    type: 'select',
                     align: 'center',
-                    items: [{1: '公开'}, {0: '私人'}]
+                    label: '浏览量'
                 },{name:'createtime', width: '150', label: '创建时间', align: 'center',render:function (value) {
                     return zjoin.timetrans(value)
                 }}
@@ -67,16 +65,16 @@
 
         if (user_btn.indexOf('del') != -1) {
             user_datagrid_data.delConfirm = true
-            user_datagrid_data.delPK = 'userId'
+            user_datagrid_data.delPK = 'id'
             user_datagrid_data.delType = 'POST'
-            user_datagrid_data.delUrl = $.cookie("tudou-upms-server") + '/manage/user/delete'
+            user_datagrid_data.delUrl =  '/admin/article/delete'
             user_datagrid_data.delCallback = 'del_user_back'
         }
 
         $('#article_list_table').datagrid(user_datagrid_data);
         window.manage_user_back_edit = manage_user_back_edit
         function manage_user_back_edit(result) {
-            if (result.code != 1) {
+            if (result.code != 0) {
                 if (result.data instanceof Array) {
                     $.each(result.data, function (index, value) {
                         layer.warn(value.errorMsg)
@@ -87,7 +85,7 @@
             } else {
                 layer.ok('操作成功')
             }
-            $('#article_list_table').datagrid('refresh_part');
+            $('#article_list_table').datagrid('refresh');
         }
 
         function del_user_back(d) {
@@ -96,7 +94,7 @@
             } else {
                 layer.err(d.data)
             }
-            $('#article_list_table').datagrid('refresh_part');
+            $('#article_list_table').datagrid('refresh');
         }
 
         $(".article_add_btn").bind( 'click', function () {
@@ -124,7 +122,7 @@
                             url:'/admin/article/audit',
                             data:{id:selected[0].id},
                             success:function () {
-                                $('#article_list_table').datagrid('refresh_part');
+                                $('#article_list_table').datagrid('refresh');
                                 layer.close(index);
                             }
                         })

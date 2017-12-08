@@ -6,6 +6,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.entity.Example;
 
@@ -168,12 +169,7 @@ public abstract class BaseService<T> {
         return pagination;
     }
 
-    public PageInfo<T> pageInfoSimple(PageInfo page,Object entity) {
-        PageHelper.startPage(page.getPageNum(), page.getPageSize(), " id desc ");
-        List<T> list = mapper.selectAll();
-        page = new PageInfo(list);
-        return page;
-    }
+
     private void praseCondition(Example.Criteria ec,String name,Object value,String value2){
         if (value != null) {
             if(value2.equals("=")){
@@ -185,10 +181,11 @@ public abstract class BaseService<T> {
     }
 
 
-    public PageInfo<T> pageInfoSimple2(PageInfo page,Object entity,Class clazz) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    public PageInfo<T> pageInfoSimple(PageInfo page,Object entity,Class clazz,String... colums) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         Example example = new Example(clazz);
         Field[] field = entity.getClass().getDeclaredFields();
         Example.Criteria ec = example.createCriteria();
+        if(!StringUtils.isEmpty(colums)) example.selectProperties(colums);
 
         for (int j = 0; j < field.length; j++) {     //遍历所有属性
             String name = field[j].getName();    //获取属性的名字

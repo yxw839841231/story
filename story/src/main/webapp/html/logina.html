@@ -11,7 +11,7 @@
                 url: '/story/user/login',
                 type: 'post',
                 data: data.field,
-                success: function (d) {debugger
+                success: function (d) {
                     layer.closeAll('loading')
                     if (d.code == 0) {
                         $.cookie("flowerName", $("#login_username").val())

@@ -19,14 +19,15 @@
                 $("#detail_content").html(data.data.content);
                 $("#detail_author").html(data.data.author);
                 $("#detail_time").html(zjoin.timetrans(data.data.createtime));
+                $("#detail_browse").html(data.data.browse)
                 $.get("/story/article/similar?catalog=" + data.data.catalog, function (data2) {
                     for (var dd of data2.data) {
                         var $li = ' <li>' +
-                            '                            <p>' + dd.title + '</p>' +
+                            '                            <p><a href="/html/story/article/detail.html?id='+dd.id+'" target="_blank">' + dd.title + '</a></p>' +
                             '                            <div>' +
-                            '                                <span><i class="layui-icon browse">&#xe91d;</i>&nbsp;33</span>&nbsp;&nbsp;&nbsp;&nbsp;' +
-                            '                                <span><i class="layui-icon comment">&#xe998;</i>&nbsp;12</span>&nbsp;&nbsp;&nbsp;&nbsp;' +
-                            '                                <span><i class="layui-icon author">&#xe7fd;</i>&nbsp;佚名</span>&nbsp;&nbsp;' +
+                            '                                <span><i class="layui-icon browse">&#xe91d;</i>&nbsp;'+dd.browse+'</span>&nbsp;&nbsp;&nbsp;&nbsp;' +
+                            //'                                <span><i class="layui-icon comment">&#xe998;</i>&nbsp;12</span>&nbsp;&nbsp;&nbsp;&nbsp;' +
+                            '                                <span><i class="layui-icon author">&#xe7fd;</i>&nbsp;'+dd.author+'</span>&nbsp;&nbsp;' +
                             '                            </div>' +
                             '                        </li>';
                         $("#newestComment").append($li);
@@ -50,7 +51,7 @@
                         '                                            <a href="javascript:void(0)"> '+dd.nickname+'</a>' +
                         '                                        </div>' +
                         '                                        <div class="comment-li-user-time">' +
-                        '                                            <span>'+zjoin.timetrans(dd.createtime)+'</span>' +
+                        '                                            <span>'+zjoin.timeago(dd.createtime)+'</span>' +
                         '                                        </div>' +
                         '                                    </div>' +
                         '                                    <div class="comment-li-content">'+dd.content+'</div>' +
@@ -197,9 +198,11 @@
                     <h1 id="detail_title"></h1>
                     <div style="height: 40px;line-height: 40px;text-align: center;">
                         <p>
-                            时间：<span id="detail_time">2017-01-02 12:23:34</span>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            来源：<span id="detail_author">易天下</span>
+                            <i class="layui-icon layui-color-little">&#xe8b5;</i>&nbsp;<span id="detail_time">2017-01-02 12:23:34</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <i class="layui-icon layui-color-little">&#xe9f8;</i>&nbsp;<span id="detail_browse">2017</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <i class="layui-icon layui-color-little">&#xe7fd;</i>&nbsp;<span id="detail_author">易天下</span>
                         </p>
                     </div>
                     <hr>

@@ -42,8 +42,12 @@ body{
     margin-top: 5px;
 }
 
+.story-main-right-box ul{
+    padding: 0 5px;
+}
+
 .story-main-right-box ul li {
-    line-height: 25px;
+    line-height: 30px;
 }
 .story-main-right-hidden li{
     font-size: 14px;

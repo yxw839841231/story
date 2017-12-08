@@ -10,7 +10,6 @@ import cn.zjoin.story.base.model.BaseResult;
 import cn.zjoin.story.business.model.Article;
 import cn.zjoin.story.business.model.ArticleOperator;
 import cn.zjoin.story.business.service.ArticleService;
-import cn.zjoin.story.util.QiNiuUtil;
 import com.github.pagehelper.PageInfo;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
 import java.lang.reflect.InvocationTargetException;
@@ -49,7 +47,7 @@ public class ArticleStoryController extends BaseController {
     public BaseResult list(PageInfo<Article> pageInfo, ArticleOperator articleOperator) {
        PageInfo list = null;
         try {
-            list= articleService.pageInfoSimple2(pageInfo,articleOperator,Article.class);
+            list= articleService.pageInfoSimple(pageInfo,articleOperator,Article.class,"id","title","author","createtime","isaudit","cover","keywords","browse");
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -63,12 +61,23 @@ public class ArticleStoryController extends BaseController {
     }
     @RequestMapping(value = "newest", method = RequestMethod.GET)
     @ResponseBody
-    public BaseResult newest() {
-        Example example = new Example(Article.class);
-        example.createCriteria().andEqualTo("isaudit",true);
-        example.orderBy("id").desc();
+    public BaseResult newest(PageInfo<Article> pageInfo, ArticleOperator articleOperator) {
+        PageInfo list = null;
+        try {
+            pageInfo.setPageSize(10);
+            pageInfo.setPageNum(1);
+            articleOperator.setIsaudit(true);
+            articleOperator.setIsauditoperator("=");
+            list= articleService.pageInfoSimple(pageInfo,articleOperator,Article.class,"id","title","author","createtime","describle","cover");
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
         BaseResult result = new BaseResult();
-        result.setData(articleService.getByExample(example));
+        result.setData(list);
         return result;
     }
     @RequestMapping(value = "list/{type}", method = RequestMethod.GET)
@@ -89,9 +98,9 @@ public class ArticleStoryController extends BaseController {
         article.setCreatetime(new Date());
         if (StringUtils.isEmpty(article.getCover())) {
             try {
-                String path = QiNiuUtil.uploadAndCreateImage(article.getKeywords());
-                article.setCover(path);
+                article.setCover("http://image.story521.cn/FhNQ7FEeTpf2juzH8rAbPDyNP1w3");
             } catch (Exception e) {
+                result.setCode(-1);
                 e.printStackTrace();
             }
         }
@@ -106,6 +115,12 @@ public class ArticleStoryController extends BaseController {
     @RequestMapping(value = "detail", method = RequestMethod.GET)
     @ResponseBody
     public BaseResult detail( Long id) {
+        try {
+            articleService.updateBrowse(id);
+
+        }catch (Exception e){
+
+        }
         Article list = articleService.getById(id);
         BaseResult result = new BaseResult();
         result.setData(list);
@@ -121,7 +136,9 @@ public class ArticleStoryController extends BaseController {
         pageInfo.setPageNum(1);
         articleOperator.setCatalogoperator("=");
         try {
-            list= articleService.pageInfoSimple2(pageInfo,articleOperator,Article.class);
+            articleOperator.setIsaudit(true);
+            articleOperator.setIsauditoperator("=");
+            list= articleService.pageInfoSimple(pageInfo,articleOperator,Article.class,"id","title","author","createtime","browse");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -129,5 +146,6 @@ public class ArticleStoryController extends BaseController {
         result.setData(list.getList());
         return result;
     }
+
 
 }

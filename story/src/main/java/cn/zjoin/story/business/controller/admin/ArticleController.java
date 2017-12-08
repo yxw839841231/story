@@ -10,7 +10,6 @@ import cn.zjoin.story.base.model.BaseResult;
 import cn.zjoin.story.base.model.Pagination;
 import cn.zjoin.story.business.model.Article;
 import cn.zjoin.story.business.service.ArticleService;
-import cn.zjoin.story.util.QiNiuUtil;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -59,18 +58,26 @@ public class ArticleController extends BaseController {
         article.setAuthor(getUser().getNickname());
         article.setAuthorid(getUser().getId());
         article.setCreatetime(new Date());
-        Byte b1 = 1;
-        article.setBrowsepermission(b1);
         if (StringUtils.isEmpty(article.getCover())) {
             try {
-                String path = QiNiuUtil.uploadAndCreateImage(article.getKeywords());
-                article.setCover(path);
+                //String path = QiNiuUtil.uploadAndCreateImage(article.getKeywords());
+                article.setCover("http://image.story521.cn/FhNQ7FEeTpf2juzH8rAbPDyNP1w3");
+                articleService.insert(article);
             } catch (Exception e) {
+                result.setCode(-1);
+                result.setMsg(e.getMessage());
                 e.printStackTrace();
             }
         }
+        return result;
+    }
+
+    @RequestMapping("delete")
+    @ResponseBody
+    public BaseResult delete(Article article) {
+        BaseResult result = new BaseResult();
         try {
-            articleService.insert(article);
+            articleService.deleteByEntity(article);
         } catch (Exception e) {
             e.printStackTrace();
         }

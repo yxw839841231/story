@@ -21,4 +21,7 @@ public abstract class ArticleService extends BaseService<Article> {
     public abstract void audit(Article article);
 
     public abstract List<Article> getByType(Integer type);
+
+    @Transactional
+    public abstract void updateBrowse(Long id);
 }

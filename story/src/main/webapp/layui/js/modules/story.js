@@ -21,7 +21,6 @@ layui.define(['layer', 'element', 'table', 'zjoin', 'ZJOINdropdown', 'ZJOINselec
             var res = XMLHttpRequest.responseText;
             try {
                 var jsonData = JSON.parse(res);
-                console.log(jsonData.code == -10000)
                 if (jsonData.code == -10000) {
                     //自定页
                     layer.open({

@@ -14,9 +14,13 @@
                 url:'/admin/article/add',
                 type:'post',
                 data:data.field,
-                success:function () {
-                    $('#article_list_table').datagrid('refresh_part');
-                    layer.closeCurrent();
+                success:function (data) {
+                    if(data.code==0){
+                        $('#article_list_table').datagrid('refresh');
+                        layer.closeCurrent();
+                    }else {
+                        layer.warn(data.msg);
+                    }
                 }
             })
             return false;
@@ -44,7 +48,7 @@
             </div>
             <label class="layui-form-label">类别</label>
             <div class="layui-input-inline">
-                <select>
+                <select name="catalog">
                     <option value="1">心灵鸡汤</option>
                     <option value="2">奇闻逸事</option>
                     <option value="3">天下大事</option>

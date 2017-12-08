@@ -25,11 +25,11 @@ public class CreateImageUtil {
     public static final int HEIGHT = 500;
     public static final int FONTSIZE = 100;
 
-    public static final String FILE_PATH = "/tmp/images/";
+    public static final String FILE_PATH = File.separator+"opt"+File.separator+"images";
 
 
     public static void main(String[] args) throws Exception {
-        createImage("美窝");
+        createImage("地瓜");
     }
 
     private static String getPath() {
@@ -38,6 +38,7 @@ public class CreateImageUtil {
 
     // 根据str输出文件目录
     public static String createImage(String str) throws Exception {
+        String filePath = getPath();
         Font font = new Font("微软雅黑", Font.BOLD, FONTSIZE);
         // 创建图片
         BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_BGR);
@@ -70,10 +71,18 @@ public class CreateImageUtil {
         //g.drawLine(x, h + fm.getHeight(), x + 600, h + fm.getHeight());
         //g.dispose();
         File dir = new File(FILE_PATH);
-        if(!dir.exists()) dir.mkdirs();
-        File outFile = new File(getPath());
+        if(!dir.exists()) {
+            if(dir.mkdirs()){
+                System.out.println("创建文件夹成功");
+                System.out.println(dir.getPath());
+            }else {
+                System.out.println("创建文件夹失败");
+            }
+
+        }
+        File outFile = new File(filePath);
 
         ImageIO.write(image, "png", outFile);// 输出png图片
-        return getPath();
+        return filePath;
     }
 }

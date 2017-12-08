@@ -10,15 +10,14 @@
     <result column="isaudit" property="isaudit" jdbcType="BIT" />
     <result column="keywords" property="keywords" jdbcType="VARCHAR" />
     <result column="describle" property="describle" jdbcType="VARCHAR" />
-    <result column="browsepermission" property="browsepermission" jdbcType="TINYINT" />
+    <result column="browse" property="browse" jdbcType="TINYINT" />
     <result column="cover" property="cover" jdbcType="VARCHAR" />
     <result column="catalog" property="catalog" jdbcType="TINYINT" />
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
 
   <select id="queryByPage" parameterType="cn.zjoin.story.business.model.ArticleOperator" resultMap="BaseResultMap">
-    select * from article t <include refid="sqlWhere"/>
-    ;
+    select * from article t <include refid="sqlWhere"/>;
   </select>
 
 
@@ -36,4 +35,8 @@
       </if>
     </where>
   </sql>
+
+  <update id="updateBrowse" parameterType="java.lang.Long">
+    update article set browse = browse +1 where id =#{id}
+  </update>
 </mapper>

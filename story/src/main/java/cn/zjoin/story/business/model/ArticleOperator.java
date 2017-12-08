@@ -26,16 +26,16 @@ public class ArticleOperator {
     private String authoroperator;
 
     private Long authorid;
-    private Long authoridoperator;
+    private String authoridoperator;
 
     private Date createtime;
-    private Date createtimeoperator;
+    private String createtimeoperator;
 
     /**
      * 是否审核
      */
     private Boolean isaudit;
-    private Boolean isauditoperator;
+    private String isauditoperator;
 
     /**
      * 关键字
@@ -52,8 +52,8 @@ public class ArticleOperator {
     /**
      * 浏览权限
      */
-    private Byte browsepermission;
-    private String browsepermissionoperator;
+    private Integer browse;
+    private String browseoperator;
 
     private String cover;
     private String coveroperator;
@@ -199,23 +199,6 @@ public class ArticleOperator {
         this.describle = describle;
     }
 
-    /**
-     * 获取浏览权限
-     *
-     * @return browsepermission - 浏览权限
-     */
-    public Byte getBrowsepermission() {
-        return browsepermission;
-    }
-
-    /**
-     * 设置浏览权限
-     *
-     * @param browsepermission 浏览权限
-     */
-    public void setBrowsepermission(Byte browsepermission) {
-        this.browsepermission = browsepermission;
-    }
 
     /**
      * @return cover
@@ -287,27 +270,27 @@ public class ArticleOperator {
         this.authoroperator = authoroperator;
     }
 
-    public Long getAuthoridoperator() {
+    public String getAuthoridoperator() {
         return authoridoperator;
     }
 
-    public void setAuthoridoperator(Long authoridoperator) {
+    public void setAuthoridoperator(String authoridoperator) {
         this.authoridoperator = authoridoperator;
     }
 
-    public Date getCreatetimeoperator() {
+    public String getCreatetimeoperator() {
         return createtimeoperator;
     }
 
-    public void setCreatetimeoperator(Date createtimeoperator) {
+    public void setCreatetimeoperator(String createtimeoperator) {
         this.createtimeoperator = createtimeoperator;
     }
 
-    public Boolean getIsauditoperator() {
+    public String getIsauditoperator() {
         return isauditoperator;
     }
 
-    public void setIsauditoperator(Boolean isauditoperator) {
+    public void setIsauditoperator(String isauditoperator) {
         this.isauditoperator = isauditoperator;
     }
 
@@ -325,14 +308,6 @@ public class ArticleOperator {
 
     public void setDescribleoperator(String describleoperator) {
         this.describleoperator = describleoperator;
-    }
-
-    public String getBrowsepermissionoperator() {
-        return browsepermissionoperator;
-    }
-
-    public void setBrowsepermissionoperator(String browsepermissionoperator) {
-        this.browsepermissionoperator = browsepermissionoperator;
     }
 
     public String getCoveroperator() {
@@ -357,5 +332,21 @@ public class ArticleOperator {
 
     public void setContentoperator(String contentoperator) {
         this.contentoperator = contentoperator;
+    }
+
+    public Integer getBrowse() {
+        return browse;
+    }
+
+    public void setBrowse(Integer browse) {
+        this.browse = browse;
+    }
+
+    public String getBrowseoperator() {
+        return browseoperator;
+    }
+
+    public void setBrowseoperator(String browseoperator) {
+        this.browseoperator = browseoperator;
     }
 }

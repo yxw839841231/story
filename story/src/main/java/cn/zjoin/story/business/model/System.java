@@ -1,9 +1,10 @@
 package cn.zjoin.story.business.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Table(name = "system")
-public class System {
+public class System implements Serializable{
     /**
      * 编号
      */

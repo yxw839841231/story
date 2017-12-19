@@ -112,8 +112,12 @@ layui.define('BJUIextends', function(exports){
                 if(layer.zIndex) {
                     zindex=layer.zIndex+1;
                     var $l = layer.current()
-                    l = l -(window.innerWidth-$l.width())/2
-                    t = t- (window.innerHeight -$l.height()-42-45)/2
+                    if($l.length>0){
+                        /*l = l -(window.innerWidth-$l.width())/2
+                        t = t- (window.innerHeight -$l.height()-42-45)/2*/
+                        l = l - $l.offset().left
+                        t = t - $l.offset().top + 45
+                    }
                 }
                 var $div = $('<div class="zjoin-filter-box" style="width:'+w+'px;top:'+t+'px;left: '+l+'px;z-index:'+zindex+';height: auto;"></div>');
                 var $ul = $('<ul class="filter-ul"></ul>')

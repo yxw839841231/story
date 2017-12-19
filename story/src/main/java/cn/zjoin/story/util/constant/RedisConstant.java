@@ -62,5 +62,7 @@ public class RedisConstant {
 
     public static String REDIS_PASSWORD;
 
+    public static String SYSTEM_MENU = "sys-menu";
+
 
 }

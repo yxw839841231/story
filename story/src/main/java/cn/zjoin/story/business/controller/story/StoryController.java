@@ -13,6 +13,7 @@ import cn.zjoin.story.business.service.CarouselService;
 import cn.zjoin.story.business.service.CommentService;
 import cn.zjoin.story.core.aspet.Login;
 import cn.zjoin.story.util.word.WordGenerator;
+import org.apache.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +40,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/story", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class StoryController extends BaseController {
+    Logger logger = Logger.getLogger(StoryController.class);
 
     @Resource
     CarouselService carouselService;
@@ -48,10 +50,10 @@ public class StoryController extends BaseController {
 
     @RequestMapping(value = "carousel", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResult carousel() {
+    public BaseResult carousel(Integer catalog) {
         BaseResult result = new BaseResult();
         Example example = new Example(Carousel.class);
-        example.createCriteria().andEqualTo("isdelete",false);
+        example.createCriteria().andEqualTo("isdelete",false).andEqualTo("catalog",catalog);
         result.setData(carouselService.getByExample(example));
         return result;
     }
@@ -113,7 +115,29 @@ public class StoryController extends BaseController {
     @ResponseBody
     public BaseResult maxDzArticle() {
         BaseResult result = new BaseResult();
-        result.setData(commentService.maxDzArticle());
+        try {
+            result.setData(commentService.maxDzArticle());
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            result.setCode(-1);
+        }
+        return result;
+    }
+
+    /**
+     * 获取近期热议评论的文章
+     * @return
+     */
+    @RequestMapping(value = "topBrowse", method = RequestMethod.GET)
+    @ResponseBody
+    public BaseResult topBrowse() {
+        BaseResult result = new BaseResult();
+        try {
+            result.setData(commentService.topBrowseArticle());
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            result.setCode(-1);
+        }
         return result;
     }
 
@@ -126,6 +150,7 @@ public class StoryController extends BaseController {
         try {
             commentService.dz(comment.getId());
         }catch (Exception e){
+            logger.error(e.getMessage());
             result.setCode(500);
         }
         return result;

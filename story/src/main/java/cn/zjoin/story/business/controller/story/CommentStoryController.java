@@ -7,9 +7,11 @@ package cn.zjoin.story.business.controller.story;
 
 import cn.zjoin.story.base.controller.BaseController;
 import cn.zjoin.story.base.model.BaseResult;
+import cn.zjoin.story.base.model.Pagination;
 import cn.zjoin.story.business.model.Comment;
 import cn.zjoin.story.business.service.CommentService;
 import cn.zjoin.story.core.aspet.Login;
+import org.apache.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,8 @@ import java.util.Date;
 @Controller
 @RequestMapping(value = "/story/comment", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class CommentStoryController extends BaseController {
+
+    Logger logger = Logger.getLogger(CommentStoryController.class);
 
     @Resource
     private CommentService commentService;
@@ -55,16 +59,18 @@ public class CommentStoryController extends BaseController {
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     @ResponseBody
-    public BaseResult list(Comment comment) {
+    public BaseResult list(Pagination<Comment> pagination,Comment comment) {
 
         BaseResult result = new BaseResult();
         try {
-            result.setData(commentService.getArticleCommentList(comment.getArticleid()));
+            pagination.setPageSize(5);
+            return commentService.pageInfoSimple(pagination,comment);
         }catch (Exception e){
             result.setCode(500);
+            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return result;
     }
-
 
 }

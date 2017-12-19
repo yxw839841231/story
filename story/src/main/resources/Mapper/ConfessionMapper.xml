@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.zjoin.story.business.dao.ConfessionMapper">
+
+  <resultMap id="BaseResultMap" type="cn.zjoin.story.business.model.Confession">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="isprivate" jdbcType="BIT" property="isprivate" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="cover" jdbcType="VARCHAR" property="cover" />
+    <result column="browse" jdbcType="INTEGER" property="browse" />
+    <result column="good" jdbcType="INTEGER" property="good" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="authorid" jdbcType="BIGINT" property="authorid" />
+    <result column="describle" jdbcType="VARCHAR" property="describle" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="tolover" jdbcType="VARCHAR" property="tolover" />
+    <result column="fromlover" jdbcType="VARCHAR" property="fromlover" />
+    <result column="isaudit" jdbcType="INTEGER" property="isaudit" />
+    <result column="auditcontent" jdbcType="VARCHAR" property="auditcontent" />
+  </resultMap>
+</mapper>

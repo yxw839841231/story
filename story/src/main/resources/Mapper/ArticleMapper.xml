@@ -10,7 +10,7 @@
     <result column="isaudit" property="isaudit" jdbcType="BIT" />
     <result column="keywords" property="keywords" jdbcType="VARCHAR" />
     <result column="describle" property="describle" jdbcType="VARCHAR" />
-    <result column="browse" property="browse" jdbcType="TINYINT" />
+    <result column="browse" property="browse" jdbcType="INTEGER" />
     <result column="cover" property="cover" jdbcType="VARCHAR" />
     <result column="catalog" property="catalog" jdbcType="TINYINT" />
     <result column="content" property="content" jdbcType="LONGVARCHAR" />

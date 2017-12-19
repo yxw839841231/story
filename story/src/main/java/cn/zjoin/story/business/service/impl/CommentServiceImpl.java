@@ -5,10 +5,15 @@
  */
 package cn.zjoin.story.business.service.impl;
 
+import cn.zjoin.story.base.model.Pagination;
 import cn.zjoin.story.business.dao.CommentMapper;
+import cn.zjoin.story.business.model.Article;
+import cn.zjoin.story.business.model.Comment;
 import cn.zjoin.story.business.model.view.ViewComment;
 import cn.zjoin.story.business.model.view.ViewCommentArticle;
 import cn.zjoin.story.business.service.CommentService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +48,26 @@ public class CommentServiceImpl extends CommentService {
     @Override
     public List<ViewComment> getArticleCommentList(Long id){
         return mapper.getArticleCommentList(id);
+
+
+    }
+
+
+    @Override
+    public Pagination<Comment> pageInfoSimple(Pagination pagination,Comment comment) {
+
+        PageHelper.startPage(pagination.getPageCurrent(), pagination.getPageSize());
+
+        List<ViewComment> list = mapper.getArticleCommentList(comment.getArticleid());
+        PageInfo<Comment> page = new PageInfo(list);
+        pagination.setPageCurrent(page.getPageNum());
+        pagination.setData(list);
+        pagination.setPages(page.getPages());
+        pagination.setTotal(page.getTotal());
+        return pagination;
+    }
+    @Override
+    public List<Article> topBrowseArticle(){
+        return mapper.topBrowseArticle();
     }
 }

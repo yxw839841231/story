@@ -5,11 +5,13 @@
  */
 package cn.zjoin.story.business.controller.admin;
 
+import cn.zjoin.story.base.controller.BaseController;
 import cn.zjoin.story.base.model.BaseResult;
 import cn.zjoin.story.business.model.Menu;
 import cn.zjoin.story.business.model.System;
 import cn.zjoin.story.business.service.MenuService;
 import cn.zjoin.story.business.service.SystemService;
+import cn.zjoin.story.util.constant.RedisConstant;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,7 +28,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("menu")
-public class MenuController {
+public class MenuController extends BaseController{
     @Resource
     private MenuService menuService;
 
@@ -36,12 +38,18 @@ public class MenuController {
     @RequestMapping("list")
     @ResponseBody
     public BaseResult list(){
-        List<Menu> list = menuService.getAll();
-        List<System> list1 = systemService.getAll();
-        BaseResult result = new BaseResult();
+        Object o = getRedisOperationManager().getObject(RedisConstant.SYSTEM_MENU);
         Map<String,Object> map = new HashMap<String, Object>();
-        map.put("menu",list);
-        map.put("system",list1);
+        if(o == null) {
+            List<Menu> list = menuService.getAll();
+            List<System> list1 = systemService.getAll();
+            map.put("menu",list);
+            map.put("system",list1);
+            getRedisOperationManager().setData(RedisConstant.SYSTEM_MENU,map);
+        }else {
+            map = (Map<String,Object>)o;
+        }
+        BaseResult result = new BaseResult();
         result.setData(map);
         return result;
     }

@@ -10,7 +10,9 @@ import cn.zjoin.story.base.model.BaseResult;
 import cn.zjoin.story.business.model.Article;
 import cn.zjoin.story.business.model.ArticleOperator;
 import cn.zjoin.story.business.service.ArticleService;
+import cn.zjoin.story.core.aspet.Login;
 import com.github.pagehelper.PageInfo;
+import org.apache.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -32,6 +34,8 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/story/article", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ArticleStoryController extends BaseController {
+
+    Logger logger = Logger.getLogger(ArticleStoryController.class);
 
     @Resource
     private ArticleService articleService;
@@ -64,11 +68,10 @@ public class ArticleStoryController extends BaseController {
     public BaseResult newest(PageInfo<Article> pageInfo, ArticleOperator articleOperator) {
         PageInfo list = null;
         try {
-            pageInfo.setPageSize(10);
-            pageInfo.setPageNum(1);
+            pageInfo.setPageSize(6);
             articleOperator.setIsaudit(true);
             articleOperator.setIsauditoperator("=");
-            list= articleService.pageInfoSimple(pageInfo,articleOperator,Article.class,"id","title","author","createtime","describle","cover");
+            list= articleService.pageInfoSimple(pageInfo,articleOperator,Article.class,"id","title","author","createtime","describle","cover","browse");
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -91,18 +94,15 @@ public class ArticleStoryController extends BaseController {
 
     @RequestMapping("add")
     @ResponseBody
+    @Login
     public BaseResult add(Article article) {
         BaseResult result = new BaseResult();
         article.setAuthor(getUser().getNickname());
         article.setAuthorid(getUser().getId());
         article.setCreatetime(new Date());
         if (StringUtils.isEmpty(article.getCover())) {
-            try {
                 article.setCover("http://image.story521.cn/FhNQ7FEeTpf2juzH8rAbPDyNP1w3");
-            } catch (Exception e) {
-                result.setCode(-1);
-                e.printStackTrace();
-            }
+
         }
         try {
             articleService.insert(article);
@@ -117,9 +117,8 @@ public class ArticleStoryController extends BaseController {
     public BaseResult detail( Long id) {
         try {
             articleService.updateBrowse(id);
-
         }catch (Exception e){
-
+            logger.error(e.getMessage());
         }
         Article list = articleService.getById(id);
         BaseResult result = new BaseResult();
@@ -144,6 +143,26 @@ public class ArticleStoryController extends BaseController {
         }
         BaseResult result = new BaseResult();
         result.setData(list.getList());
+        return result;
+    }
+
+
+    @RequestMapping(value = "my", method = RequestMethod.GET)
+    @ResponseBody
+    @Login
+    public BaseResult my( PageInfo<Article> pageInfo, ArticleOperator articleOperator) {
+        PageInfo list = null;
+        pageInfo.setPageSize(10);
+        pageInfo.setPageNum(1);
+        articleOperator.setAuthorid(getUser().getId());
+        articleOperator.setAuthoridoperator("=");
+        try {
+            list= articleService.pageInfoSimple(pageInfo,articleOperator,Article.class,"id","title","createtime","browse","isaudit");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        BaseResult result = new BaseResult();
+        result.setData(list);
         return result;
     }
 

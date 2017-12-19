@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱·告白</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="爱的告白,就要爱,爱,告白,表白,爱情,祝福,生日,感恩">
+    <meta name="description" content="爱，就疯狂，不爱，就坚强！爱就应该大声的说出来，不管是那种爱。">
+    <link rel="shortcut icon" type="image/x-icon" href="http://image.story521.cn/logo.ico"/>
+    <link rel="stylesheet" href="/layui/css/layui2.css">
+    <link rel="stylesheet" href="/layui/css/common.css">
+    <link rel="stylesheet" href="/layui/css/love.css">
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.config({
+            base: '/layui/js/modules/'
+        }).use('common').config({
+            base: '/layui/js/modules/love/'
+        }).use('love');
+    </script>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header story-header">
+        <ul class="layui-nav layui-layout-center">
+            <div class="story-nav">
+                <li class="layui-nav-item"><a href="/">首页</a></li>
+                <li class="layui-nav-item layui-this"><a href="/html/love/love.html" style="color: #de6fa2">爱·告白</a></li>
+            </div>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item " id = "loginli">登录</li>
+            <li class="layui-nav-item ">&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+            <li class="layui-nav-item " id = "registli">注册</li>
+        </ul>
+    </div>
+    <div class="layui-container story-container" >
+        <div class="layui-row" style="background: #f7e3f0;padding: 5px;">
+            <div style="">
+                <div class="layui-carousel story-carousel" id="love-carousel">
+                    <div carousel-item id="love-carousel-item"></div>
+                </div>
+                <div style="height: 5px;width: 100%;background: #f9e7f3"></div>
+                <div class="story-main-item">
+                    <ul id="love-topest"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="" style="position: relative;top: 60px;height: 45px;">
+        <hr class="layui-bg-pink">
+        <div style="text-align: center;color:#a9797a ">
+            Copyright © 2016-2017 记忆的尽头是故事 All rights reserved. <br>  浙ICP备17039224号-1
+        </div>
+    </div>
+    <p style="display: none;">
+        <script src="https://s19.cnzz.com/z_stat.php?id=1271311300&web_id=1271311300" language="JavaScript"></script>
+    </p>
+</div>
+</body>
+</html>

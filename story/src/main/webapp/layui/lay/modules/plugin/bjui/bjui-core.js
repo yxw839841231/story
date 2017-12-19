@@ -35,7 +35,7 @@ layui.define('jquery', function (exports) {
         },
         formColWidth: {L: 900, M: 680, S: 360, SS: 240},
         pageInfo: {
-            pageCurrent: 'pageCurrent',
+            pageNum: 'pageNum',
             pageSize: 'pageSize',
             orderField: 'orderField',
             orderDirection: 'orderDirection'

@@ -15,6 +15,7 @@ public class TokenManager {
 	 * @return
 	 */
 	public static User getToken(){
+
 		User token = (User)SecurityUtils.getSubject().getPrincipal();
 		return token ;
 	}
@@ -79,7 +80,13 @@ public class TokenManager {
 	 * @return
 	 */
 	public static User login(User user, Boolean rememberMe){
-		ShiroToken token = new ShiroToken(user.getLoginname(), user.getLoginpass());
+		ShiroToken token = new ShiroToken(user.getLoginname(), user.getLoginpass(),false);
+		token.setRememberMe(rememberMe);
+		SecurityUtils.getSubject().login(token);
+		return getToken();
+	}
+	public static User login(User user, Boolean rememberMe,Boolean canback){
+		ShiroToken token = new ShiroToken(user.getLoginname(), user.getLoginpass(),canback);
 		token.setRememberMe(rememberMe);
 		SecurityUtils.getSubject().login(token);
 		return getToken();
@@ -106,5 +113,6 @@ public class TokenManager {
 	public static void logout() {
 		SecurityUtils.getSubject().logout();
 	}
+
 
 }

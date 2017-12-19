@@ -12,7 +12,7 @@ layui.define('jquery', function(exports){
   
   var $ = layui.$, Flow = function(options){}
   ,ELEM_MORE = 'layui-flow-more'
-  ,ELEM_LOAD = '<i class="layui-anim layui-anim-rotate layui-anim-loop layui-icon ">&#xe63e;</i>';
+  ,ELEM_LOAD = '<i class="layui-anim layui-anim-rotate layui-anim-loop layui-icon ">&#xe9a5;</i>';
 
   //主方法
   Flow.prototype.load = function(options){

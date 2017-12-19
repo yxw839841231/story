@@ -59,6 +59,7 @@
             , context: 'modules/context' //右键菜单
             , cookie: 'modules/cookie' //缓存
 
+            , MD5:'modules/plugin/MD5'
 
             , editormd: 'modules/plugin/editormd/editormd' //缓存
 

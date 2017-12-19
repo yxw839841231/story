@@ -1,5 +1,11 @@
 body{
     background-color: #f6f6f6;
+    /*background: image('http://image.story521.cn/bg-sm.jpg');*/
+    /*background-size: 100% auto;
+    background-color: #f6f6f6;
+    background-image: url('http://image.story521.cn/bg-sm4.jpg');
+    background-repeat: no-repeat;
+    background-position: bottom;*/
 }
 @media only screen and (min-width: 640px) {
 
@@ -20,7 +26,7 @@ body{
     margin: 0 auto;
 }
 
-.story-carousel .carousel-item div {
+.story-carousel .carousel-item {
     text-align: center
 }
 

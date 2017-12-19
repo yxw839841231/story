@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱·告白</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="爱的告白,就要爱,爱,告白,表白,爱情,祝福,生日,感恩">
+    <meta name="description" content="爱，就疯狂，不爱，就坚强！爱就应该大声的说出来，不管是那种爱。">
+    <link rel="shortcut icon" type="image/x-icon" href="http://ovkuoveh9.bkt.clouddn.com/logo.ico"/>
+    <link rel="stylesheet" href="/layui/css/layui2.css">
+    <link rel="stylesheet" href="/layui/css/love.css">
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.config({
+            base: '/layui/js/modules/'
+        }).use('common').config({
+            base: '/layui/js/modules/love/'
+        }).use('make');
+    </script>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+
+    <div class="layui-header story-header">
+        <ul class="layui-nav layui-layout-center">
+            <div class="story-nav">
+                <li class="layui-nav-item"><a href="/">首页</a></li>
+                <li class="layui-nav-item layui-this"><a href="/html/love/love.html" style="color: #de6fa2">爱·告白</a></li>
+            </div>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item " id = "loginli">登录</li>
+            <li class="layui-nav-item ">&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+            <li class="layui-nav-item " id = "registli">注册</li>
+        </ul>
+    </div>
+    <div style="height: 61px;clear: both"></div>
+    <div class="layui-row" style="background: #fefefe;padding: 5px;">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                <label class="layui-form-label">爱的宣言</label>
+                <div class="layui-input-block">
+                    <input type="text" class="layui-input" name="title" lay-verify="required" placeholder="大声说出来吧">
+                </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">祝福类型</label>
+                    <div class="layui-input-block">
+                        <select name="type"   lay-filter="love-type">
+                            <option value="1">真爱表白</option>
+                            <option value="2">感恩的心</option>
+                            <option value="3">生日祝福</option>
+                            <option value="4">节日贺辞</option>
+                            <option value="5">友谊长存</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">是否私密</label>
+                    <div class="layui-input-block">
+                        <select name="isprivate"   lay-filter="">
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline" >
+                    <label class="layui-form-label" style="line-height: 100px;">封面</label>
+                    <div class="layui-input-block zjoin-upload" style="line-height: 100px;">
+                        <img src="http://image.story521.cn/FshSaKKJBG0NTrblaEDGWIVjFmju" style="max-width: 100px;max-height: 100px;" id="cover-image">
+                        <input type="hidden" name="cover" id="cover" value="http://image.story521.cn/FshSaKKJBG0NTrblaEDGWIVjFmju">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">发起人</label>
+                    <div class="layui-input-block">
+                        <input class="layui-input" lay-verify="required" name ="fromlover">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">致</label>
+                    <div class="layui-input-block" >
+                        <input class="layui-input" lay-verify="required" name ="tolover">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+
+                    <label class="layui-form-label">内容摘要</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="这里的内容都能看到哦" name="describle" lay-verfily="required" class="layui-textarea"></textarea>
+                    </div>
+
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">心有所想</label>
+                <div class="layui-input-block">
+                    <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="content"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <blockquote class="layui-elem-quote ">设为私密的情况下，真爱宣言只有本人和本人分享的对象才能看到。</blockquote>
+                    <button class="layui-btn" lay-submit="" lay-filter="love">提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div style="height: 20px;clear: both"></div>
+    <div class="story-foot" style="text-align: center;color:#a9797a ">
+        <hr class="layui-bg-pink">
+        2017 @记忆的尽头是故事 | <a href="http://www.miibeian.gov.cn/" target="_blank" style="color: #92B8B1">浙ICP备17039224号-1</a>
+    </div>
+</div>
+</body>
+</html>

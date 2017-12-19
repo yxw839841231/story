@@ -23,7 +23,7 @@
     <script src="../layui/login/Particleground.js" ></script>
     <script>
 
-        layui.define(['jquery','cookie','layer'],function () {
+        layui.define(['jquery','cookie','layer','MD5'],function () {
             var $ = layui.jquery;
             $(function() {
                 $("#login_ok").click(function(){
@@ -43,12 +43,12 @@
                     }
 
                     $.ajax({
-                        url: '/story/user/login',
+                        url: '/story/user/loginAdmin',
                         dataType: 'json',
                         type: 'POST',
                         data:{
                             loginname:$("#j_username").val(),
-                            loginpass:$("#j_password").val(),
+                            loginpass:$.md5($("#j_password").val()),
                             rememberMe:$("#rememberMe").checked
                         },
                         success: function(d){
@@ -56,15 +56,12 @@
                                 $.cookie("nickname",d.data.nickname)
                                 window.location.href = 'admin/index.html';
                             }else{
-                                layer.err(d.data)
+                                layer.err(d.msg)
                                 $("#login_ok").attr("disabled", false).val('登陆');
                             }
                         },
                         error:function(){
-                            $("#login_tip").text("数据访问错误");
-                            setTimeout(function(){
-                                $("#login_tip").text("");
-                            },4000);
+                            layer.err("数据访问错误")
                         }
                     });
                     return false;

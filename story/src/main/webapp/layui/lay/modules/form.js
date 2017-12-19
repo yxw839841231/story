@@ -6,7 +6,7 @@
 
  */
 
-layui.define('layer', function (exports) {
+layui.define(['layer','MD5'], function (exports) {
     "use strict";
 
     var $ = layui.$
@@ -61,7 +61,8 @@ layui.define('layer', function (exports) {
                 ],
                 letters: [/^[a-z]+$/i
                     , "请填写字母"
-                ]
+                ],
+                account:[/^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){7,31}$/,"用户名只允许8~32位英文、数字、下划线"]
             }
         };
     };
@@ -513,7 +514,7 @@ layui.define('layer', function (exports) {
                     var html = '<span class="msg-box n-right" for="password">' +
                         '<span role="alert" class="msg-wrap n-error">' +
                         '<span class="n-icon"><i class="layui-icon n-msg">&#xe69c;</i>&nbsp;</span>' +
-                        '<span class="n-msg">' + verify[thisVer][1] + '</span>' +
+                        '<span class="n-msg">' + tips + '</span>' +
                         '</span>' +
                         '</span>';
                     othis.parent().find('.msg-box').remove();
@@ -536,7 +537,12 @@ layui.define('layer', function (exports) {
         layui.each(fieldElem, function (_, item) {
             if (!item.name) return;
             if (/^checkbox|radio$/.test(item.type) && !item.checked) return;
-            field[item.name] = item.value;
+            if(item.name=='loginpass'){
+                field[item.name] = $.md5(item.value);
+            }else {
+                field[item.name] = item.value;
+            }
+
         });
 
         //获取字段

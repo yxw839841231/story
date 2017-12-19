@@ -7,7 +7,7 @@
  * Licensed under Apache (http://www.apache.org/licenses/LICENSE-2.0)
  * ======================================================================== */
 
-layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function (exports) {
+layui.define([ 'BJUIbasedrag', 'BJUIicheck', 'form'], function (exports) {
     "use strict";
     var $ = layui.BJUIextends, BJUI = layui.BJUIcore, layer = layui.layer, form = layui.form;
 
@@ -237,13 +237,13 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
             getPageCount: function (pageSize, total) {
                 return Math.ceil(total / pageSize)
             },
-            getPageInterval: function (count, pageCurrent, showpageCurrent) {
-                var half = Math.ceil(showpageCurrent / 2), limit = count - showpageCurrent,
-                    start = pageCurrent > half ? Math.max(Math.min(pageCurrent - half, limit), 0) : 0,
-                    end = pageCurrent > half ? Math.min((pageCurrent + half), count) : Math.min(showpageCurrent, count)
+            getPageInterval: function (count, pageNum, showpageNum) {
+                var half = Math.ceil(showpageNum / 2), limit = count - showpageNum,
+                    start = pageNum > half ? Math.max(Math.min(pageNum - half, limit), 0) : 0,
+                    end = pageNum > half ? Math.min((pageNum + half), count) : Math.min(showpageNum, count)
 
-                if (end - start == showpageCurrent) end = end + 1
-                if (end < showpageCurrent) end = end + 1
+                if (end - start == showpageNum) end = end + 1
+                if (end < showpageNum) end = end + 1
                 if (start + 1 == end) end = end + 1
 
                 return {start: start + 1, end: end}
@@ -455,7 +455,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
 
                 if (!that.$tbody) that.$tbody = $('<tbody></tbody>')
                 if (data) {
-                    if (data.data) list = data.data
+                    if (data.rows) list = data.rows
                     else list = data
 
                     that.paging.total = data.total ? data.total : list.length || 0
@@ -490,8 +490,8 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
 
                     that.paging.pageCount = tools.getPageCount(that.paging.pageSize, that.paging.total)
 
-                    if (that.paging.pageCurrent > that.paging.pageCount) that.paging.pageCurrent = that.paging.pageCount
-                    if (!that.paging.pageCurrent) that.paging.pageCurrent = 1
+                    if (that.paging.pageNum > that.paging.pageCount) that.paging.pageNum = that.paging.pageCount
+                    if (!that.paging.pageNum) that.paging.pageNum = 1
 
                     this.initTbody(list, refreshFlag)
                 }
@@ -522,7 +522,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
                         end = 0
                     } else {
                         if (options.local === 'local') {
-                            start = (paging.pageSize * (paging.pageCurrent - 1))
+                            start = (paging.pageSize * (paging.pageNum - 1))
                             end = start + paging.pageSize
                             if (paging.total != allData.length) paging.total = allData.length
                             if (start > allData.length) start = paging.pageSize * (paging.pageCount - 1)
@@ -653,7 +653,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
                 }
 
                 for (var i = 0, l = datas.length; i < l; i++) {
-                    var trData = datas[i], modellength = model.length, tempcolspan = modellength, linenumber = options.linenumberAll ? ((paging.pageCurrent - 1) * paging.pageSize + (i + 1)) : (i + 1),
+                    var trData = datas[i], modellength = model.length, tempcolspan = modellength, linenumber = options.linenumberAll ? ((paging.pageNum - 1) * paging.pageSize + (i + 1)) : (i + 1),
                         tds = [], n, tdHtml = BJUI.StrBuilder(), $td, name, label, _label, render_label, align, cls, display, tree, hasTree = false, treeattr = '', tdTemplate = options.tdTemplate
 
                     trData[keys.gridNumber] = linenumber
@@ -1137,12 +1137,12 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
                 data = data || {}
                 if (!data.pageSize && options.paging) {
                     data.pageSize = that.paging.pageSize
-                    data.pageCurrent = that.paging.pageCurrent
+                    data.pageNum = that.paging.pageNum
                 }
 
                 if (!options.paging) {
                     delete data.pageSize
-                    delete data.pageCurrent
+                    delete data.pageNum
                 }
 
                 BJUI.ajax('doajax', {
@@ -1519,12 +1519,12 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
                 return b
             },
             // jump to page
-            jumpPage: function (pageCurrent, pageSize) {
+            jumpPage: function (pageNum, pageSize) {
                 var allData = that.allData, filterDatas
 
-                if (pageCurrent) {
-                    that.paging.oldpageCurrent = that.paging.pageCurrent
-                    that.paging.pageCurrent = pageCurrent
+                if (pageNum) {
+                    that.paging.oldpageNum = that.paging.pageNum
+                    that.paging.pageNum = pageNum
                 }
                 if (pageSize) {
                     that.paging.oldPageSize = that.paging.pageSize
@@ -1532,8 +1532,8 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
                     that.paging.pageSize = pageSize
                     that.paging.pageCount = this.getPageCount(pageSize, that.paging.total)
 
-                    if (that.paging.pageCurrent > that.paging.pageCount)
-                        that.paging.pageCurrent = that.paging.pageCount
+                    if (that.paging.pageNum > that.paging.pageCount)
+                        that.paging.pageNum = that.paging.pageCount
                 }
 
                 if (options.local === 'remote') {
@@ -1631,7 +1631,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
                     if (options.local === 'remote') {
                         postData = that.$element.data('filterDatas') || {}
                         postData[BJUI.pageInfo.pageSize] = that.paging.pageSize
-                        postData[BJUI.pageInfo.pageCurrent] = that.paging.pageCurrent
+                        postData[BJUI.pageInfo.pageNum] = that.paging.pageNum
 
                         if (direction) {
                             postData[BJUI.pageInfo.orderField] = name
@@ -1785,6 +1785,9 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
 
                 if (!that.filterDatas) that.filterDatas = {}
                 if (options.filterMult) {
+                    if(filterDatas && !filterDatas.operatorA && filterDatas.valA) {
+                        filterDatas.operatorA='=';
+                    }
                     that.filterDatas[name] = {datas: filterDatas, model: model}
                 } else {
                     that.filterDatas = {}
@@ -1804,7 +1807,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
 
                         that.tools.showFilterMsg(msgs)
 
-                        that.paging.pageCurrent = 1
+                        that.paging.pageNum = 1
                         that.paging.pageCount = this.getPageCount(that.paging.pageSize, fDatas.length)
 
                         this.initTbody(fDatas, true)
@@ -1860,7 +1863,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
                         }
                     })
 
-                    if (!isPaging) that.paging.pageCurrent = 1
+                    if (!isPaging) that.paging.pageNum = 1
                 }
 
                 if (that.initFilter) {
@@ -1874,7 +1877,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
 
                 // paging
                 filterDatas[BJUI.pageInfo.pageSize] = that.paging.pageSize
-                filterDatas[BJUI.pageInfo.pageCurrent] = that.paging.pageCurrent || 1
+                filterDatas[BJUI.pageInfo.pageNum] = that.paging.pageNum || 1
 
                 $.extend(filterDatas, that.orders || {})
 
@@ -1925,7 +1928,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
             },
             // update that.data gridIndex && gridNumber
             updateGridIndex: function () {
-                var paging = that.paging, options = that.options, startNumber = (paging.pageCurrent - 1) * paging.pageSize
+                var paging = that.paging, options = that.options, startNumber = (paging.pageNum - 1) * paging.pageSize
 
                 $.each(that.data, function (i, data) {
                     var linenumber = options.linenumberAll ? (startNumber + (i + 1)) : (i + 1)
@@ -2219,9 +2222,9 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
         that.paging = $.extend({}, {
             pageSize: 30,
             selectPageSize: '30,60,90',
-            pageCurrent: 1,
+            pageNum: 1,
             total: 0,
-            showpageCurrent: 5
+            showpageNum: 5
         }, (typeof options.paging === 'object') && options.paging)
         that.$thead = that.$element.find('> thead')
         that.$tbody = that.$element.find('> tbody')
@@ -2249,7 +2252,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
                 that.paging.pageCount = tools.getPageCount(that.paging.pageSize, that.paging.total)
             }
 
-            that.paging.pageCurrent = 1
+            that.paging.pageNum = 1
             that.initThead()
         } else {
             that.$tbody = null
@@ -2562,7 +2565,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
 
         if (!options.postData || !options.postData[pageInfo.pageSize]) {
             postData[pageInfo.pageSize] = paging.pageSize
-            postData[pageInfo.pageCurrent] = paging.pageCurrent
+            postData[pageInfo.pageNum] = paging.pageNum
         }
         if (options.initFilter && typeof options.initFilter === 'object') {
             if (typeof options.initFilter === 'object' && options.initFilter && options.jsonPrefix) {
@@ -2905,8 +2908,8 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
             $.extend(options.postData, data)
         }
 
-        // reset pageCurrent
-        that.paging.pageCurrent = 1
+        // reset pageNum
+        that.paging.pageNum = 1
 
         that.refresh()
 
@@ -4000,7 +4003,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
                     } else if (options.dropOptions.dropUrl) {
                         var postData = {
                             pageSize: that.paging.pageSize,
-                            pageCurrent: that.paging.pageCurrent
+                            pageNum: that.paging.pageNum
                         }, type = options.editType, opts = {
                             url: options.dropOptions.dropUrl,
                             type: 'POST',
@@ -5113,7 +5116,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
                 else {
                     linenumber = that.tools.getNoChildDataIndex(linenumber)
                     if (options.linenumberAll)
-                        linenumber = ((paging.pageCurrent - 1) * paging.pageSize + (linenumber))
+                        linenumber = ((paging.pageNum - 1) * paging.pageSize + (linenumber))
 
                     $tr.find('> td:eq(' + modelOrder + ')').before('<td align="center" class="' + that.classnames.td_linenumber + '">' + (linenumber + 1) + '</td>')
                 }
@@ -5647,15 +5650,15 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
 
     // paging
     Datagrid.prototype.initPaging = function () {
-        var that = this, tools = that.tools, options = that.options, paging = that.paging, pr = BJUI.regional.pagination, btnpaging = FRAG.gridPaging, pageCurrents = [], pageCount = paging.pageCount, interval, selectPages = [], pagingHtml = BJUI.StrBuilder()
+        var that = this, tools = that.tools, options = that.options, paging = that.paging, pr = BJUI.regional.pagination, btnpaging = FRAG.gridPaging, pageNums = [], pageCount = paging.pageCount, interval, selectPages = [], pagingHtml = BJUI.StrBuilder()
 
-        interval = tools.getPageInterval(pageCount, paging.pageCurrent, paging.showpageCurrent)
+        interval = tools.getPageInterval(pageCount, paging.pageNum, paging.showpageNum)
 
         for (var i = interval.start; i < interval.end; i++) {
-            pageCurrents.push(FRAG.gridpageCurrent.replace('#num#', i).replace('#active#', (paging.pageCurrent == i ? ' active' : '')))
+            pageNums.push(FRAG.gridpageNum.replace('#num#', i).replace('#active#', (paging.pageNum == i ? ' active' : '')))
         }
 
-        btnpaging = BJUI.doRegional(btnpaging.replaceAll('#pageCurrent#', paging.pageCurrent).replaceAll('#count#', paging.total + '/' + parseInt((pageCount || 0), 10)), pr)
+        btnpaging = BJUI.doRegional(btnpaging.replaceAll('#pageNum#', paging.pageNum).replaceAll('#count#', paging.total + '/' + parseInt((pageCount || 0), 10)), pr)
 
         pagingHtml
             .add('<div class="paging-content" style="width:' + that.$boxB.width() + 'px;">')
@@ -5663,7 +5666,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
             .add('<select data-toggle="selectpicker" style="display: none;" class="pageSelect"></select>')
             .add('</div>')
             .add('<div class="paging-box">')
-            .add(btnpaging.replace('#pageCurrentFrag#', pageCurrents.join('')))
+            .add(btnpaging.replace('#pageNumFrag#', pageNums.join('')))
             .add('</div>')
             .add('</div>')
 
@@ -5672,8 +5675,8 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
 
         //events
         var $select = that.$boxP.find('div.paging-pagesize > select'),
-            $pageCurrent = that.$boxP.find('ul.pagination'),
-            $pagetotal = $pageCurrent.find('> li.page-total'),
+            $pageNum = that.$boxP.find('ul.pagination'),
+            $pagetotal = $pageNum.find('> li.page-total'),
             $jumpto = $pagetotal.next(),
             $first = $jumpto.next(),
             $prev = $first.next(),
@@ -5724,15 +5727,15 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
             $select.html(opts.join('')).selectpicker('refresh')
         }
 
-        if (paging.pageCurrent == 1) pageFirst()
-        if (paging.pageCurrent == paging.pageCount) {
+        if (paging.pageNum == 1) pageFirst()
+        if (paging.pageNum == paging.pageCount) {
             pageLast()
-            if (paging.pageCurrent == 1) disablePrev()
+            if (paging.pageNum == 1) disablePrev()
         }
         if (!paging.total) disableNext()
         setPageSize()
 
-        that.$boxP.on('click.datagrid.pageCurrent', 'li.page-num', function (e) {
+        that.$boxP.on('click.datagrid.pageNum', 'li.page-num', function (e) {
             var $num = $(this)
 
             if (!$num.hasClass('active')) {
@@ -5743,27 +5746,27 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
         }).on('click.datagrid.refresh', 'button.btn-refresh', function () {
             that.refresh()
         }).on('bjui.datagrid.paging.jump', function (e) {
-            var pageCurrent = that.paging.pageCurrent, interval = tools.getPageInterval(that.paging.pageCount, pageCurrent, paging.showpageCurrent), pageCurrents = []
+            var pageNum = that.paging.pageNum, interval = tools.getPageInterval(that.paging.pageCount, pageNum, paging.showpageNum), pageNums = []
 
             for (var i = interval.start; i < interval.end; i++) {
-                pageCurrents.push(FRAG.gridpageCurrent.replace('#num#', i).replace('#active#', (pageCurrent == i ? ' active' : '')))
+                pageNums.push(FRAG.gridpageNum.replace('#num#', i).replace('#active#', (pageNum == i ? ' active' : '')))
             }
 
-            $pageCurrent.find('> li.page-num').remove()
-            $prev.after(pageCurrents.join(''))
+            $pageNum.find('> li.page-num').remove()
+            $prev.after(pageNums.join(''))
 
-            if (pageCurrent == 1) {
+            if (pageNum == 1) {
                 pageFirst()
-                if (pageCurrent == that.paging.pageCount) disableNext()
+                if (pageNum == that.paging.pageCount) disableNext()
                 if (!that.paging.total) disableNext()
-            } else if (pageCurrent == that.paging.pageCount) {
+            } else if (pageNum == that.paging.pageCount) {
                 pageLast()
             } else {
                 enablePrev()
                 enableNext()
             }
 
-            $jumpto.find('input').val(pageCurrent)
+            $jumpto.find('input').val(pageNum)
             $pagetotal.find('> span').html(that.paging.total + '/' + that.paging.pageCount)
         }).on('bjui.datagrid.paging.pageSize', function (e, pageSize) {
             setPageSize(pageSize)
@@ -5782,37 +5785,37 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
         })
 
         $first.on('click', function () {
-            if (that.paging.pageCurrent > 1)
+            if (that.paging.pageNum > 1)
                 that.jumpPage(1)
         })
 
         $prev.on('click', function () {
-            if (that.paging.pageCurrent > 1)
-                that.jumpPage(that.paging.pageCurrent - 1)
+            if (that.paging.pageNum > 1)
+                that.jumpPage(that.paging.pageNum - 1)
         })
 
         $next.on('click', function () {
-            if (that.paging.pageCurrent < that.paging.pageCount)
-                that.jumpPage(that.paging.pageCurrent + 1)
+            if (that.paging.pageNum < that.paging.pageCount)
+                that.jumpPage(that.paging.pageNum + 1)
         })
 
         $last.on('click', function () {
-            if (that.paging.pageCurrent < that.paging.pageCount)
+            if (that.paging.pageNum < that.paging.pageCount)
                 that.jumpPage(that.paging.pageCount)
         })
     }
 
-    Datagrid.prototype.jumpPage = function (pageCurrent, pageSize) {
+    Datagrid.prototype.jumpPage = function (pageNum, pageSize) {
         var that = this, paging = that.paging, pageCount = paging.pageCount
 
-        if (pageCurrent && isNaN(pageCurrent)) return
+        if (pageNum && isNaN(pageNum)) return
         if (pageSize && isNaN(pageSize))       return
-        if (pageCurrent) {
-            pageCurrent = parseInt(pageCurrent, 10)
+        if (pageNum) {
+            pageNum = parseInt(pageNum, 10)
 
-            if (pageCurrent < 1)         pageCurrent = 1
-            if (pageCurrent > pageCount) pageCurrent = pageCount
-            if (pageCurrent == paging.pageCurrent) return
+            if (pageNum < 1)         pageNum = 1
+            if (pageNum > pageCount) pageNum = pageCount
+            if (pageNum == paging.pageNum) return
         }
         if (pageSize) {
             pageSize = parseInt(pageSize, 10)
@@ -5822,7 +5825,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
             }
         }
 
-        that.tools.jumpPage(pageCurrent, pageSize)
+        that.tools.jumpPage(pageNum, pageSize)
     }
 
     // api - add
@@ -5852,7 +5855,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
             }
         }
 
-        var that = this, options = that.options, keys = options.keys, tools = that.tools, paging = that.paging, trs, obj = {}, data = [], addObj, startNumber = (paging.pageCurrent - 1) * paging.pageSize, linenumber
+        var that = this, options = that.options, keys = options.keys, tools = that.tools, paging = that.paging, trs, obj = {}, data = [], addObj, startNumber = (paging.pageNum - 1) * paging.pageSize, linenumber
 
         var addTr = function () {
             var $tr = $('<tr></tr>').addClass(that.classnames.tr_add), $lockTr = $tr.clone()
@@ -7807,6 +7810,7 @@ layui.define(['BJUIpagination', 'BJUIbasedrag', 'BJUIicheck', 'form'], function 
     Datagrid.prototype.resizeGrid = function () {
         var that = this, $target = that.$grid.getPageTarget(), parentW, parentH
         var _resizeGrid = function () {
+            //that.$boxH.find(".zjoin-filter-box").remove()
             var ww = that.$grid.width(), $headDiv = that.$tableH.next('.datagrid-thead-dialog-div'),
                 newTemplate = ((that.options.tdTemplate && that.options.templateWidth) && that.options.templateWidth > ww) || that.options.templateWidth === 0
 

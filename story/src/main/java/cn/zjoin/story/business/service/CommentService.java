@@ -6,6 +6,7 @@
 package cn.zjoin.story.business.service;
 
 import cn.zjoin.story.base.service.BaseService;
+import cn.zjoin.story.business.model.Article;
 import cn.zjoin.story.business.model.Comment;
 import cn.zjoin.story.business.model.view.ViewComment;
 import cn.zjoin.story.business.model.view.ViewCommentArticle;
@@ -26,4 +27,8 @@ public abstract class CommentService extends BaseService<Comment> {
     public abstract void dz(Long id);
 
     public abstract List<ViewComment> getArticleCommentList(Long id);
+
+    public abstract List<Article> topBrowseArticle();
+
+
 }

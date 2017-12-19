@@ -13,11 +13,18 @@
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
 
+  <select id="topBrowseArticle" resultType="cn.zjoin.story.business.model.Article">
+    SELECT id,title from article
+    where createtime > date_sub(now(), interval 60 day)
+    and isaudit=1
+        ORDER BY browse desc,createtime desc limit 6
+  </select>
+
   <select id="maxCommentArticle" resultType="cn.zjoin.story.business.model.view.ViewCommentArticle">
     SELECT a.id,a.title,count(c.articleid) totals,a.author,a.browse from article a LEFT JOIN comment c
-      on a.id = c.articleid
+    on a.id = c.articleid
     where c.createtime > date_sub(now(), interval 60 day)
-    GROUP BY c.articleid  ORDER BY totals desc
+    GROUP BY c.articleid  ORDER BY totals desc,a.browse desc
     LIMIT 5
   </select>
 
@@ -25,7 +32,7 @@
     SELECT c.content title,c.dz totals ,u.nickname author,c.createtime,c.articleid id from comment c LEFT JOIN user u
       on c.userid = u.id
     WHERE c.createtime > date_sub(now(), INTERVAL 60 DAY)
-    ORDER BY totals DESC
+    ORDER BY totals DESC,c.createtime desc
     LIMIT 5;
 
   </select>
@@ -37,7 +44,8 @@
   <select id="getArticleCommentList" parameterType="java.lang.Long" resultType="cn.zjoin.story.business.model.view.ViewComment">
     SELECT c.*,u.nickname,u.picture FROM comment c
     LEFT JOIN user u on c.userid = u.id
-    WHERE articleid =#{id};
+    WHERE articleid =#{id}
+    ORDER BY c.createtime desc
 
   </select>
 </mapper>

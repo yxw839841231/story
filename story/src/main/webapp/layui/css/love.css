@@ -1,0 +1,129 @@
+body{
+    background-color: #f7e3f0;
+}
+
+
+@media (max-width: 1920px) {
+    .story-main-item ul li {
+        width: 32.1%;
+        display: inline-block;
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+        padding: 0.5%;
+        position: relative;
+    }
+}
+
+@media (max-width: 720px) {
+    .story-main-item ul li {
+        width: 47.5%;
+        display: inline-block;
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+        padding: 1%;
+        position: relative;
+    }
+}
+
+@media (max-width: 405px) {
+    .story-main-item ul li {
+        width: 98%;
+        display: inline-block;
+        height: 200px;
+        line-height: 200px;
+        text-align: center;
+        padding: 1%;
+        position: relative;
+    }
+}
+
+
+.story-main-item ul li {
+    background: #f7e4f0;
+    border: 1px dotted #ffffff;
+}
+.story-header{
+    position: fixed;
+    width: 100%;
+    z-index: 10000;
+}
+.story-container{
+    top: 60px;
+    background-color: #f7e4f0;
+    padding: 0px;
+}
+.story-nav {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.layui-nav .layui-nav-item{cursor: pointer}
+.story-carousel .carousel-item div {
+    text-align: center
+}
+
+.story-carousel img {
+    max-width: 100%;
+    max-height: 100%
+}
+
+.story-main-item ul li {
+
+    /*margin:2px 0 5px 0;*/
+    /*padding: 3px 5px;*/
+    /*line-height: 30px;*/
+    /*height: 155px;*/
+    /*border-bottom: 1px solid #f7e3f0;*/
+}
+.story-main-item ul li img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.story-main-right-box {
+    width: 100%;
+    min-height: 100px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.story-main-right-box ul{
+    padding: 0 5px;
+}
+
+.story-main-right-box ul li {
+    line-height: 30px;
+}
+.story-main-right-hidden li{
+    font-size: 14px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow: hidden;
+}
+.story-main-right-hidden li p:hover,.newestTalk li p:hover{cursor: pointer;text-decoration: underline;color: #ff4121;}
+.story-right-title{
+    padding: 5px 10px;
+}
+.newestTalk div,.story-main-right-hidden div{font-size: 12px;text-align: right;}
+.newestTalk div.layui-icon,.story-main-right-hidden div.layui-icon{font-size: 12px;text-align: right;}
+.story-main-right-hidden .layui-icon.author{color: #00a157;font-size: 13px;}
+.story-main-right-hidden .layui-icon.browse{color: #c0c5bb;font-size: 13px;}
+.story-main-right-hidden .layui-icon.comment{color: #a18a62;font-size: 13px;}
+.newestTalk .layui-icon.author{color: #00a157;font-size: 13px;}
+.newestTalk .layui-icon.date{color: #5c68a1;font-size: 13px;}
+.newestTalk .layui-icon.good{color: #ff80e1;font-size: 13px;}
+.layui-bg-pink{background-color: #f1d4d5!important; color: #f1d4d5!important;} /*灰*/
+.layui-elem-quote-love {
+    margin-bottom: 10px;
+    padding: 7px;
+    line-height: 22px;
+    border-left: 5px solid #ff80e1;
+    border-radius: 0 2px 2px 0;
+    background-color: #efd6e4;
+}
+.layui-fixbar li{width: 50px; height: 50px; line-height: 50px; margin-bottom: 1px; text-align:center; cursor: pointer; font-size:30px;background-color: #f3cee5;color: #e89292; border-radius: 2px; opacity: 0.95;}
+.index-head{width:50px;height: 50px;border-radius: 25px;line-height: 50px;cursor: pointer}
+.index-head img{max-width:50px;max-height: 50px;border-radius: 25px;}

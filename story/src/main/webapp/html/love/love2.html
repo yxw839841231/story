@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱·告白</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="爱的告白,就要爱,爱,告白,表白,爱情">
+    <link rel="shortcut icon" type="image/x-icon" href="http://image.story521.cn/logo.ico"/>
+    <link rel="stylesheet" href="/layui/css/layui2.css">
+    <link rel="stylesheet" href="/layui/css/common.css">
+    <link rel="stylesheet" href="/layui/css/love.css">
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.config({
+            base: '/layui/js/modules/'
+        }).use('common').config({
+            base: '/layui/js/modules/love/'
+        }).use('love');
+    </script>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header story-header">
+        <ul class="layui-nav layui-layout-center">
+            <div class="story-nav">
+                <li class="layui-nav-item"><a href="/">首页</a></li>
+                <li class="layui-nav-item layui-this"><a href="/html/love/love.html" style="color: #de6fa2">爱·告白</a></li>
+                <!--<li class="layui-nav-item"><a href="/html/story/story.html">灵魂·故事</a></li>-->
+                <!--<li class="layui-nav-item"><a href="javascript:void (0)">Java学习</a></li>-->
+            </div>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item " id = "loginli">登录</li>
+            <li class="layui-nav-item ">&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+            <li class="layui-nav-item " id = "registli">注册</li>
+        </ul>
+    </div>
+    <div class="layui-container story-container" >
+        <div class="layui-row">
+            <div class="layui-col-md9" style="background: #f7e3f0;padding: 5px;">
+                <div style="background: #f7dcdd">
+                    <div class="layui-carousel story-carousel" id="love-carousel">
+                        <div carousel-item id="love-carousel-item"></div>
+                    </div>
+                    <div style="height: 5px;width: 100%;background: #f9e7f3"></div>
+                    <div class="story-main-item">
+                        <ul id="love-topest"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md3">
+                <div class="story-main-right-box" style="background-color: #de6fa2;color: #ffffff;text-align: center;line-height: 50px;font-size: 20px;">
+                    爱，就疯狂。<br>
+                    不爱，请坚强！
+                </div>
+                <div class="story-main-right-box">
+                    <blockquote class="layui-elem-quote-love story-right-title">最新告白
+                        <i class="layui-icon " style="float: right;color: #08a623">&#xe05e;</i>
+                    </blockquote>
+                    <ul class="story-main-right-hidden" id="newestArticle"></ul>
+                </div>
+                <div class="story-main-right-box ">
+                    <blockquote class="layui-elem-quote-love story-right-title">火热激情
+                        <i class="layui-icon" style="float: right;color: #f13207">&#xe9d3;</i>
+                    </blockquote>
+                    <ul class="story-main-right-hidden" id ="newestComment"></ul>
+                </div>
+                <div class="story-main-right-box ">
+                    <blockquote class="layui-elem-quote-love story-right-title">青葱岁月
+                        <i class="layui-icon" style="float: right;color: #b9c31f">&#xe6dd;</i>
+                    </blockquote>
+                    <ul class="newestTalk" id="newestTalk"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="" style="position: relative;top: 60px;height: 45px;">
+        <hr class="layui-bg-pink">
+        <div style="text-align: center;color:#a9797a ">
+            Copyright © 2016-2017 易天下. All rights reserved. |  浙ICP备17039224号-1
+        </div>
+    </div>
+    <p style="display: none;">
+        <script src="https://s19.cnzz.com/z_stat.php?id=1271311300&web_id=1271311300" language="JavaScript"></script>
+    </p>
+</div>
+</body>
+</html>

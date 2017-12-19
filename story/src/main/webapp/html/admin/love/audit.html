@@ -1,0 +1,55 @@
+<script>
+    layui.define(['laydate', 'layedit'], function () {
+        var $ = layui.jquery, form = layui.form, layedit = layui.layedit;
+
+        form.render(null, 'love_form');
+        $(".layui-layer-btn0").click(function () {
+            $("#love_save").click();
+        })
+        var selected = $('#love_list_table').data('selectedDatas');
+        if (null == selected || selected.length == 0) {
+            layer.closeCurrent();
+            layer.warn("无可审核！")
+        }else {
+            $("#love_id").val(selected[0].id)
+        }
+
+        form.on('submit(love_save)',function (data) {
+
+           $.ajax({
+                url:'/admin/love/audit',
+                type:'post',
+                data:data.field,
+                success:function (data) {
+                    if(data.code==0){
+                        $('#love_list_table').datagrid('refresh');
+                        layer.closeCurrent();
+                    }else {
+                        layer.warn(data.msg);
+                    }
+                }
+            })
+            return false;
+        });
+        
+    });
+</script>
+<div class="bjui-pageContent">
+    <form class="layui-form" lay-filter="love_form" style="padding: 5px;">
+        <input type="hidden" name = "id" id="love_id">
+        <div class="layui-form-item">
+
+            <label class="layui-form-label">是否通过</label>
+            <input type="radio" name="isaudit" lay-verify="required"  value="1" title="是" checked>
+            <input type="radio" name="isaudit" lay-verify="required"  value="2" title="否">
+
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">理由</label>
+            <div class="layui-input-block">
+                <textarea type="text" name="keywords" id="isauditcontent"  class="layui-input" ></textarea>
+            </div>
+        </div>
+        <button id="love_save" lay-submit="" class="layui-hide" lay-filter="love_save"></button>
+    </form>
+</div>

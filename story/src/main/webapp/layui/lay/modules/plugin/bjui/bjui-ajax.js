@@ -650,7 +650,7 @@ layui.define('BJUInavtab', function(exports){
         }
     }*/
     Bjuiajax.prototype.ajaxsearch = function(option) {
-        var that = this, options = $.extend({}, typeof option === 'object' && option), $element = that.$element, form = null, op = {pageCurrent:1}, $form, $target, isValid = options.isValid
+        var that = this, options = $.extend({}, typeof option === 'object' && option), $element = that.$element, form = null, op = {pageNum:1}, $form, $target, isValid = options.isValid
 
         if (options.target) $target = $(options.target)
         if ($element[0] === $('body')[0]) {

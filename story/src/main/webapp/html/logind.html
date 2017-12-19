@@ -1,17 +1,57 @@
-<form class="layui-from">
-    <div class="layui-form-item">
-        <label class="layui-form-label">账号</label>
-        <div class="layui-input-inline">
-            <input type="text" placeholder="账号" class="layui-input" id="loginname">
+
+<div class="layui-row" style="padding: 10px 10px 0 10px;">
+    <form class="layui-from">
+        <div class="layui-form-item">
+            <label class="layui-form-label">账号</label>
+            <div class="layui-input-inline">
+                <input type="text" placeholder="账号" class="layui-input" id="loginnamed">
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">密码</label>
-        <div class="layui-input-inline">
-            <input type="password" placeholder="密码" class="layui-input" id="loginpass">
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline">
+                <input type="password" placeholder="密码" class="layui-input" id="loginpassd">
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item" style="text-align: center">
-            <p class="layui-text">没有账号？<a>立即注册</a></p>
-    </div>
-</form>
+        <hr>
+        <div class="layui-form-item" style="text-align: center">
+            <p class="layui-text">没有账号？<a id="toRegist">立即注册</a></p>
+        </div>
+    </form>
+</div>
+
+<script>
+    layui.use(['layer','cookie','MD5'], function () {
+        var $ = layui.jquery,
+            layer = layui.layer;
+
+        $('.layui-layer-btn0').on('click', function () {
+            $.ajax({
+                url: '/story/user/login',
+                dataType: 'json',
+                type: 'POST',
+                data: {
+                    loginname: $("#loginnamed").val(),
+                    loginpass: $.md5($("#loginpassd").val())
+                },
+                success: function (d) {
+                    if (d.code == 0) {
+                        $.cookie("nickname", d.data.nickname);
+                        $.cookie("picture", d.data.picture);
+                        var $li = '<li class="layui-nav-item" id="personalli"><a href="/html/me.html" target="_blank"><img src="'+d.data.picture+'" class="layui-nav-img"></a></li>';
+                        var $li2 = '<li class="layui-nav-item" id="logoutli"> 退出</li>'
+                        $("#loginli").parent('ul').empty().append($li).append($li2);
+                        layer.closeCurrent();
+                    }else{
+                        layer.err(d.msg)
+                    }
+
+                }
+            });
+        });
+        $("#toRegist").click(function () {
+            layer.closeCurrent();
+            $("#registli").click();
+        });
+    });
+</script>

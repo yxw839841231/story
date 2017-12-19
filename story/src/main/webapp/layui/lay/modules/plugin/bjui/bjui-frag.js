@@ -184,14 +184,14 @@ layui.define(['BJUIcore','BJUIregional'], function(exports){
         '    <li class="page-total">' +
         '        <span title="#total#">#count#</span>' +
         '    </li>' +
-        '    <li class="page-jumpto"><span class="page-input"><input class="form-control input-sm-pages" type="text" size="3.2" value="#pageCurrent#" title="#jumpto#"></span></li>' +
+        '    <li class="page-jumpto"><span class="page-input"><input class="form-control input-sm-pages" type="text" size="3.2" value="#pageNum#" title="#jumpto#"></span></li>' +
         '    <li class="page-first btn-nav">' +
         '        <a href="javascript:;" title="#first#"><i class="layui-icon">&#xea4d;</i></a>' +
         '    </li>' +
         '    <li class="page-prev btn-nav">' +
         '        <a href="javascript:;" title="#prev#"><i class="layui-icon">&#xea49;</i></a>' +
         '    </li>' +
-        '    #pageCurrentFrag#' +
+        '    #pageNumFrag#' +
         '    <li class="page-next btn-nav">' +
         '        <a href="javascript:;" title="#next#"><i class="layui-icon">&#xea4e;</i></a>' +
         '    </li>' +
@@ -200,7 +200,7 @@ layui.define(['BJUIcore','BJUIregional'], function(exports){
         '    </li>' +
         '</ul>'
         ,
-        gridpageCurrent : '<li class="page-num#active#"><a href="javascript:;">#num#</a></li>',
+        gridpageNum : '<li class="page-num#active#"><a href="javascript:;">#num#</a></li>',
         gridMenu : '<div class="datagrid-menu-box">'
                  + '    <ul>'
                  + '        <li class="datagrid-li-asc"><a href="javascript:;"><span class="icon"><i class="fa fa-sort-amount-asc"></i></span><span class="title">#asc#</span></a></li>'

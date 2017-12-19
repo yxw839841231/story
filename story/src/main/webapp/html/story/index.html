@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>说出你的故事</title>
+    <title>记忆的尽头是故事</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="keywords" content="故事,灵魂深处有故事,易天下,story,story521,说出你的故事">
     <link rel="shortcut icon" type="image/x-icon" href="http://ovkuoveh9.bkt.clouddn.com/logo.ico"/>
-    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/layui/css/layui2.css">
     <link rel="stylesheet" href="/layui/css/story.css">
     <script src="/layui/layui.js"></script>
-    <script src="/layui/js/modules/qiniu.js"></script>
     <script>
         layui.config({
             base: '/layui/js/modules/'
@@ -19,42 +18,39 @@
 <body>
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header story-header">
-        <div class="layui-logo" style="margin-left: 30px"><img src="http://ovkuoveh9.bkt.clouddn.com/logo-2.png"></div>
+        <!--<div class="layui-logo" style="margin-left: 30px"><img src="http://ovkuoveh9.bkt.clouddn.com/logo-2.png"></div>-->
         <ul class="layui-nav layui-layout-center">
-            <li class="layui-nav-item"><a href="">灵魂故事</a></li>
-            <li class="layui-nav-item"><a href="">闲话杂谈</a></li>
+            <li class="layui-nav-item"><a href="/">首页</a></li>
+            <!--<li class="layui-nav-item"><a href="">闲话杂谈</a></li>
             <li class="layui-nav-item"><a href="">胡说八道</a></li>
             <li class="layui-nav-item"><a href="">高谈阔论</a></li>
-            <li class="layui-nav-item"><a href="">华山论剑</a></li>
+            <li class="layui-nav-item"><a href="">华山论剑</a></li>-->
         </ul>
-        <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item "><a href="javascript:void(0)" id="logout">个人中心</a></li>
-        </ul>
+        <ul class="layui-nav layui-layout-right"></ul>
     </div>
     <div style="height: 61px;clear: both"></div>
-    <div class="story-main" style="min-height: 100px;width: 1140px;margin: 0 auto">
-        <blockquote class="layui-elem-quote ">引用区域的文字</blockquote>
+    <div class="layui-row" style="padding:5px;">
         <form class="layui-form">
             <div class="layui-form-item">
+                <div class="layui-inline">
                 <label class="layui-form-label">文章标题</label>
                 <div class="layui-input-block">
-                    <input type="text" class="layui-input " name="title" lay-verify="title" placeholder="请输入文章标题">
+                    <input type="text" class="layui-input " name="title" lay-verify="required" placeholder="请输入文章标题">
                 </div>
-            </div>
-            <div class="layui-form-item">
+                </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">所属栏目</label>
                     <div class="layui-input-block">
                         <select name="catalog"   lay-filter="browseLook">
-                            <option value="1">心灵故事</option>
+                            <option value="1">灵魂故事</option>
                             <option value="2">闲话杂谈</option>
-                            <option value="3">胡说八道</option>
+                            <option value="3">谈天说地</option>
                             <option value="4">华山论剑</option>
                             <option value="5">实力吐槽</option>
                         </select>
                     </div>
                 </div>
-                <div class="layui-inline">
+                <!--<div class="layui-inline">
                     <label class="layui-form-label">浏览权限</label>
                     <div class="layui-input-inline">
                         <select name="browsepermission" class="newsLook"  lay-filter="browseLook">
@@ -62,7 +58,7 @@
                             <option value="1">会员浏览</option>
                         </select>
                     </div>
-                </div>
+                </div>-->
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">关键字</label>
@@ -104,8 +100,8 @@
 
 
     <div style="height: 50px;clear: both"></div>
-    <div class="story-foot">
-        2017 @易天下 | <a href="http://www.miibeian.gov.cn/" target="_blank" style="color: #92B8B1">浙ICP备17039224号-1</a>
+    <div class="story-foot" style="text-align: center">
+        2017 @记忆的尽头是故事 | <a href="http://www.miibeian.gov.cn/" target="_blank" style="color: #92B8B1">浙ICP备17039224号-1</a>
     </div>
 </div>
 </body>

@@ -2,207 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>正文|易天下</title>
-    <link rel="shortcut icon" type="image/x-icon" href="http://ovkuoveh9.bkt.clouddn.com/logo.ico"/>
+    <title>记忆的尽头是故事</title>
+    <link rel="shortcut icon" type="image/x-icon" href="http://image.story521.cn/logo.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="故事,story,story521,说出你的故事,灵魂,回忆">
+    <meta name="description" content="所谓故事，便已是过去了，然而之所以能成为故事，大概是因为在我们内心深处，有着无法忘却的理由。">
     <link rel="stylesheet" href="/layui/css/layui2.css">
+    <link rel="stylesheet" href="/layui/css/common.css">
     <link rel="stylesheet" href="/layui/css/story.css">
     <link rel="stylesheet" href="/layui/css/article.css">
     <script src="/layui/layui.js"></script>
-    <!--<script src="/layui/js/modules/logincheck.js.js"></script>-->
     <script type="text/javascript">
-        layui.define(['layer', 'jquery', 'layedit', 'cookie','zjoin'], function () {
-            var $ = layui.jquery, layedit = layui.layedit, cookie = layui.cookie,zjoin = layui.zjoin;
-            var id = getUrlParam("id");
-            $.get("/story/article/detail?id=" + id, function (data) {
-                document.title = data.data.title;
-                $("#detail_title").html(data.data.title)
-                $("#detail_content").html(data.data.content);
-                $("#detail_author").html(data.data.author);
-                $("#detail_time").html(zjoin.timetrans(data.data.createtime));
-                $("#detail_browse").html(data.data.browse)
-                $.get("/story/article/similar?catalog=" + data.data.catalog, function (data2) {
-                    for (var dd of data2.data) {
-                        var $li = ' <li>' +
-                            '                            <p><a href="/html/story/article/detail.html?id='+dd.id+'" target="_blank">' + dd.title + '</a></p>' +
-                            '                            <div>' +
-                            '                                <span><i class="layui-icon browse">&#xe91d;</i>&nbsp;'+dd.browse+'</span>&nbsp;&nbsp;&nbsp;&nbsp;' +
-                            //'                                <span><i class="layui-icon comment">&#xe998;</i>&nbsp;12</span>&nbsp;&nbsp;&nbsp;&nbsp;' +
-                            '                                <span><i class="layui-icon author">&#xe7fd;</i>&nbsp;'+dd.author+'</span>&nbsp;&nbsp;' +
-                            '                            </div>' +
-                            '                        </li>';
-                        $("#newestComment").append($li);
-                    }
-
-                });
-
-
-            });
-
-            $.get("/story/comment/list?articleid=" + id, function (data) {
-                if(data.code==0) {
-                    for (var dd of data.data) {
-                        var $li = '';
-                        $li +='<li class="comment-li" >' +
-                        '                                    <div class="comment-li-user">' +
-                        '                                        <a class="" href="javascript:void(0)">' +
-                        '                                            <img style=""src="'+dd.picture+'" />' +
-                        '                                        </a>' +
-                        '                                        <div class="comment-li-user-name" >' +
-                        '                                            <a href="javascript:void(0)"> '+dd.nickname+'</a>' +
-                        '                                        </div>' +
-                        '                                        <div class="comment-li-user-time">' +
-                        '                                            <span>'+zjoin.timeago(dd.createtime)+'</span>' +
-                        '                                        </div>' +
-                        '                                    </div>' +
-                        '                                    <div class="comment-li-content">'+dd.content+'</div>' +
-                        '                                    <div class="comment-li-foot">' +
-                        '                                        <span class="good" data-id="'+dd.id+'"><i class="layui-icon">&#xe8dc;</i> <em>'+dd.dz+'</em> </span>' +
-                        '                                        <span class="reply"> <i class="layui-icon">&#xeac9;</i> 回复 </span>' +
-                        '                                    </div>' +
-                        '                                </li>';
-                        $("#comment_list").append($li);
-                    }
-                }
-            });
-
-            function getUrlParam(name) {
-                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-                var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-                if (r != null) return unescape(r[2]);
-                return null; //返回参数值
-            }
-
-            //layedit.build("comment_edit");
-            $("#claer_comment").click(function () {
-                $("#comment_edit").val('');
-            });
-            $("#submit_comment").click(function () {
-                var comment = $("#comment_edit").val();
-                var pat = new RegExp("[[^?!@#$%\\^&*()]+", "i");
-                if (pat.test(comment) == true) {
-                    layer.msg("评论中含有非法字符！");
-                    //return false;
-                } else if (comment == '') {
-                    return;
-                }
-                if (!$.cookie("nickname")) {
-                    layer.open({
-                        type: 5,
-                        title: '登录',
-                        area: ['400px', '230px'],
-                        content: '/html/logind.html',
-                        btn: ['登录', '取消'],
-                        btnAlign: 'r',
-                        moveType: 1,//拖拽模式，0或者1
-                        yes: function () {
-                        }
-                    });
-                }
-                $.post("/story/comment/add", {articleid: id, content: comment}, function (data) {
-                    if (data.code == 0) {
-                        $("#comment_edit").val('');
-                    }
-                })
-            });
-            $('body').delegate(".layui-layer-btn0", 'click', function () {
-                $.ajax({
-                    url: '/story/user/login',
-                    dataType: 'json',
-                    type: 'POST',
-                    data: {
-                        loginname: $("#loginname").val(),
-                        loginpass: $("#loginpass").val()
-                    },
-                    success: function (d) {
-                        if (d.code == 0) {
-                            $.cookie("nickname", d.data.nickname);
-                            layer.closeCurrent();
-                        }
-
-                    }
-                });
-            })
-            $('body').delegate(".good", 'click', function () {
-                $.ajax({
-                    url: '/story/comment/dz',
-                    dataType: 'json',
-                    type: 'POST',
-                    data: {
-                        id: $(this).attr("data-id")
-                    },
-                    success: function (d) {
-                        if (d.code == 0) {
-                            layer.ok("点赞成功！");
-                        }
-
-                    }
-                });
-            })
-
-            $.ajaxSetup({
-                contentType: "application/x-www-form-urlencoded;charset=utf-8",
-                complete: function (XMLHttpRequest, textStatus) {
-                    //通过XMLHttpRequest取得响应结果
-                    var res = XMLHttpRequest.responseText;
-                    try {
-                        var jsonData = JSON.parse(res);
-                        if (jsonData.code == -10000) {
-                            //自定页
-                            layer.open({
-                                title: '请登录',
-                                type: 5,
-                                closeBtn: 1, //不显示关闭按钮
-                                area: ['500px', '300px'],
-                                anim: 5,
-                                shadeClose: true, //开启遮罩关闭
-                                content: '/html/logind.html'
-                                , btn: ['登录', '取消']
-                                , yes: function (index, layero) {
-                                    //按钮【按钮一】的回调
-                                }
-                            });
-                        }
-                    } catch (e) {
-                    }
-                }
-            });
-        });
+        layui.config({
+            base: '/layui/js/modules/'
+        }).use('common').config({
+            base: '/layui/js/modules/article/'
+        }).use('detail');
     </script>
-    <style type="text/css">
-        #detail_content {
-            border: 0px solid #eae1e1;
-        }
-
-        #detail_content img {
-            max-width: 100%;
-        }
-
-        #detail_title {
-            text-align: center
-        }
-    </style>
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header story-header">
         <ul class="layui-nav layui-layout-center">
             <div class="story-nav">
-                <li class="layui-nav-item"><a href="/">首页</a></li>
+                <li class="layui-nav-item layui-this"><a href="/">首页</a></li>
             </div>
         </ul>
+
+        <!--<ul class="layui-nav layui-layout-right">-->
+            <!--<li class="layui-nav-item " id = "loginli">登录</li>-->
+            <!--<li class="layui-nav-item ">&nbsp;&nbsp;|&nbsp;&nbsp;</li>-->
+            <!--<li class="layui-nav-item " id = "registli">注册</li>-->
+        <!--</ul>-->
     </div>
-    <div class="layui-container story-container" style="padding: 0">
-        <div class="layui-row layui-col-space15" style="background: #f6f6f6">
-            <div class="layui-col-md9" style="">
-                <div style="background: #ffffff;padding: 20px;">
+    <div class="layui-container story-container" >
+        <div class="layui-row">
+            <div class="layui-col-md9" style="background: #f6f6f6;padding: 5px 5px 0 5px;">
+                <div style="background: #ffffff;">
                     <h1 id="detail_title"></h1>
                     <div style="height: 40px;line-height: 40px;text-align: center;">
                         <p>
                             <i class="layui-icon layui-color-little">&#xe8b5;</i>&nbsp;<span id="detail_time">2017-01-02 12:23:34</span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <i class="layui-icon layui-color-little">&#xe9f8;</i>&nbsp;<span id="detail_browse">2017</span>
+                            <i class="layui-icon layui-color-little">&#xe9f8;</i>&nbsp;<span id="detail_browse">99+</span>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <i class="layui-icon layui-color-little">&#xe7fd;</i>&nbsp;<span id="detail_author">易天下</span>
+                            <i class="layui-icon layui-color-little">&#xe7fd;</i>&nbsp;<span id="detail_author">佚名</span>
                         </p>
                     </div>
                     <hr>
@@ -219,8 +63,7 @@
                         </div>
                         <div style="float: right;margin-right: 20px;">
                             <button class="layui-btn layui-btn-radius layui-btn-sm" id="submit_comment">提交评论</button>
-                            <button class="layui-btn layui-btn-radius layui-btn-primary layui-btn-sm"
-                                    id="claer_comment">清空内容
+                            <button class="layui-btn layui-btn-radius layui-btn-primary layui-btn-sm" id="claer_comment">清空内容
                             </button>
                         </div>
                     </fieldset>
@@ -238,11 +81,13 @@
             </div>
         </div>
     </div>
-
+    <p style="display: none;">
+        <script src="https://s19.cnzz.com/z_stat.php?id=1271311300&web_id=1271311300" language="JavaScript"></script>
+    </p>
     <div class="" style="position: relative;top: 60px;height: 45px;">
         <hr class="layui-bg-gray">
         <div style="text-align: center">
-            Copyright © 2016-2017 易天下. All rights reserved. | 浙ICP备17039224号-1
+            Copyright © 2016-2017 易天下·故事 . All rights reserved. | 浙ICP备17039224号-1
         </div>
     </div>
 </div>

@@ -13,6 +13,7 @@
         }
         toolbarCustom_btn += '<button type="button" class="layui-btn layui-btn-small article_verify_btn"style="margin-left: 5px;"><i class="layui-icon">&#xe8e8;</i>&nbsp;审核</button>';
         toolbarCustom_btn += '<button type="button" class="layui-btn layui-btn-small article_add_btn"style="margin-left: 5px;"><i class="layui-icon">&#xe3ba;</i>&nbsp;添加</button>';
+        toolbarCustom_btn += '<button type="button" class="layui-btn layui-btn-small article_edi_btn"style="margin-left: 5px;"><i class="layui-icon">&#xe254;</i>&nbsp;编辑</button>';
 
         var user_datagrid_data = {
             local: 'remote',
@@ -24,7 +25,7 @@
             height: '100%',
             columns: [
                 {name: 'id', width: '150', label: '编号', align: 'center', hide:true},
-                {name: 'title', width: '150', label: '标题', align: 'center', rule: 'required'},
+                {name: 'title', width: '400', label: '标题', align: 'center', rule: 'required'},
                 {name: 'author', width: '150', label: '作者', align: 'center', rule: 'required'},
                 {
                     name: 'cover', width: '50', align: 'center', label: '封面', render: function (value) {
@@ -72,21 +73,6 @@
         }
 
         $('#article_list_table').datagrid(user_datagrid_data);
-        window.manage_user_back_edit = manage_user_back_edit
-        function manage_user_back_edit(result) {
-            if (result.code != 0) {
-                if (result.data instanceof Array) {
-                    $.each(result.data, function (index, value) {
-                        layer.warn(value.errorMsg)
-                    });
-                } else {
-                    layer.warn(result.data)
-                }
-            } else {
-                layer.ok('操作成功')
-            }
-            $('#article_list_table').datagrid('refresh');
-        }
 
         function del_user_back(d) {
             if (d.code == 1) {
@@ -103,6 +89,24 @@
                 title: '新增文章',
                 area: ['800px', '600px'],
                 content: '/html/admin/article/add.html',
+                btn: ['保存', '取消'],
+                btnAlign: 'r',
+                moveType: 1,//拖拽模式，0或者1
+                yes:function(){
+                }
+            });
+        });
+        $(".article_edi_btn").bind( 'click', function () {
+            var selected = $('#article_list_table').data('selectedDatas');
+            if (null == selected || selected.length == 0) {
+                layer.warn("请选择需要编辑的文章！")
+                return;
+            }
+            layer.open({
+                type: 5,
+                title: '编辑文章',
+                area: ['800px', '600px'],
+                content: '/html/admin/article/edit.html',
                 btn: ['保存', '取消'],
                 btnAlign: 'r',
                 moveType: 1,//拖拽模式，0或者1

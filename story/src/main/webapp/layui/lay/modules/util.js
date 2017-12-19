@@ -66,7 +66,7 @@ layui.define('jquery', function(exports){
         }, 100);
       }); 
     }
-    
+
     //倒计时
     ,countdown: function(endTime, serverTime, callback){
       var that = this

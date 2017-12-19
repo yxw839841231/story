@@ -1,0 +1,95 @@
+<script>
+    layui.define(['laydate', 'layedit'], function () {
+        var $ = layui.jquery, form = layui.form, layedit = layui.layedit;
+
+        form.render(null, 'article_form');
+        var editIndex = layedit.build('article_edit');
+        zjoin.set({image: $("#article_image"), input: $("#article_input")});
+        $(".layui-layer-btn0").click(function () {
+            layedit.sync(editIndex);
+            $("#article_save").click();
+        })
+        var selected = $('#article_list_table').data('selectedDatas');
+        if (null == selected || selected.length == 0) {
+            layer.closeCurrent();
+            layer.warn("请选择需要编辑的文章！")
+        }else {
+            $.ajax({
+                url:'/admin/article/edit?id='+selected[0].id,
+                type:'get',
+                success:function (data) {
+                    if(data.code==0){
+                        $("#title").val(data.data.title);
+                        $("#picture").val(data.data.cover);
+                        $("#article_image").attr("src",data.data.cover);
+                        $("#keywords").val(data.data.keywords);
+                        $("#describle").val(data.data.describle);
+                        $("#article_edit").val(data.data.content);
+                        layedit.build('article_edit');
+                    }else {
+                        layer.warn(data.msg);
+                    }
+                }
+            })
+        }
+        form.on('submit(article_save)',function (data) {
+           $.ajax({
+                url:'/admin/article/update',
+                type:'post',
+                data:data.field,
+                success:function (data) {
+                    if(data.code==0){
+                        $('#article_list_table').datagrid('refresh');
+                        layer.closeCurrent();
+                    }else {
+                        layer.warn(data.msg);
+                    }
+                }
+            })
+            return false;
+        });
+        
+    });
+</script>
+<div class="bjui-pageContent">
+    <form class="layui-form" lay-filter="article_form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-inline">
+                <input type="text" name="title" id="title" lay-verify="required" class="layui-input" value="">
+            </div>
+            <label class="layui-form-label">封面</label>
+            <div class="layui-input-inline">
+                <img class="zjoin-upload" style="max-height: 150px;max-width: 150px;" src="/layui/images/default-cover.png" id="article_image">
+                <input type="hidden" id="article_input" name="cover" id = "picture" >
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">关键字</label>
+            <div class="layui-input-inline">
+                <input type="text" name="keywords" id="keywords" lay-verify="required" class="layui-input" value="">
+            </div>
+            <label class="layui-form-label">类别</label>
+            <div class="layui-input-inline">
+                <select name="catalog">
+                    <option value="1">心灵鸡汤</option>
+                    <option value="2">奇闻逸事</option>
+                    <option value="3">天下大事</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-block">
+                <input type="text" name="describle" id="describle" lay-verify="required" class="layui-input" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">内容</label>
+            <div class="layui-input-block" style="width: 85%">
+                <textarea class="layui-textarea layui-hide" name="content" id="article_edit"></textarea>
+            </div>
+        </div>
+        <button id="article_save" lay-submit="" class="layui-hide" lay-filter="article_save"></button>
+    </form>
+</div>

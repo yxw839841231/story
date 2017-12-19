@@ -10,10 +10,16 @@ public class ShiroToken extends UsernamePasswordToken  implements java.io.Serial
 		super(loginname,password);
 		this.password = password ;
 	}
+	public ShiroToken(String loginname, String password,Boolean canback) {
+		super(loginname,password);
+		this.password = password ;
+		this.canback = canback;
+	}
 	
 	
 	/** 登录密码[字符串类型] 因为父类是char[] ] **/
 	private String password ;
+	private Boolean canback;
 
 	public String getPswd() {
 		return password;
@@ -23,9 +29,12 @@ public class ShiroToken extends UsernamePasswordToken  implements java.io.Serial
 	public void setPswd(String pswd) {
 		this.password = password;
 	}
-	
-	
-	
-	
-	
+
+	public Boolean getCanback() {
+		return canback;
+	}
+
+	public void setCanback(Boolean canback) {
+		this.canback = canback;
+	}
 }

@@ -47,21 +47,14 @@
                 {name: 'id', width: '150', label: '编号', align: 'center', attrs: {'readonly': "true"}},
                 {name: 'loginname', width: '150', label: '账号', align: 'center', rule: 'required'},
                 {name: 'nickname', width: '150', label: '姓名', align: 'center', rule: 'required'},
-                //{name: 'picture', width: '150', align: 'center', label: '头像'},
+                {name: 'picture', width: '150', align: 'center', label: '头像',render:function (value) {
+                    return "<img src='"+value+"' style='max-width: 50px;max-height: 50px;'/>"
+                }},
                 {name: 'phone', width: '150', align: 'center', label: '电话'},
                 {name: 'email', width: '150', align: 'center', label: '邮箱'},
-                {name: 'id', width: '150', label: '编号', align: 'center', attrs: {'readonly': "true"}},
-                {name: 'loginname', width: '150', label: '账号', align: 'center', rule: 'required'},
-                {name: 'nickname', width: '150', label: '姓名', align: 'center', rule: 'required'},
-                //{name: 'picture', width: '150', align: 'center', label: '头像'},
-                {name: 'phone', width: '150', align: 'center', label: '电话'},
-                {name: 'email', width: '150', align: 'center', label: '邮箱'},
-                {name: 'id', width: '150', label: '编号', align: 'center', attrs: {'readonly': "true"}},
-                {name: 'loginname', width: '150', label: '账号', align: 'center', rule: 'required'},
-                {name: 'nickname', width: '150', label: '姓名', align: 'center', rule: 'required'},
-                //{name: 'picture', width: '150', align: 'center', label: '头像'},
-                {name: 'phone', width: '150', align: 'center', label: '电话'},
-                {name: 'email', width: '150', align: 'center', label: '邮箱'},
+                {name: 'qq', width: '150', align: 'center', label: 'qq'},
+                {name: 'wx', width: '150', align: 'center', label: '微信'},
+
                 {
                     name: 'isactive',
                     width: '150',
@@ -143,6 +136,7 @@
                 btnAlign: 'r',
                 moveType: 1,//拖拽模式，0或者1
                 yes:function(){
+
                 }
             });
         });

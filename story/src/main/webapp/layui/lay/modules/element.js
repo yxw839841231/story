@@ -464,7 +464,7 @@ layui.define(['jquery', 'context'], function (exports) {
 
     var element = new Element(), dom = $(document);
     element.init();
-    context.init({preventDoubleContext: false});
+   /* context.init({preventDoubleContext: false});
     context.attach('.layui-context', [
 
         {
@@ -503,7 +503,7 @@ layui.define(['jquery', 'context'], function (exports) {
         }
         }
 
-    ]);
+    ]);*/
 
 
     var TITLE = '.layui-tab-title li';

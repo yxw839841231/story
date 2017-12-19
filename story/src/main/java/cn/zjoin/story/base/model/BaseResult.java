@@ -16,6 +16,10 @@ public class BaseResult {
         this.msg = "success";
     }
 
+    public BaseResult( String msg) {
+        this.code = 500;
+        this.msg = msg;
+    }
     public BaseResult(Integer status, String msg) {
         this.code = status;
         this.msg = msg;

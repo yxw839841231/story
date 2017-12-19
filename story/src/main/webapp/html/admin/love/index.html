@@ -1,0 +1,129 @@
+<script type="text/javascript">
+    layui.define(['jquery', 'BJUIajax', 'BJUIdatagrid', 'BJUIinitui', 'BJUIplugins'], function () {
+        var $ = layui.jquery;
+        var user_btn = ''
+        var toolbarCustom_btn = ''
+        /*for (var data of window.user_data) {
+            var value = data.path;
+            switch (value) {
+                case 'upms:user:delete':
+                    user_btn += 'del,'
+                    break;
+            }
+        }*/
+        toolbarCustom_btn += '<button type="button" class="layui-btn layui-btn-small love_verify_btn"style="margin-left: 5px;"><i class="layui-icon">&#xe8e8;</i>&nbsp;审核</button>';
+//        toolbarCustom_btn += '<button type="button" class="layui-btn layui-btn-small article_add_btn"style="margin-left: 5px;"><i class="layui-icon">&#xe3ba;</i>&nbsp;添加</button>';
+//        toolbarCustom_btn += '<button type="button" class="layui-btn layui-btn-small article_edi_btn"style="margin-left: 5px;"><i class="layui-icon">&#xe254;</i>&nbsp;编辑</button>';
+
+        var user_datagrid_data = {
+            local: 'remote',
+            dataUrl: '/admin/love/list',
+            dataType: 'json',
+            sortAll: false,
+            columnFilter: true,
+            loadType: 'get',
+            height: '100%',
+            columns: [
+                {name: 'id',label: '编号', align: 'center', hide:true},
+                {name: 'title', width: '400', label: '标题', align: 'center', rule: 'required'},
+                {name: 'author', width: '150', label: '作者', align: 'center', rule: 'required'},
+                {
+                    name: 'cover', width: '50', align: 'center', label: '封面', render: function (value) {
+                    return '<img style="max-width: 50px;max-height: 50px;" src="' + value + '"/>';
+                }, attrs: {'readonly': "true"}
+                },
+                {
+                    name: 'type',
+                    width: '150',
+                    label: '祝福类型',
+                    type: 'select',
+                    align: 'center',
+                    items: [{1: '真爱表白'}, {2: '感恩的心'}, {3: '生日祝福'}, {4: '节日贺辞'}, {5: '友谊长存'}],
+                    render:function (value) {
+                        var html = '';
+                        switch (value){
+                            case 1:
+                                html = '真爱表白';break;
+                            case 2:
+                                html = '感恩的心';break;
+                            case 3:
+                                html = '生日祝福';break;
+                            case 4:
+                                html = '节日贺辞';break;
+                            case 5:
+                                html = '友谊长存';break;
+                            default:
+                                html = '未知类型';break;
+                        }
+                        return html;
+                    }
+                },
+                {
+                    name: 'isprivate',
+                    width: '150',
+                    label: '是否私有',
+                    type: 'select',
+                    align: 'center',
+                    items: [{true: '是'}, {false: '否'}],render:function (value) {
+                    var html = '';
+                    if(value) html = '是';
+                    else html = '否'
+                    return html;
+                }
+                },
+                {
+                    name: 'isaudit',
+                    width: '150',
+                    label: '是否审核',
+                    type: 'select',
+                    align: 'center',
+                    items: [{0: '未审核'},{1: '已通过'}, {2: '未通过'}],render:function (value) {
+                        var html = '';
+                        if(value==1) {
+                            html = '<font color="green"><b>已通过</b></font>';
+                        }else if(value ==2){
+                            html = '<font color="red"><b>未通过</b></font>';
+                        } else html = '未审核'
+                        return html;
+                    }
+                },
+                {name: 'good',width: '150',align: 'center',label: '支持数'},
+                {name: 'browse',width: '150',align: 'center',label: '浏览量'},
+                {name:'createtime', width: '150', label: '创建时间', align: 'center',render:function (value) {
+                    return zjoin.timetrans(value)
+                }}
+            ],
+            paging: {pageSize: 50, selectPageSize: '50,100,200', pageCurrent: 1},
+            fullGrid: true,
+            showToolbar: true,
+            toolbarItem: user_btn,
+            inlineEditMult: false,
+            toolbarCustom: toolbarCustom_btn,
+        }
+
+        $('#love_list_table').datagrid(user_datagrid_data);
+
+        $('body').delegate(".love_verify_btn", 'click', function () {
+            var selected = $('#love_list_table').data('selectedDatas');
+            if (null == selected || selected.length == 0) {
+                layer.warn("无可审核")
+                return;
+            }
+            layer.open({
+                type: 5,
+                title: '审核',
+                area: ['400px', '200px'],
+                content: '/html/admin/love/audit.html',
+                btn: ['保存', '取消'],
+                btnAlign: 'r',
+                moveType: 1,//拖拽模式，0或者1
+                yes:function(){
+                }
+            });
+        });
+    });
+</script>
+<div class="bjui-pageContent">
+    <input type="hidden" id="user_select_id">
+    <table id="love_list_table" class="table table-hover" data-width="100%"></table>
+</div>

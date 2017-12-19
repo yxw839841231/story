@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱·告白</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="爱的告白,就要爱,爱,告白,表白,爱情">
+    <link rel="shortcut icon" type="image/x-icon" href="http://image.story521.cn/logo.ico"/>
+    <link rel="stylesheet" href="/layui/css/layui2.css">
+    <link rel="stylesheet" href="/layui/css/show.css">
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.define(['layer','jquery'], function () {
+            var $ = layui.jquery
+            $.get('/love/showi?id='+getUrlParam("id"),function (data) {
+                if(data.code==0){
+                    $("#cover").html('<img id ="cover_img" style="max-width: 100%;max-height: 100%;height:100%;width:100%;margin: auto auto;" src="'+data.data.cover+'"/>')
+                       $("#love_detail").html(data.data.content)
+                }
+
+            });
+
+            function getUrlParam(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+                var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+                if (r != null) return unescape(r[2]);
+                return null; //返回参数值
+            }
+        });
+
+    </script>
+    <style>
+
+        #love_detail img{max-width: 100%;max-height: 100%;}
+    </style>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+
+    <div class="layui-container story-container" >
+        <div class="layui-row" style="text-align: center;padding: 15px 0px;">
+                <br>
+            <h3 style="color: #ffffff">- OUR STORY -</h3>
+            <h3 style="color: #ffffff">陪伴是最长情的告白</h3>
+            <div style="width: 200px;height: 200px;line-height: 200px;margin: 10px auto;border-radius: 100px;text-align: center;vertical-align: middle;overflow:hidden;background: #f7e4f0" id="cover"></div>
+            <!--<div style="width: 100%;min-height: 150px;margin: 20px auto;background: #f5f0d8;line-height: 35px;font-family: 华文细黑;color: #bf7878;">
+                关关雎鸠，在河之洲。窈窕淑女，君子好逑。<br>
+                参差荇菜，左右流之。窈窕淑女，寤寐求之。<br>
+                求之不得，寤寐思服。悠哉悠哉，辗转反侧。<br>
+                参差荇菜，左右采之。窈窕淑女，琴瑟友之。<br>
+                参差荇菜，左右芼之。窈窕淑女，钟鼓乐之。<br>
+            </div>-->
+            <div id = "love_detail" style="width: 100%;min-height: 150px;margin: 20px auto;border-radius:3px;background: #ecd1e2;line-height: 35px;">
+
+            </div>
+        </div>
+        <div class="" style="position: relative;top: 60px;height: 45px;">
+            <hr class="layui-bg-pink">
+            <div style="text-align: center;color:#a9797a ">
+                Copyright © 2016-2017 记忆的尽头是故事 All Rights Reserved. <br> 浙ICP备17039224号-1
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

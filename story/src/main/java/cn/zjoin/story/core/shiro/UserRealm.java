@@ -57,23 +57,32 @@ public class UserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken)
-            throws AuthenticationException {
+              {
         ShiroToken token = (ShiroToken) authcToken;
         String login_name = token.getUsername();
         String password = token.getPswd();
         User user = new User();
         user.setLoginpass(password);
         user.setLoginname(login_name);
-        user =userService.login(user) ;
-        if(null == user){
-            throw new AccountException("帐号或密码不正确！");
-        }else if(!user.getIsactive()){
-            throw new DisabledAccountException("帐号已经禁止登录！");
-        }else{
-            //更新登录时间 last login time
+        if (token.getCanback()){
+            user.setCanback(true);
+        }
+        try {
+            user =userService.login(user) ;
+            if(null == user){
+                throw new AccountException("帐号或密码不正确！");
+            }else if(!user.getIsactive()){
+                throw new DisabledAccountException("帐号已经禁止登录！");
+            }else{
+                //更新登录时间 last login time
 //            user.setLastLoginTime(user.getLoginTime());
 //            user.setLoginTime(DateUtil.dateToStringWithTime());
 //            userService.updateByPrimaryKeySelective(user);
+            }
+
+        }catch (AuthenticationException e){
+
+            throw new AuthenticationException("授权失败！");
         }
 
         return new SimpleAuthenticationInfo(user,user.getLoginpass(),getName());

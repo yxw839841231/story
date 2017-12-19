@@ -1,7 +1,10 @@
 package cn.zjoin.story.business.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "carousel")
 public class Carousel {
@@ -16,6 +19,11 @@ public class Carousel {
     private Date createtime;
 
     private Boolean isdelete;
+
+    /**
+     * 所属目录
+     */
+    private Integer catalog;
 
     private String content;
 
@@ -87,6 +95,24 @@ public class Carousel {
      */
     public void setIsdelete(Boolean isdelete) {
         this.isdelete = isdelete;
+    }
+
+    /**
+     * 获取所属目录
+     *
+     * @return catalog - 所属目录
+     */
+    public Integer getCatalog() {
+        return catalog;
+    }
+
+    /**
+     * 设置所属目录
+     *
+     * @param catalog 所属目录
+     */
+    public void setCatalog(Integer catalog) {
+        this.catalog = catalog;
     }
 
     /**

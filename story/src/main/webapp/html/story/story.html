@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>灵魂·故事</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="故事,灵魂深处有故事,易天下,story,story521,说出你的故事">
+    <link rel="shortcut icon" type="image/x-icon" href="http://image.story521.cn/logo.ico"/>
+    <link rel="stylesheet" href="/layui/css/layui2.css">
+    <link rel="stylesheet" href="/layui/css/story.css">
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.config({
+            base: '/layui/js/modules/'
+        }).use('index');
+    </script>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header story-header">
+        <ul class="layui-nav layui-layout-center">
+            <div class="story-nav">
+                <li class="layui-nav-item"><a href="/">首页</a></li>
+                <li class="layui-nav-item"><a href="/html/love/love.html">爱·告白</a></li>
+                <li class="layui-nav-item layui-this"><a href="/html/story/story.html">灵魂·故事</a></li>
+                <li class="layui-nav-item"><a href="javascript:void (0)">Java学习</a></li>
+            </div>
+        </ul>
+    </div>
+    <div class="layui-container story-container" >
+        <div class="layui-row">
+            <div class="layui-col-md9" style="background: #f0f0f0;padding-right: 10px;">
+                <div style="background: #ffffff">
+                    <div class="layui-carousel story-carousel" id="test1">
+                        <div carousel-item id="carousel-item1"></div>
+                    </div>
+                    <div style="height: 5px;width: 100%;background: #f0f0f0"></div>
+                    <div class="story-main-item">
+                        <ul id="story-newest-article"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md3">
+                <div class="story-main-right-box" style="background-color: #009688;color: #ffffff;text-align: center;line-height: 50px;font-size: 20px;">
+                    爱，就疯狂。<br>
+                    不爱，请坚强！
+                </div>
+                <div class="story-main-right-box">
+                    <blockquote class="layui-elem-quote story-right-title">最新故事
+                        <i class="layui-icon " style="float: right;color: #08a623">&#xe05e;</i>
+                    </blockquote>
+                    <ul class="story-main-right-hidden" id="newestArticle"></ul>
+                </div>
+                <!--<div class="layui-carousel story-main-right-box" id="test2">
+                    &lt;!&ndash;<div carousel-item>
+                        <div>条目1</div>
+                        <div>条目2</div>
+                        <div>条目3</div>
+                        <div>条目4</div>
+                        <div>条目5</div>
+                    </div>&ndash;&gt;
+                </div>-->
+                <div class="story-main-right-box ">
+                    <blockquote class="layui-elem-quote story-right-title">热议分享
+                        <i class="layui-icon" style="float: right;color: #f13207">&#xe9d3;</i>
+                    </blockquote>
+                    <ul class="story-main-right-hidden" id ="newestComment"></ul>
+                </div>
+                <div class="story-main-right-box ">
+                    <blockquote class="layui-elem-quote story-right-title">有感而发
+                        <i class="layui-icon" style="float: right;color: #b9c31f">&#xe6dd;</i>
+                    </blockquote>
+                    <ul class="newestTalk" id="newestTalk"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="" style="position: relative;top: 60px;height: 45px;">
+        <hr class="layui-bg-gray">
+        <div style="text-align: center">
+            Copyright © 2016-2017 易天下. All rights reserved. |  浙ICP备17039224号-1
+        </div>
+    </div>
+    <p style="display: none;">
+        <script src="https://s19.cnzz.com/z_stat.php?id=1271311300&web_id=1271311300" language="JavaScript"></script>
+    </p>
+</div>
+</body>
+</html>

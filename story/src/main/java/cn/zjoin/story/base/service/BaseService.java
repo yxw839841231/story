@@ -15,6 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by digua on 2016/9/6.
@@ -157,7 +158,7 @@ public abstract class BaseService<T> {
      * @param pagination
      * @return
      */
-    public Pagination<T> pageInfoSimple(Pagination pagination) {
+    public Pagination<T> pageInfoSimple(Pagination pagination,T t) {
 
         PageHelper.startPage(pagination.getPageCurrent(), pagination.getPageSize(), " id desc ");
         List<T> list = mapper.selectAll();
@@ -176,6 +177,10 @@ public abstract class BaseService<T> {
                 ec.andEqualTo(name, value);
             }else if(value2.equals("like")){
                 ec.andLike(name,"%"+ value.toString()+"%");
+            }else if(value2.equals(">")){
+                ec.andGreaterThan(name,value.toString());
+            }else if(value2.equals("<")){
+                ec.andLessThan( name,value.toString());
             }
         }
     }
@@ -237,7 +242,7 @@ public abstract class BaseService<T> {
                 Method m2 =  entity.getClass().getMethod("get" + captureName(name+"operator"));
                 String value2 = (String) m2.invoke(entity);
                 if (value != null) {
-                    praseCondition(ec,name,value,value2);
+                    praseCondition(ec,name,value?1:0,value2);
                 }
             } else if (type.equals("class java.util.Date")) {
                 Method m = entity.getClass().getMethod("get" + captureName(name));
@@ -249,7 +254,87 @@ public abstract class BaseService<T> {
                 }
             }
         }
-        PageHelper.startPage(page.getPageNum(), page.getPageSize(), " id asc ");
+        example.orderBy("id").desc();
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<T> list = mapper.selectByExample(example);
+        page = new PageInfo(list);
+        return page;
+    }
+
+    public PageInfo<T> pageInfoSimpleOrderBy(PageInfo page,Object entity,Class clazz,String orderBy,String asc,String... colums) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        Example example = new Example(clazz);
+        Field[] field = entity.getClass().getDeclaredFields();
+        Example.Criteria ec = example.createCriteria();
+        if(!StringUtils.isEmpty(colums)) example.selectProperties(colums);
+
+        for (int j = 0; j < field.length; j++) {     //遍历所有属性
+            String name = field[j].getName();    //获取属性的名字
+            if(name.endsWith("operator")) continue;
+            String type = field[j].getGenericType().toString();    //获取属性的类型
+            if (type.equals("class java.lang.String")) {   //如果type是类类型，则前面包含"class "，后面跟类名
+                Method m = entity.getClass().getMethod("get" + captureName(name));
+                String value = (String) m.invoke(entity);    //调用getter方法获取属性值
+                Method m2 =  entity.getClass().getMethod("get" + captureName(name+"operator"));
+                String value2 = (String) m2.invoke(entity);
+                if (value != null) {
+                    praseCondition(ec,name,value,value2);
+                }
+            } else if (type.equals("class java.lang.Integer")) {
+                Method m = entity.getClass().getMethod("get" + captureName(name));
+                Integer value = (Integer) m.invoke(entity);
+                Method m2 =  entity.getClass().getMethod("get" + captureName(name+"operator"));
+                String value2 = (String) m2.invoke(entity);
+                if (value != null) {
+                    praseCondition(ec,name,value,value2);
+                }
+            } else if (type.equals("class java.lang.Long")) {
+                Method m = entity.getClass().getMethod("get" + captureName(name));
+                Long value = (Long) m.invoke(entity);
+                Method m2 =  entity.getClass().getMethod("get" + captureName(name+"operator"));
+                String value2 = (String) m2.invoke(entity);
+                if (value != null) {
+                    praseCondition(ec,name,value,value2);
+                }
+            } else if (type.equals("class java.lang.Short")) {
+                Method m = entity.getClass().getMethod("get" + captureName(name));
+                Short value = (Short) m.invoke(entity);
+                Method m2 =  entity.getClass().getMethod("get" + captureName(name+"operator"));
+                String value2 = (String) m2.invoke(entity);
+                if (value != null) {
+                    praseCondition(ec,name,value,value2);
+                }
+            } else if (type.equals("class java.lang.Double")) {
+                Method m = entity.getClass().getMethod("get" + captureName(name));
+                Double value = (Double) m.invoke(entity);
+                Method m2 =  entity.getClass().getMethod("get" + captureName(name+"operator"));
+                String value2 = (String) m2.invoke(entity);
+                if (value != null) {
+                    praseCondition(ec,name,value,value2);
+                }
+            } else if (type.equals("class java.lang.Boolean")) {
+                Method m = entity.getClass().getMethod("get" + captureName(name));
+                Boolean value = (Boolean) m.invoke(entity);
+                Method m2 =  entity.getClass().getMethod("get" + captureName(name+"operator"));
+                String value2 = (String) m2.invoke(entity);
+                if (value != null) {
+                    praseCondition(ec,name,value?1:0,value2);
+                }
+            } else if (type.equals("class java.util.Date")) {
+                Method m = entity.getClass().getMethod("get" + captureName(name));
+                Date value = (Date) m.invoke(entity);
+                Method m2 =  entity.getClass().getMethod("get" + captureName(name+"operator"));
+                String value2 = (String) m2.invoke(entity);
+                if (value != null) {
+                    praseCondition(ec,name, TimeUtil.format(value),value2);
+                }
+            }
+        }
+        if("asc".equalsIgnoreCase(asc)){
+            example.orderBy(orderBy).asc();
+        }else {
+            example.orderBy(orderBy).desc();
+        }
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
         List<T> list = mapper.selectByExample(example);
         page = new PageInfo(list);
         return page;
@@ -315,4 +400,11 @@ public abstract class BaseService<T> {
         name = name.substring(0, 1).toUpperCase() + name.substring(1);
         return name;
     }
+
+    protected String getUUID(){
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
+    }
+
+
 }

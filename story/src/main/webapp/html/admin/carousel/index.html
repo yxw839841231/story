@@ -20,8 +20,8 @@
                 {name: 'title', width: '150', label: '标题', align: 'center', rule: 'required'},
                 {
                     name: 'picture', width: '300', align: 'center', label: '图片', render: function (value) {
-                    return '<img style="max-width: 300px;max-height: 200px;" src="' + value + '"/>';
-                }, attrs: {'readonly': "true"}
+                        return '<img style="max-width: 300px;max-height: 200px;" src="' + value + '"/>';
+                    }, attrs: {'readonly': "true"}
                 },
                 {
                     name: 'isdelete',
@@ -31,10 +31,26 @@
                     align: 'center',
                     items: [{true: '是'}, {false: '否'}],render:function (value) {
                     var html = '';
-                    if(value) html = '<font color="green"><b>是</b></font>';
+                    if (value) html = '<font color="green"><b>是</b></font>';
                     else html = '否'
                     return html;
                 }
+                },
+                {
+                    name: 'catalog',
+                    width: '150',
+                    label: '目录',
+                    type: 'select',
+                    align: 'center',
+                    items: [{1: '首页'}, {2: '告白'}],render:function (value) {
+                        var html = '';
+                        if(value==1) {
+                            html = '<font color="green"><b>首页</b></font>';
+                        } else{
+                            html = '<font color="pink"><b>告白</b></font>';
+                        }
+                        return html;
+                    }
                 },{name:'createtime', width: '150', label: '创建时间', align: 'center',render:function (value) {
                     return zjoin.timetrans(value)
                 }}

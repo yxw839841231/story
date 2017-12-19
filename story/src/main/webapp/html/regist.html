@@ -1,40 +1,65 @@
-<form class="layui-form">
+<script>
+    layui.use(['form'], function () {
+        var $ = layui.jquery,
+            form = layui.form,layer = layui.layer;
+        form.on('submit(user-regist)',function (data) {
+            $.ajax({
+                url:'/story/user/regist',
+                type:'post',
+                data:data.field,
+                success:function (d) {
+                    if(d.code==0){
+                        layer.closeCurrent();
+                        $("#loginli").click();
+                    }else {
+                        layer.err(d.msg)
+                    }
+
+                }
+            });
+            return false;
+        });
+        $("#toLogin").click(function () {
+            layer.closeCurrent();
+            $("#loginli").click();
+        });
+    });
+</script>
+<form class="layui-form" style="padding: 0px 5px;">
+    <div class="layui-row" style="padding: 10px 40px 5px 5px;">
     <div class="layui-form-item">
-        <div class="layui-inline">
-            <label class="layui-form-label">登录名</label>
-            <div class="layui-input-inline">
-                <input type="tel" name="loginname" lay-verify="required" autocomplete="off" class="layui-input">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-block">
+                <input name="loginname" id="loginname" lay-verify="account" class="layui-input" placeholder="大小写字母和数字的组合">
             </div>
-        </div>
-        <div class="layui-inline">
+    </div>
+    <div class="layui-form-item">
             <label class="layui-form-label">密码</label>
-            <div class="layui-input-inline">
-                <input type="password" name="loginpass" lay-verify="password" autocomplete="off" class="layui-input">
+            <div class="layui-input-block">
+                <input type="password"  name="loginpass" id="loginpass" lay-verify="password" class="layui-input" placeholder="6-16位字母+数字+特殊符号的组合">
             </div>
-        </div>
     </div>
-
-
     <div class="layui-form-item">
-        <div class="layui-inline">
             <label class="layui-form-label">昵称</label>
-            <div class="layui-input-inline">
-                <input type="tel" name="nickname" lay-verify="" autocomplete="off" class="layui-input">
+            <div class="layui-input-block">
+                <input name="nickname" id="nickname" lay-verify="required" class="layui-input">
             </div>
-        </div>
-        <div class="layui-inline">
-            <label class="layui-form-label">邮箱</label>
-            <div class="layui-input-inline">
-                <input type="text" name="email" lay-verify="" autocomplete="off" class="layui-input">
-            </div>
-        </div>
     </div>
-
-
+    <div class="layui-form-item">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-block">
+                <input name="email" id="email" lay-verify="email"  class="layui-input" placeholder="您的常用邮箱">
+            </div>
+    </div>
+    </div>
+    <hr>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="user-regist">立即提交</button>
+            <button class="layui-btn" lay-submit="" lay-filter="user-regist">注册</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <button type="button" id="toLogin" class="layui-btn layui-btn-primary">返回登录</button>
         </div>
     </div>
 </form>
+
+

@@ -5,6 +5,8 @@
  */
 package cn.zjoin.story.base.model;
 
+import com.github.pagehelper.PageInfo;
+
 import java.util.List;
 
 /**
@@ -31,5 +33,12 @@ public class Pagination<T> extends BaseResult {
 
     public void setPages(Integer pages) {
         this.pages = pages;
+    }
+
+    public static Pagination toPagination(PageInfo pageInfo){
+        Pagination pagination = new Pagination();
+        pagination.setPages(pageInfo.getPages());
+        pagination.setRows(pageInfo.getList());
+        return pagination;
     }
 }

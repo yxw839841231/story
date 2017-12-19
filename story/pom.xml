@@ -231,6 +231,14 @@
       <scope>provided</scope>
     </dependency>
 
+    <!-- 二维码 -->
+    <dependency>
+      <groupId>com.google.zxing</groupId>
+      <artifactId>core</artifactId>
+      <version>3.3.1</version>
+    </dependency>
+
+
   </dependencies>
   <build>
     <finalName>${build.warname}</finalName>

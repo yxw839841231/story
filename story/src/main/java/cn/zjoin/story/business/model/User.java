@@ -35,6 +35,8 @@ public class User implements Serializable{
 
     private Date lastlogintime;
 
+    private Boolean canback;
+
     /**
      * @return id
      */
@@ -201,5 +203,19 @@ public class User implements Serializable{
      */
     public void setLastlogintime(Date lastlogintime) {
         this.lastlogintime = lastlogintime;
+    }
+
+    /**
+     * @return canback
+     */
+    public Boolean getCanback() {
+        return canback;
+    }
+
+    /**
+     * @param canback
+     */
+    public void setCanback(Boolean canback) {
+        this.canback = canback;
     }
 }

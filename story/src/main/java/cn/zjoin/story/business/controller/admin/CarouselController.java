@@ -9,7 +9,9 @@ import cn.zjoin.story.base.controller.BaseController;
 import cn.zjoin.story.base.model.BaseResult;
 import cn.zjoin.story.base.model.Pagination;
 import cn.zjoin.story.business.model.Carousel;
+import cn.zjoin.story.business.model.CarouselOperator;
 import cn.zjoin.story.business.service.CarouselService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 
 /**
@@ -33,11 +36,22 @@ public class CarouselController extends BaseController {
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     @ResponseBody
-    public Pagination list(Pagination pagination) {
-        Pagination p = carouselService.pageInfoSimple(pagination);
-        p.setCode(0);
-        p.setMsg("ok");
-        return p;
+    public BaseResult list(PageInfo<Carousel> pageInfo, CarouselOperator carouselOperator) {
+
+        BaseResult result = new BaseResult();
+        try {
+            pageInfo= carouselService.pageInfoSimple(pageInfo,carouselOperator,Carousel.class,"id","title","createtime","isdelete","picture","content","catalog");
+            return Pagination.toPagination(pageInfo);
+        } catch (NoSuchMethodException e) {
+            result.setMsg(e.getMessage());
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
 

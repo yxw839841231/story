@@ -15,15 +15,15 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/zjoin"
                         userId="root"
-                        password="123456">
+                        password="root">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="cn.zjoin.story.business.model" targetProject="C:\work\src\yxw\story\story\src\main\java"/>
-        <sqlMapGenerator targetPackage="Mapper"  targetProject="C:\work\src\yxw\story\story\src\main\resources"/>
+        <javaModelGenerator targetPackage="cn.zjoin.story.business.model" targetProject="/src/story/story/src/main/java"/>
+        <sqlMapGenerator targetPackage="Mapper"  targetProject="/src/story/story/src/main/resources"/>
 
-        <javaClientGenerator targetPackage="cn.zjoin.story.business.dao" targetProject="C:\work\src\yxw\story\story\src\main\java" type="XMLMAPPER" />
+        <javaClientGenerator targetPackage="cn.zjoin.story.business.dao" targetProject="/src/story/story/src/main/java" type="XMLMAPPER" />
 
-        <table tableName="comment" >
+        <table tableName="confession" >
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>

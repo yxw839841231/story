@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>记忆的尽头是故事·个人中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="故事,story,story521,说出你的故事,灵魂,回忆">
+    <meta name="description" content="所谓故事，便已是过去了，然而之所以能成为故事，大概是因为在我们内心深处，有着无法忘却的理由。">
+    <link rel="shortcut icon" type="image/x-icon" href="http://image.story521.cn/logo.ico"/>
+    <link rel="stylesheet" href="/layui/css/layui2.css">
+    <link rel="stylesheet" href="/layui/css/common.css">
+    <link rel="stylesheet" href="/layui/css/story.css">
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.config({
+            base: '/layui/js/modules/'
+        }).use(['common']);
+        layui.define(['layer', 'form', 'jquery', 'zjoin', 'element', 'flow'], function () {
+
+            var $ = layui.jquery, zjoin = layui.zjoin, form = layui.form, element = layui.element, flow = layui.flow;
+            zjoin.set({image: $("#user-image"), input: $("#picture")});
+            $.get("/story/user", function (res) {
+                if (res.code == 0) {
+                    $("#nickname").val(res.data.nickname);
+                    $("#qq").val(res.data.qq);
+                    $("#wx").val(res.data.wx);
+                    $("#loginname").val(res.data.loginname);
+                    $("#email").val(res.data.email);
+                    $("#phone").val(res.data.phone);
+                    if (res.data.picture) {
+                        $("#user-image").attr("src", res.data.picture)
+                        $("#picture").val(res.data.picture);
+                    }
+                }
+
+            });
+            form.on('submit(user_update)', function (data) {
+                $.ajax({
+                    url: '/story/user/update',
+                    type: 'post',
+                    data: data.field,
+                    success: function (res) {
+                        if (res.code == 0) {
+                            window.location.reload();
+                            layer.ok('更新成功');
+                        } else {
+                            layer.err(res.msg)
+                        }
+                    }
+                });
+                return false;
+            });
+            element.on('tab(user-center)', function (data) {
+                if (data.index == 1) {
+                    if (data.elem.find('.layui-tab-item:eq(1)').html().length <= 0) {
+                        flow.load({
+                            elem: '#myArticle' //指定列表容器
+                            , done: function (page, next) { //到达临界点（默认滚动触发），触发下一页
+                                var lis = [];
+                                //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
+                                $.get('/story/article/my?pageNum=' + page, function (res) {
+                                    //假设你的列表返回在data集合中
+                                    layui.each(res.data.list, function (index, d) {
+                                        var html = '<div style="width: 100%;height: 35px;line-height: 35px;">';
+                                        html+='<a href="/html/story/article/detail.html?id='+d.id+'" target="_blank">'+d.title+'</a>'
+                                        html+='</div>';
+
+                                        lis.push(html)
+                                    });
+                                    next(lis.join(''), page < res.data.pages);
+                                    flow.lazyimg();
+                                });
+                            }
+                        });
+                    }
+                }
+                if (data.index == 2) {
+                    if (data.elem.find('.layui-tab-item:eq(2)').html().length <= 0) {
+                        flow.load({
+                            elem: '#myLove' //指定列表容器
+                            , done: function (page, next) { //到达临界点（默认滚动触发），触发下一页
+                                var lis = [];
+                                //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
+                                $.get('/love/my?pageNum=' + page, function (res) {
+                                    //假设你的列表返回在data集合中
+                                    layui.each(res.data.list, function (index, d) {
+                                        var html = '<div style="width: 100%;height: 35px;line-height: 35px;">';
+                                        html+='<a href="/html/love/show.html?id='+d.id+'" target="_blank">'+d.title+'</a>'
+                                        html+='</div>';
+
+                                        lis.push(html)
+                                    });
+                                    next(lis.join(''), page < res.data.pages);
+                                    flow.lazyimg();
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header story-header">
+        <ul class="layui-nav layui-layout-center">
+            <div class="story-nav">
+                <li class="layui-nav-item layui-this"><a href="/">首页</a></li>
+                <li class="layui-nav-item"><a href="love/love.html">爱·告白</a></li>
+            </div>
+        </ul>
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item " id="loginli">登录</li>
+            <li class="layui-nav-item ">&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+            <li class="layui-nav-item " id="registli">注册</li>
+        </ul>
+    </div>
+    <div class="layui-container story-container">
+        <div class="layui-row" style="padding: 5px">
+            <div class="layui-tab" lay-filter="user-center">
+                <ul class="layui-tab-title no-menu">
+                    <li class="layui-this">个人信息</li>
+                    <li>我的故事</li>
+                    <li>我的告白</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <form class="layui-form">
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">昵称</label>
+                                    <div class="layui-input-block">
+                                        <input class="layui-input " name="nickname" id="nickname" lay-verify="required"
+                                               placeholder="">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">用户名</label>
+                                    <div class="layui-input-block">
+                                        <input class="layui-input " id="loginname" disabled placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">qq</label>
+                                    <div class="layui-input-block">
+                                        <input class="layui-input " name="qq" id="qq">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">微信</label>
+                                    <div class="layui-input-block">
+                                        <input class="layui-input " name="wx" id="wx">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">邮箱</label>
+                                    <div class="layui-input-block">
+                                        <input class="layui-input" name="email" id="email" lay-verify="email">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">手机号</label>
+                                    <div class="layui-input-block">
+                                        <input class="layui-input" name="phone" id="phone" lay-verify="mobile">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">头像</label>
+                                    <div class="layui-input-block zjoin-upload"
+                                         style="width: 100px;height: 100px;line-height: 100px;text-align: center">
+                                        <img src="/layui/images/default-cover.png"
+                                             style="max-width: 100%;max-height: 100%;" id="user-image">
+                                        <input type="hidden" name="picture" id="picture"
+                                               value="http://ovkuoveh9.bkt.clouddn.com/FhNQ7FEeTpf2juzH8rAbPDyNP1w3">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit="" lay-filter="user_update">修改</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="layui-tab-item" id="myArticle"></div>
+                    <div class="layui-tab-item" id="myLove"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="" style="position: relative;top: 60px;height: 45px;">
+        <hr class="layui-bg-gray">
+        <div style="text-align: center">
+            Copyright © 2016-2017 记忆的尽头是故事 All rights reserved. | 浙ICP备17039224号-1
+        </div>
+    </div>
+</div>
+</body>
+</html>

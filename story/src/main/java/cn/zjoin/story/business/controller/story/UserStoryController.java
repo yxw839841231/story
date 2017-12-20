@@ -10,6 +10,7 @@ import cn.zjoin.story.base.model.BaseResult;
 import cn.zjoin.story.business.model.User;
 import cn.zjoin.story.business.service.UserService;
 import cn.zjoin.story.core.shiro.TokenManager;
+import cn.zjoin.story.util.PictureUtil;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
@@ -85,6 +86,7 @@ public class UserStoryController extends BaseController {
             return new BaseResult("该邮箱已注册！");
         }
 
+        user.setPicture(PictureUtil.getPicture());
         user.setIsactive(true);
         user.setCreatetime(new Date());
         user.setCanback(false);

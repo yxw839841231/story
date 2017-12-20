@@ -75,6 +75,7 @@ public class BaseResult {
     }
 
     public Integer getPageCurrent() {
+        pageCurrent=pageCurrent==null? 0 :pageCurrent;
         return pageCurrent;
     }
 

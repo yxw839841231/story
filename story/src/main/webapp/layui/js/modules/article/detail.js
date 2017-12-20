@@ -98,9 +98,11 @@ layui.define(['layer', 'jquery','cookie','zjoin','flow'], function (exports) {
     });
     $("#submit_comment").click(function () {
         var comment = $("#comment_edit").val();
-        var pat = new RegExp("[[^?!@#$%\\^&*()]+", "i");
+        var pat = new RegExp("[[^@#$%\\^&*()]+", "i");
         if (pat.test(comment) == true) {
             layer.msg("评论中含有非法字符！");
+            return;
+
         } else if (comment == '') {
             return;
         }

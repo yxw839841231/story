@@ -47,7 +47,7 @@ layui.define(['layer', 'carousel','zjoin','util','cookie','flow'], function (exp
                     html += '       <div style="display: inline-block;float: right;padding:0 5px;">时间：'+zjoin.timetrans(d.createtime)+'</div>';
                     html += '   </div>';
                     html += '</a> </li>';
-                    lis.push(html)
+                    lis.push(html);
                 });
 
                 //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
@@ -105,7 +105,7 @@ layui.define(['layer', 'carousel','zjoin','util','cookie','flow'], function (exp
             if(type === 'bar1'){
 
                 window.location.href="story/index.html";
-                var nickname = $.cookie("nickname");
+                // var nickname = $.cookie("nickname");
                 /*if(nickname){
 
                 }else {

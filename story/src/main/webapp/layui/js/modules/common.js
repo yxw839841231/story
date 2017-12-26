@@ -81,5 +81,9 @@ layui.define(['layer','cookie'], function (exports) {
 
         });
     });
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?be50d6426b8fb533df4d96ccaf57ecf0";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
     exports("common",{});
 });

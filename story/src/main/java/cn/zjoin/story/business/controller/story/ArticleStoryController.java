@@ -40,11 +40,6 @@ public class ArticleStoryController extends BaseController {
     @Resource
     private ArticleService articleService;
 
-    @RequestMapping("")
-    public String index() {
-        return "story/index";
-    }
-
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     @ResponseBody
@@ -68,6 +63,7 @@ public class ArticleStoryController extends BaseController {
     public BaseResult newest(PageInfo<Article> pageInfo, ArticleOperator articleOperator) {
         PageInfo list = null;
         try {
+            pageInfo.setPageNum(1);
             pageInfo.setPageSize(6);
             articleOperator.setIsaudit(true);
             articleOperator.setIsauditoperator("=");

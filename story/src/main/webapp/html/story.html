@@ -11,15 +11,10 @@
     <link rel="stylesheet" href="/layui/css/common.css">
     <link rel="stylesheet" href="/layui/css/story.css">
     <script src="/layui/layui.js"></script>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
         layui.config({
             base: '/layui/js/modules/'
-        }).use(['index','common']);
-        (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-6045388089730503",
-            enable_page_level_ads: true
-        });
+        }).use(['story','common']);
     </script>
 </head>
 <body>
@@ -27,15 +22,16 @@
     <div class="layui-header story-header">
         <ul class="layui-nav layui-layout-center">
             <div class="story-nav">
-                <div class="story-nav">
-                    <li class="layui-nav-item layui-this"><a href="/">首页</a></li>
-                    <li class="layui-nav-item"><a href="./story.html">故事</a></li>
-                    <li class="layui-nav-item"><a href="love/love.html">爱·告白</a></li>
-                    <li class="layui-nav-item"><a href="/share.html">乐·分享</a></li>
-                    <li class="layui-nav-item"><a href="./study.html">易·学习</a></li>
-                </div>
+                <li class="layui-nav-item layui-this"><a href="/">首页</a></li>
+                <li class="layui-nav-item"><a href="/story.html">故事</a></li>
+                <li class="layui-nav-item"><a href="love/love.html">爱·告白</a></li>
+                <li class="layui-nav-item"><a href="/share.html">乐·分享</a></li>
+                <li class="layui-nav-item"><a href="love/love.html">易·学习</a></li>
+                <!--<li class="layui-nav-item"><a href="story/story.html">灵魂·故事</a></li>-->
+                <!--<li class="layui-nav-item"><a href="javascript:void (0)">Java学习</a></li>-->
             </div>
         </ul>
+
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item " id = "loginli">登录</li>
             <li class="layui-nav-item ">&nbsp;&nbsp;|&nbsp;&nbsp;</li>
@@ -44,17 +40,16 @@
     </div>
     <div class="layui-container story-container" >
         <div class="layui-row">
-            <div class="layui-col-md9" style="background: #f6f6f6;">
-                <div class="layui-carousel story-carousel" id="carousel-index">
-                    <div carousel-item id="carousel-item1"></div>
+            <div class="layui-col-md9" style="background: #f6f6f6;padding: 5px 5px 0 5px;">
+                <div style="background: #ffffff">
+                    <div class="layui-carousel story-carousel" id="test1">
+                        <div carousel-item id="carousel-item1"></div>
+                    </div>
+                    <div style="height: 5px;width: 100%;background: #f0f0f0"></div>
+                    <div class="story-main-item">
+                        <ul id="story-newest-article"></ul>
+                    </div>
                 </div>
-                <div style="height: 5px;width: 99%;background: #f0f0f0"></div>
-                <div class="story-main-item2">
-                    <ul id="story-newest-article"></ul>
-                    <ul id="story-newest-article2"></ul>
-                    <ul id="story-newest-article3"></ul>
-                </div>
-
             </div>
             <div class="layui-col-md3">
                 <div class="story-main-right-box" style="background-color: #009688;color: #ffffff;text-align: center;line-height: 50px;font-size: 20px;">
@@ -91,9 +86,12 @@
     <div class="" style="position: relative;top: 60px;height: 45px;">
         <hr class="layui-bg-gray">
         <div style="text-align: center">
-            Copyright © 2016-2017 <a href="/" title="记忆的尽头是故事">记忆的尽头是故事</a>  All rights reserved. |  浙ICP备17039224号-1
+            Copyright © 2016-2017 记忆的尽头是故事  All rights reserved. |  浙ICP备17039224号-1
         </div>
     </div>
-</div>
+    <p style="display: none;">
+        <script src="https://s19.cnzz.com/z_stat.php?id=1271311300&web_id=1271311300" language="JavaScript"></script>
+    </p>
+    </div>
 </body>
 </html>

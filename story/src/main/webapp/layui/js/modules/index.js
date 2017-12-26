@@ -15,18 +15,45 @@ layui.define(['layer', 'carousel','zjoin','util','cookie','flow'], function (exp
         success: function (data) {
             if (data.code == 0) {
                 for (var d of data.data) {
-                    $("#carousel-item1").append('<div class="carousel-item"><img src="' + d.picture + '"></div>');
+                    $("#carousel-item1").append('<div class="carousel-item" style="background: #fff"><img src="' + d.picture + '"></div>');
                 }
                 carousel.render({
-                    elem: '#test1'
-                    , width: '100%' //设置容器宽度
+                    elem: '#carousel-index'
+                    , width: '99%' //设置容器宽度
                     , arrow: 'hover' //始终显示箭头
                     , anim: 'fade' //切换动画方式
                 });
             }
         }
     });
-    flow.load({
+    $.ajax({
+        url: '/story/article/newest',
+        type: 'get',
+        success: function (data) {
+            if (data.code == 0) {
+                for (var d of data.data.list) {
+                    var html = '';
+                    html += '<li style="background:#ffffff;width:49%;margin:2px 1% 2px 0;display:inline-block;border-bottom: 1px dotted #f0f0f0"><div style="padding:2px 5px;">';
+                    html += '    <h3 class="layui-elip"><a href="/html/story/article/detail.html?id='+d.id+'" target="_blank" title="' + d.title + '">' + d.title + '</a></h3>';
+                    html += '    <div style="width: 20%;height: 110px;line-height: 110px;float: left">';
+                    html += '        <a title="'+d.title+'" href="/html/story/article/detail.html?id='+d.id+'" target="_blank"><img style="max-height: 100%;max-width: 100%;" src="' + d.cover + '"></a>';
+                    html += '    </div>';
+                    html += '    <div style="width:80%;height: 110px;float: right;">';
+                    html += '       <div style="width:100%;height: 75px;line-height: 25px;padding:0 4px;overflow: hidden">'+ d.describle +'</div>';
+                    html += '       <div style="width:100%;height: 35px;line-height: 35px;padding:0 0px;">';
+                    html += '           <i class="layui-icon" style="color: #bec0ac">&#xe8f4;</i>' + d.browse;
+                    html += '           <div style="display: inline-block;float: right;padding:0 5px;"><a href="/html/story/article/detail.html?id='+d.id+'" target="_blank" style="color: #4fa4c1">阅读全文</a></div>';
+                    html += '       </div>';
+                    html += '   </div>';
+                    html += '</div></li>';
+                     $("#story-newest-article").append(html);
+                    // $("#story-newest-article2").append(html);
+                    // $("#story-newest-article3").append(html);
+                }
+            }
+        }
+    });
+    /*flow.load({
         elem: '#story-newest-article' //指定列表容器
         ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
             var lis = [];
@@ -56,7 +83,7 @@ layui.define(['layer', 'carousel','zjoin','util','cookie','flow'], function (exp
                 flow.lazyimg();
             });
         }
-    });
+    });*/
 
     $.get('/story/maxCommentArticle',function (data) {
         if(data.code ==0){

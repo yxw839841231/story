@@ -2,195 +2,131 @@
  项目JS主入口
  以依赖Layui的layer和form模块为例
  **/
-layui.define(['layer', 'element', 'table', 'zjoin', 'ZJOINdropdown', 'ZJOINselect', 'ZJOINsidebar', 'ZJOINpushmenu', 'ZJOINtodoList', 'ZJOINtree', 'ZJOINtheme', 'cookie','BJUIcore'], function (exports) {
-    var element = layui.element,
-        $ = layui.jquery,
-        form = layui.form,
-        layer = layui.layer;
-    
-    layer.config({
-        extend: 'zjoin-skin/skin.css', //加载新皮肤
-        skin: 'zjoin-skin' //一旦设定，所有弹层风格都采用此主题。
-    })
+layui.define(['layer', 'carousel','zjoin','util','cookie','flow'], function (exports) {
+    var $ = layui.jquery,
+        util = layui.util,
+        carousel = layui.carousel,flow=layui.flow;
 
+    //建造实例
+    $.ajax({
+        url: '/story/carousel',
+        type: 'post',
+        data:{catalog:1},
+        success: function (data) {
+            if (data.code == 0) {
+                for (var d of data.data) {
+                    $("#carousel-item1").append('<div class="carousel-item"><img src="' + d.picture + '"></div>');
+                }
+                carousel.render({
+                    elem: '#test1'
+                    , width: '100%' //设置容器宽度
+                    , arrow: 'hover' //始终显示箭头
+                    , anim: 'fade' //切换动画方式
+                });
+            }
+        }
+    });
+    flow.load({
+        elem: '#story-newest-article' //指定列表容器
+        ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
+            var lis = [];
+            //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
+            $.get('/story/article/newest?pageNum='+page, function(res){
+                //假设你的列表返回在data集合中
+                layui.each(res.data.list, function(index, d){
+                    var html = '';
+                    html += '<li style="cursor:pointer;border-bottom: 1px dotted #f0f0f0" class="testli" dd="'+d.id+'"><a href="/html/story/article/detail.html?id='+d.id+'" target="_blank">';
+                    html += '    <h3 style="">' + d.title + '</h3>';
+                    html += '    <div style="width: 15%;height: 110px;line-height: 110px;float: left">';
+                    html += '        <img alt="'+d.title+'" style="max-height: 100%;max-width: 100%;" lay-src="' + d.cover + '">';
+                    html += '    </div>';
+                    html += '    <div style="width:85%;height: 110px;float: right;">';
+                    html += '       <div style="width:100%;height: 75px;line-height: 25px;padding:0 5px;overflow: hidden">'+ d.describle +'</div>';
+                    html += '    <div style="width:100%;height: 35px;padding:0 5px;">';
+                    html += '       <i class="layui-icon" style="color: #bec0ac">&#xe8f4;</i>' + d.browse;
+                    html += '       <div style="display: inline-block;float: right;padding:0 5px;">时间：'+zjoin.timetrans(d.createtime)+'</div>';
+                    html += '   </div>';
+                    html += '</a> </li>';
+                    lis.push(html);
+                });
 
-    $.ajaxSetup({
-        contentType: "application/x-www-form-urlencoded;charset=utf-8",
-        complete: function (XMLHttpRequest, textStatus) {
-            //通过XMLHttpRequest取得响应结果
-            var res = XMLHttpRequest.responseText;
-            try {
-                var jsonData = JSON.parse(res);
-                if (jsonData.code == -10000) {
+                //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+                //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+                next(lis.join(''), page < res.data.pages);
+                flow.lazyimg();
+            });
+        }
+    });
+
+    $.get('/story/maxCommentArticle',function (data) {
+        if(data.code ==0){
+            $("#newestComment").empty();
+            for(var dd of data.data){
+                var $li ='<li class="layui-elip">' +
+                    '                            <p><a href="/html/story/article/detail.html?id='+dd.id+'" target="_blank">'+dd.title+'</a></p>' +
+                    '                            <div>' +
+                    '                            <span><i class="layui-icon browse">&#xe91d;</i>&nbsp;'+dd.browse+'</span>&nbsp;&nbsp;&nbsp;' +
+                    '                            <span><i class="layui-icon comment">&#xe998;</i>&nbsp;'+dd.totals+'</span>&nbsp;&nbsp;&nbsp;' +
+                    '                            <span><i class="layui-icon author">&#xe7fd;</i>&nbsp;'+dd.author+'</span>&nbsp;&nbsp;' +
+                    '                             </div>' +
+                    '                        </li>';
+                $("#newestComment").append($li);
+            }
+        }
+    });
+    $.get('/story/topBrowse',function (data) {
+        if(data.code ==0){
+            $("#newestArticle").empty();
+            for(var dd of data.data){
+                var $li = $('<li><a href="/html/story/article/detail.html?id='+dd.id+'" target="_blank">&nbsp;'+dd.title+'</a></li>');
+                $("#newestArticle").append($li);
+            }
+        }
+    });
+    $.get('/story/maxDzArticle',function (data) {
+        if(data.code ==0){
+            $("#newestTalk").empty();
+            for(var dd of data.data){
+                var $li ='<li>' +
+                    '                            <p><a href="/html/story/article/detail.html?id='+dd.id+'" target="_blank">'+dd.title+'</a></p>' +
+                    '                            <div>' +
+                    '                                <span><i class="layui-icon author">&#xe91f;</i>&nbsp;'+dd.author+'</span>&nbsp;&nbsp;&nbsp;' +
+                    '                                <span><i class="layui-icon date">&#xe8b5;</i>&nbsp;'+zjoin.timeago(dd.createtime)+'</span>&nbsp;&nbsp;&nbsp;' +
+                    '                                <span><i class="layui-icon good">&#xe87d;</i>&nbsp;'+dd.totals+'</span>&nbsp;&nbsp;' +
+                    '                            </div>' +
+                    '                        </li>';
+                $("#newestTalk").append($li);
+            }
+        }
+    });
+    util.fixbar({
+        bar1: true
+        ,click: function(type){
+            if(type === 'bar1'){
+
+                window.location.href="story/index.html";
+                // var nickname = $.cookie("nickname");
+                /*if(nickname){
+
+                }else {
                     //自定页
                     layer.open({
-                        title:'用户登录',
+                        title: '请登录',
                         type: 5,
                         closeBtn: 1, //不显示关闭按钮
-                        area: ['500px', '300px'],
+                        area: ['390px', '240px'],
                         anim: 5,
                         shadeClose: true, //开启遮罩关闭
-                        content:'/html/logina.html'
+                        content: '/html/logind.html'
                         , btn: ['登录', '取消']
                         , yes: function (index, layero) {
-                            //按钮【按钮一】的回调
-                        }
-                        , btn2: function (index, layero) {
-                            window.location.href = '/html/login.html';
-                            //return false 开启该代码可禁止点击该按钮关闭
-                        }
-                        , cancel: function () {
-                            window.location.href = '/html/login.html';
-                            //return false 开启该代码可禁止点击该按钮关闭
                         }
                     });
-                }
-            } catch (e) {
+                }*/
+
             }
         }
     });
-    initrole();
-    element.init();
-    function initrole() {
-        user_data = new Array();
-        $.ajax({
-            url: '/menu/list',
-            type: 'get',
-            success: function (d) {
-                var $menuBar = $("#erp-menu");
-                if (d.code == 0) {
-                    //系统菜单
-                    var $selectMenu = $("#top-erp-menu-bar");
-                    var n = 0
-                    for (var data of d.data.system) {
-                        $.cookie(data.name, data.basepath, {path: '/'});
-                        var html ='<div class="top-menu-bar '
-                        if (n == 0){
-                            html +=' zjoin-this" data-id='+data.id+'><i class="layui-icon">'+data.icon;
-                        }else{
-                            html +='" data-id='+data.id+'><i class="layui-icon">'+data.icon;
-                        }
-                        n ++
-                        if(!layui.device().ios && !layui.device().android){
-                            html +='</i><span class="menutitle">&nbsp;'+data.title+'</span></div>';
-                        }else{
-                            html +='</i></div>';
-                        }
-                        $selectMenu.append(html);
-
-                    }
-                    var treeviewData = [], treeviewMenuData = [], treeviewOpeData = [];
-                    //菜单
-                    for (var data of d.data.menu) {
-                        if (data.type == 1) {
-                            treeviewData.push(data);
-                        }
-                        if (data.type == 2) {
-                            treeviewMenuData.push(data)
-                        }
-                        if (data.type == 3) {
-                            treeviewOpeData.push(data)
-                        }
-                    }
-                    window.user_data = treeviewOpeData;
-                    $(".top-menu-bar").bind('click',function () {
-                        $(".top-menu-bar").removeClass('zjoin-this');
-                        $(this).addClass('zjoin-this');
-                        var pid = $(this).attr('data-id');
-                        $menuBar.find('.treeview').remove();
-                        $menuBar.find('.sidebar-menuli').remove();
-                        for (var data of treeviewData) {
-
-                            if (data.systemid == pid) {
-                                $menuBar.append('<li class="treeview treeview-' + data.systemid + '" ><a href="javascript:void(0)"><i class="layui-icon">'+data.icon+'</i>&nbsp;<span>' + data.name + '</span><span class="pull-right-container"></span> </a><ul class="treeview-menu" id="treeview-menu-' + data.id + '"> </ul></li>');
-                            }
-                        }
-                        for (var data of treeviewMenuData) {
-                            if (data.systemid == pid) {
-                                $("#treeview-menu-" + data.pid).append('<li class="sidebar-menuli" data-url="' + data.uri + '" data-id="' + data.id + '"><a href="javascript:void(0)"><i class="layui-icon">'+data.icon+'</i>&nbsp;<span>' + data.name + '</span></a></li>');
-                            }
-                        }
-                        $menuBar.find('.treeview :eq(0)').parent('li').addClass('menu-open active ').click();
-                    });
-                    $(".top-menu-bar:eq(0)").click();
-
-                }
-
-            }
-        });
-    }
-
-    var active = {
-        tabAdd: function (elem) {
-            //新增一个Tab项
-            element.tabAdd2('admin-tab', {
-                title: elem.find('span').text()
-                , content: elem.attr('data-url')
-                , id: elem.attr('data-id') //实际使用一般是规定好的id，这里以时间戳模拟下
-            })
-        }
-    };
-    function addMainPage() {
-        element.tabAdd2('admin-tab', {
-            title: '主页'
-            , content: '/html/admin/main.html'
-            , id: -1 //实际使用一般是规定好的id，这里以时间戳模拟下
-        })
-        element.tabChange('admin-tab', -1);
-    }
-    addMainPage();
-
-    $('body').delegate('.sidebar-menuli', 'click', function () {
-        $('.treeview-menu li').removeClass('active')
-        $('.sidebar-menuli').removeClass('active')
-        $(this).addClass('active')
-        $('.treeview').removeClass('active')
-        $(this).parents('li').addClass('active')
-        var id = $(this).attr('data-id');
-        if ($(".layui-tab-title li[lay-id=" + id + "]").length > 0) {
-            element.tabChange('admin-tab', id);
-        } else {
-            active['tabAdd'].call($(this), $(this));
-            element.tabChange('admin-tab', id);
-        }
-    });
-    fixWindow()
-    function fixWindow() {
-        var h = window.innerHeight,w = window.innerWidth;
-        h = h - 40 - 50 - 41
-
-        if($('body').hasClass('sidebar-collapse')) w = w-50
-        else w = w-180
-        $(".layui-tab-content").css({"height": h + 'px',"width":w+'px'});
-        $(".admin-header.layui-tab").css({"width":w+'px'});
-        $(".main-footer").css({"width":w+'px'});
-        element.call.tabAuto()
-    }
-    $("#user-flowername").text($.cookie("flowerName"));
-    $("#customer_timeout").click(function () {
-        //退出登录
-        $.ajax({
-            url: '/story/user/logout',
-            type: 'get',
-            success: function (d) {
-                if (d.code == 0) {
-                    window.location.href = '/html/login.html';
-                    localStorage.removeItem("timeNmu");
-                } else {
-                    layer.msg("退出失败", {icon: 5})
-                }
-            }
-        });
-    });
-    var types = new Array();
-    window.types = types;
-
-    $(window).resize(function() {
-        BJUI.initLayout()
-        fixWindow()
-        setTimeout(function() {$(this).trigger(BJUI.eventType.resizeGrid)}, 30)
-    })
-
-    exports('story', {}); //注意，这里是模块输出的核心，模块名必须和use时的模块名一致
+    exports('story', {});
 });
 

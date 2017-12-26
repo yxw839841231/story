@@ -2,7 +2,12 @@ layui.define(['layer', 'jquery','cookie','zjoin','flow'], function (exports) {
     var $ = layui.jquery,zjoin = layui.zjoin,flow=layui.flow;
     var id = getUrlParam("id");
     $.get("/story/article/detail?id=" + id, function (data) {
-        document.title = "记忆的尽头是故事|"+data.data.title;
+        document.title = data.data.title;
+        var keywords = data.data.keywords.trim();
+        keywords= keywords.replace(/ |,/g,",");
+       // keywords= keywords.replace(/,/g,",");
+        document.querySelector('meta[name="keywords"]').setAttribute('content', keywords)
+        document.querySelector('meta[name="description"]').setAttribute('content', data.data.describle.trim())
         $("#detail_title").html(data.data.title)
         $("#detail_content").html(data.data.content);
         $("#detail_author").html(data.data.author);

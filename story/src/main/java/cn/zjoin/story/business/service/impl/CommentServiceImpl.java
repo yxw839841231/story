@@ -46,8 +46,8 @@ public class CommentServiceImpl extends CommentService {
     }
 
     @Override
-    public List<ViewComment> getArticleCommentList(Long id){
-        return mapper.getArticleCommentList(id);
+    public List<ViewComment> getArticleCommentList(Comment comment){
+        return mapper.getArticleCommentList(comment);
 
 
     }
@@ -58,7 +58,7 @@ public class CommentServiceImpl extends CommentService {
 
         PageHelper.startPage(pagination.getPageCurrent(), pagination.getPageSize());
 
-        List<ViewComment> list = mapper.getArticleCommentList(comment.getArticleid());
+        List<ViewComment> list = mapper.getArticleCommentList(comment);
         PageInfo<Comment> page = new PageInfo(list);
         pagination.setPageCurrent(page.getPageNum());
         pagination.setData(list);

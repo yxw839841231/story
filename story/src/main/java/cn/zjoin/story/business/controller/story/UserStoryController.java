@@ -106,10 +106,13 @@ public class UserStoryController extends BaseController {
     @RequestMapping("")
     @ResponseBody
     public BaseResult getuser() {
+
         BaseResult result = new BaseResult();
         try {
             User user = TokenManager.getToken();
             if (user != null) {
+                user.setLoginpass(null);
+                user.setCanback(null);
                 result.setData(user);
             } else {
                 result.setCode(-1);

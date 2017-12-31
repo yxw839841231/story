@@ -23,7 +23,7 @@
 
         <javaClientGenerator targetPackage="cn.zjoin.story.business.dao" targetProject="/src/story/story/src/main/java" type="XMLMAPPER" />
 
-        <table tableName="confession" >
+        <table tableName="study" >
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>

@@ -22,9 +22,9 @@ layui.define(['layer', 'carousel','zjoin','util','flow'], function (exports) {
         data:{catalog:2},
         success: function (data) {
             if (data.code == 0) {
-                for (var d of data.data) {
+                layui.each(data.data, function(index, d){
                     $("#love-carousel-item").append('<div class="carousel-item" style="text-align: center"><img alt="'+d.title+'"src="' + d.picture + '"></div>');
-                }
+                });
                 carousel.render({
                     elem: '#love-carousel'
                     , width: '100%' //设置容器宽度
@@ -47,7 +47,7 @@ layui.define(['layer', 'carousel','zjoin','util','flow'], function (exports) {
                         '   <div style="position: relative;top:-200px;line-height: 50px;height: 200px">' +
                         '       <div class="layui-elip" style="line-height: 40px;float: left;width: 100%;background: #b2b2b2;opacity: 0.5;color: #ffffff;">'+
                         (item.isprivate ? '<i class="layui-icon" style="color: #000000">&#xe8f5;</i>' :'<i class="layui-icon" style="color: #ffffff">&#xe8f4;</i>')+'&nbsp;'+
-                                 '<a href="/html/love/show.html?id='+item.id+'" target="_blank">'+item.title+'</a>'+
+                                 '<a href="http://www.story521.cn/html/love/show.html?id='+item.id+'" target="_blank">'+item.title+'</a>'+
                                 '</div>' +
                         '       <div style="line-height: 40px;float: right;color: #ffffff;">'+
                                 '</div>' +
@@ -57,8 +57,6 @@ layui.define(['layer', 'carousel','zjoin','util','flow'], function (exports) {
                         '</li>';
                     lis.push($li);
                 });
-                //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
-                //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
                 next(lis.join(''), page < res.pages);
                 flow.lazyimg();
             });
@@ -91,7 +89,7 @@ layui.define(['layer', 'carousel','zjoin','util','flow'], function (exports) {
                     //$($div).append()
                     //layer.open({content:$div})
                     layer.open({
-                        title:'分享二维码',
+                        title:false,
                         type: 1,
                         closeBtn: 0, //不显示关闭按钮
                         anim: 2,
@@ -105,7 +103,6 @@ layui.define(['layer', 'carousel','zjoin','util','flow'], function (exports) {
         });
         return;
     });
-
     util.fixbar({
         bar1: '&#xe650;',
         bgcolor:'#fefefe'
@@ -115,6 +112,7 @@ layui.define(['layer', 'carousel','zjoin','util','flow'], function (exports) {
             }
         }
     });
+
     exports('love', {});
 });
 

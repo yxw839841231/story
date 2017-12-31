@@ -1,5 +1,5 @@
 body{
-    background-color: #f6f6f6;
+    background-color: #f7f7f8;
     /*background: image('http://image.story521.cn/bg-sm.jpg');*/
     /*background-size: 100% auto;
     background-color: #f6f6f6;
@@ -7,7 +7,8 @@ body{
     background-repeat: no-repeat;
     background-position: bottom;*/
 }
-@media only screen and (min-width: 640px) {
+@media only screen and (max-width: 992px) {
+    .story_logo{display: none}
 
 }
 .story-header{
@@ -16,7 +17,7 @@ body{
     z-index: 10000;
 }
 .story-container{
-    top: 60px;
+    top: 70px;
     background-color: #fefefe;
     padding: 0px;
 }
@@ -43,9 +44,8 @@ body{
 
 .story-main-right-box {
     width: 100%;
-    min-height: 100px;
+    /*min-height: 100px;*/
     margin-bottom: 10px;
-    margin-top: 5px;
 }
 
 .story-main-right-box ul{
@@ -74,3 +74,4 @@ body{
 .newestTalk .layui-icon.author{color: #00a157;font-size: 13px;}
 .newestTalk .layui-icon.date{color: #5c68a1;font-size: 13px;}
 .newestTalk .layui-icon.good{color: #ff80e1;font-size: 13px;}
+

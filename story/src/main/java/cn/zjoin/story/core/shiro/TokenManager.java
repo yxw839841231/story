@@ -15,7 +15,6 @@ public class TokenManager {
 	 * @return
 	 */
 	public static User getToken(){
-
 		User token = (User)SecurityUtils.getSubject().getPrincipal();
 		return token ;
 	}

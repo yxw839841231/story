@@ -11,7 +11,7 @@ layui.define(['layer','cookie'], function (exports) {
                 if (jsonData.code == -10000) {
                     //自定页
                     layer.open({
-                        title: '请重新登录',
+                        title: '登录',
                         type: 5,
                         closeBtn: 1, //不显示关闭按钮
                         area: ['390px', '240px'],
@@ -45,7 +45,7 @@ layui.define(['layer','cookie'], function (exports) {
     $('body').delegate("#loginli", 'click', function () {
         //自定页
         layer.open({
-            title: '请登录',
+            title: '登录',
             type: 5,
             closeBtn: 1, //不显示关闭按钮
             area: ['390px', '240px'],

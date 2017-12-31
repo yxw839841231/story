@@ -36,6 +36,7 @@ public class User implements Serializable{
     private Date lastlogintime;
 
     private Boolean canback;
+    private Boolean isauth;
 
     /**
      * @return id
@@ -217,5 +218,13 @@ public class User implements Serializable{
      */
     public void setCanback(Boolean canback) {
         this.canback = canback;
+    }
+
+    public Boolean getIsauth() {
+        return isauth;
+    }
+
+    public void setIsauth(Boolean isauth) {
+        this.isauth = isauth;
     }
 }

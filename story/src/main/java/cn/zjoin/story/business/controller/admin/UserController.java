@@ -9,7 +9,7 @@ import cn.zjoin.story.base.controller.BaseController;
 import cn.zjoin.story.base.model.BaseResult;
 import cn.zjoin.story.base.model.Pagination;
 import cn.zjoin.story.business.model.User;
-import cn.zjoin.story.business.model.UserOperator;
+import cn.zjoin.story.business.model.operator.UserOperator;
 import cn.zjoin.story.business.service.UserService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.http.MediaType;

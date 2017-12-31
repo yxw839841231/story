@@ -1,65 +1,46 @@
-layui.define(['layer', 'jquery','cookie','zjoin','flow'], function (exports) {
+layui.define(['layer', 'jquery','cookie','zjoin','flow','code'], function (exports) {
     var $ = layui.jquery,zjoin = layui.zjoin,flow=layui.flow;
+    layui.code({
+            title: 'NotePad++的风格'
+            ,skin: 'notepad' //如果要默认风格，不用设定该key。
+            ,encode: true //是否转义html标签。默认不开启
+         });
     var id = getUrlParam("id");
-    $.get("/story/article/detail?id=" + id, function (data) {
-        document.title = data.data.title;
-        var keywords = data.data.keywords.trim();
+    $.get("/story/study/detail?id=" + id, function (data) {
+        var detail = data.data.detail;
+        document.title = detail.title;
+        var keywords =detail.keywords.trim();
         keywords= keywords.replace(/ |,/g,",");
-       // keywords= keywords.replace(/,/g,",");
         document.querySelector('meta[name="keywords"]').setAttribute('content', keywords)
-        document.querySelector('meta[name="description"]').setAttribute('content', data.data.describle.trim())
-        $("#detail_title").html(data.data.title)
-        $("#detail_content").html(data.data.content);
-        $("#detail_author").html(data.data.author);
-        $("#detail_time").html(zjoin.timetrans(data.data.createtime));
-        $("#detail_browse").html(data.data.browse)
-        $.get("/story/article/similar?catalog=" + data.data.catalog, function (data2) {
-            for (var dd of data2.data) {
-                var $li = ' <li>' +
-                    '                            <p><a href="/html/story/article/detail.html?id='+dd.id+'" target="_blank">' + dd.title + '</a></p>' +
-                    '                            <div>' +
-                    '                                <span><i class="layui-icon browse">&#xe91d;</i>&nbsp;'+dd.browse+'</span>&nbsp;&nbsp;&nbsp;&nbsp;' +
-                    '                                <span><i class="layui-icon author">&#xe7fd;</i>&nbsp;'+dd.author+'</span>&nbsp;&nbsp;' +
-                    '                            </div>' +
-                    '                        </li>';
-                $("#newestComment").append($li);
-            }
-        });
-    });
-
-    $.get("/story/comment/list?articleid=" + id, function (data) {
-        if(data.code==0) {
-            for (var dd of data.data) {
-                var $li = '';
-                $li +='<li class="comment-li" >' +
-                    '                                    <div class="comment-li-user">' +
-                    '                                        <a class="" href="javascript:void(0)">' +
-                    '                                            <img style=""src="'+dd.picture+'" />' +
-                    '                                        </a>' +
-                    '                                        <div class="comment-li-user-name" >' +
-                    '                                            <a href="javascript:void(0)"> '+dd.nickname+'</a>' +
-                    '                                        </div>' +
-                    '                                        <div class="comment-li-user-time">' +
-                    '                                            <span>'+zjoin.timeago(dd.createtime)+'</span>' +
-                    '                                        </div>' +
-                    '                                    </div>' +
-                    '                                    <div class="comment-li-content">'+dd.content+'</div>' +
-                    '                                    <div class="comment-li-foot">' +
-                    '                                        <span class="good" data-id="'+dd.id+'"><i class="layui-icon">&#xe8dc;</i> <em class="dz">'+dd.dz+'</em> </span>' +
-                    '                                        <span class="reply"> <i class="layui-icon">&#xeac9;</i> 回复 </span>' +
-                    '                                    </div>' +
-                    '                                </li>';
-                // $("#comment_list").append($li);
-            }
+        document.querySelector('meta[name="description"]').setAttribute('content', detail.describle.trim())
+        $("#detail_title2").html(detail.title)
+        $("#detail_content").html(detail.content);
+        $("#detail_author").html(detail.author);
+        $("#detail_time").html(zjoin.timetrans(detail.createtime));
+        $("#detail_browse").html(detail.browse);
+        $("#detail_commen").html(detail.pl);
+        var pn = data.data.pn;
+        if(pn.prev){
+            $("#study_prev").empty().append('<a href="http://www.story521.cn/story/study/detail?id='+pn.prev.id+'" target="_blank">'+pn.prev.title+'</a>');
         }
-    });
+        if(pn.next){
+            $("#study_next").empty().append('<a href="http://www.story521.cn/story/study/detail?id='+pn.next.id+'" target="_blank">'+pn.next.title+'</a>');
+        }
+        $.get("/story/study/similar?catalog=" + detail.catalog, function (data2) {
+            layui.each(data2.data, function(index, dd){
+            //for (var dd of data2.data) {
+                var $li = ' <li><a href="http://www.story521.cn/html/story/study/detail_study.html?id=\'+d.id+\'" target="_blank"><i class="layui-icon" style="font-size: 3px;color: #9c9c9c">&#xe061;</i>'+dd.title+'</a></li>';
+                $("#newestComment").append($li);
+            });
+        });
 
+    });
     flow.load({
         elem: '#comment_list' //指定列表容器
         ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
             var lis = [];
             //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
-            $.get('/story/comment/list?pageCurrent='+page+'&articleid='+id, function(res){
+            $.get('/story/comment/list?pageCurrent='+page+'&articleid='+id+"&type=2", function(res){
                 //假设你的列表返回在data集合中
                 layui.each(res.data, function(index, dd){
                     var $li = '';
@@ -111,20 +92,8 @@ layui.define(['layer', 'jquery','cookie','zjoin','flow'], function (exports) {
         } else if (comment == '') {
             return;
         }
-       /* if (!$.cookie("nickname")) {
-            layer.open({
-                type: 5,
-                title: '登录',
-                area: ['390px', '270px'],
-                content: '/html/logind.html',
-                btn: ['登录', '取消'],
-                btnAlign: 'r',
-                moveType: 1,//拖拽模式，0或者1
-                yes: function () {
-                }
-            });
-        }*/
-        $.post("/story/comment/add", {articleid: id, content: comment}, function (data) {
+
+        $.post("/story/comment/add", {articleid: id, content: comment,type:2}, function (data) {
             if (data.code == 0) {
                 var $li = '';
                 $li +='<li class="comment-li" >' +
@@ -147,9 +116,10 @@ layui.define(['layer', 'jquery','cookie','zjoin','flow'], function (exports) {
                     '                                </li>';
                 $("#comment_list").append($li);
                 $("#comment_edit").val('');
+            }else {
+                layer.err(data.msg)
             }
         })
-
 
     });
     $('body').delegate(".good", 'click', function () {
@@ -169,5 +139,5 @@ layui.define(['layer', 'jquery','cookie','zjoin','flow'], function (exports) {
             }
         });
     });
-    exports('detail',{})
+    exports('detail_study',{})
 });

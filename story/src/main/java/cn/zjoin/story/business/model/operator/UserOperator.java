@@ -1,4 +1,4 @@
-package cn.zjoin.story.business.model;
+package cn.zjoin.story.business.model.operator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -52,5 +52,6 @@ public class UserOperator implements Serializable{
     private Boolean canback;
     private String canbackoperator;
 
-
+    private Boolean isauth;
+    private String isauthoperator;
 }

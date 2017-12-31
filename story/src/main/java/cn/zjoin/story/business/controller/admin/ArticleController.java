@@ -9,7 +9,7 @@ import cn.zjoin.story.base.controller.BaseController;
 import cn.zjoin.story.base.model.BaseResult;
 import cn.zjoin.story.base.model.Pagination;
 import cn.zjoin.story.business.model.Article;
-import cn.zjoin.story.business.model.ArticleOperator;
+import cn.zjoin.story.business.model.operator.ArticleOperator;
 import cn.zjoin.story.business.service.ArticleService;
 import cn.zjoin.story.core.aspet.Login;
 import com.github.pagehelper.PageInfo;

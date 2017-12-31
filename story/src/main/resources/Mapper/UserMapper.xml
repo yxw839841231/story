@@ -18,6 +18,7 @@
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="lastlogintime" jdbcType="TIMESTAMP" property="lastlogintime" />
     <result column="canback" jdbcType="BIT" property="canback" />
+    <result column="isauth" jdbcType="BIT" property="isauth" />
   </resultMap>
 
 </mapper>

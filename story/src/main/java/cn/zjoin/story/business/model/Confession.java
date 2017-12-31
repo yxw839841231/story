@@ -1,7 +1,10 @@
 package cn.zjoin.story.business.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "confession")
 public class Confession {
@@ -46,7 +49,7 @@ public class Confession {
 
     private String auditcontent;
 
-    private Byte type;
+    private Integer type;
 
     /**
      * @return id
@@ -273,14 +276,14 @@ public class Confession {
     /**
      * @return type
      */
-    public Byte getType() {
+    public Integer getType() {
         return type;
     }
 
     /**
      * @param type
      */
-    public void setType(Byte type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 }

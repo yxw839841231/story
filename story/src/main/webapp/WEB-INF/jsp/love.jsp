@@ -2,7 +2,7 @@
 <html>
 <body>
 <script>
-    window.location.href = '../../html/love/love.html'
+    window.location.href = '/html/love/love.html'
 </script>
 </body>
 </html>

@@ -9,7 +9,7 @@ import cn.zjoin.story.base.controller.BaseController;
 import cn.zjoin.story.base.model.BaseResult;
 import cn.zjoin.story.base.model.Pagination;
 import cn.zjoin.story.business.model.Confession;
-import cn.zjoin.story.business.model.ConfessionOperator;
+import cn.zjoin.story.business.model.operator.ConfessionOperator;
 import cn.zjoin.story.business.service.ConfessionService;
 import cn.zjoin.story.core.aspet.Login;
 import cn.zjoin.story.util.QRCodeUtil;
@@ -103,7 +103,9 @@ public class LoveController extends BaseController {
 
         BaseResult result = new BaseResult();
         try {
-            pageInfo.setPageSize(10);
+            if( pageInfo.getPageSize()<=0){
+                pageInfo.setPageSize(10);
+            }
             confessionOperator.setIsaudit(1);
             confessionOperator.setIsauditoperator("=");
             confessionOperator.setIsprivate(0);
@@ -128,7 +130,7 @@ public class LoveController extends BaseController {
     @ResponseBody
     public BaseResult showi(String id) {
         BaseResult result = new BaseResult();
-        Confession confession = new Confession();
+        Confession confession =new Confession();
         confession.setId(id);
         result.setData(confessionService.getOneByEntity(confession));
         return result;

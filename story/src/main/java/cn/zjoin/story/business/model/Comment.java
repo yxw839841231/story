@@ -1,7 +1,10 @@
 package cn.zjoin.story.business.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "comment")
 public class Comment {
@@ -24,6 +27,7 @@ public class Comment {
     private Integer dz;
 
     private Date createtime;
+    private Integer type;
 
     /**
      * @return id
@@ -115,5 +119,13 @@ public class Comment {
      */
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

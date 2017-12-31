@@ -14,6 +14,6 @@ public interface CommentMapper extends Mapper<Comment> {
     List<ViewCommentArticle> maxCommentArticle();
     List<ViewCommentArticle> maxDzArticle();
     void dz(Long id);
-    List<ViewComment> getArticleCommentList(Long id);
+    List<ViewComment> getArticleCommentList(Comment comment);
     List<Article> topBrowseArticle();
 }

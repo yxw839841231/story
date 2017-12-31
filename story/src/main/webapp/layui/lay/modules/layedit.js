@@ -31,6 +31,8 @@ layui.define(['layer', 'form','ZJOINS'], function(exports){
         ,'left', 'center', 'right'
         ,'|'
         ,'link', 'unlink', 'face', 'image'
+        ,'|'
+        ,'code'
       ]
       ,hideTool: []
       ,height: 280 //默认高
@@ -479,8 +481,9 @@ layui.define(['layer', 'form','ZJOINS'], function(exports){
       ,code: function(range){
         code.call(body, function(pre){
           insertInline.call(iframeWin, 'pre', {
-            text: pre.code
-            ,'lay-lang': pre.lang
+            text: pre.code,
+              'lay-lang': pre.lang,
+              'class':'layui-code'
           }, range);
         });
       }

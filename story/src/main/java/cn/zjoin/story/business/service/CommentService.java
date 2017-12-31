@@ -26,7 +26,7 @@ public abstract class CommentService extends BaseService<Comment> {
 
     public abstract void dz(Long id);
 
-    public abstract List<ViewComment> getArticleCommentList(Long id);
+    public abstract List<ViewComment> getArticleCommentList(Comment comment);
 
     public abstract List<Article> topBrowseArticle();
 

@@ -9,7 +9,7 @@ import cn.zjoin.story.base.controller.BaseController;
 import cn.zjoin.story.base.model.BaseResult;
 import cn.zjoin.story.base.model.Pagination;
 import cn.zjoin.story.business.model.Carousel;
-import cn.zjoin.story.business.model.CarouselOperator;
+import cn.zjoin.story.business.model.operator.CarouselOperator;
 import cn.zjoin.story.business.service.CarouselService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.http.MediaType;

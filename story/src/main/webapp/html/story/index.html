@@ -12,21 +12,26 @@
     <script>
         layui.config({
             base: '/layui/js/modules/'
-        }).use('article');
+        }).use('article','common');
     </script>
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header story-header">
-        <!--<div class="layui-logo" style="margin-left: 30px"><img src="http://ovkuoveh9.bkt.clouddn.com/logo-2.png"></div>-->
         <ul class="layui-nav layui-layout-center">
-            <li class="layui-nav-item"><a href="/">首页</a></li>
-            <!--<li class="layui-nav-item"><a href="">闲话杂谈</a></li>
-            <li class="layui-nav-item"><a href="">胡说八道</a></li>
-            <li class="layui-nav-item"><a href="">高谈阔论</a></li>
-            <li class="layui-nav-item"><a href="">华山论剑</a></li>-->
+            <div class="story-nav">
+                <li class="layui-nav-item"><a href="http://www.story521.cn/"><img src="http://image.story521.cn/logo64.ico" style="width: 30px;height: 30px;border-radius:15px;"></a></li>
+                <li class="layui-nav-item layui-this"><a href="http://www.story521.cn/html/story.html"><img src="http://image.story521.cn/storys64.ico" style="width: 30px;height: 30px;border-radius:15px;"></a></li>
+                <li class="layui-nav-item"><a href="http://www.story521.cn/html/love/love.html"><img src="http://image.story521.cn/love128.ico" style="width: 30px;height: 30px;border-radius:15px;"></a></li>
+                <li class="layui-nav-item"><a href="http://www.story521.cn/html/study.html"><img src="http://image.story521.cn/study128.ico" style="width: 30px;height: 30px;border-radius:15px;background: #ffffff"></a></li>
+            </div>
         </ul>
-        <ul class="layui-nav layui-layout-right"></ul>
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item " id = "loginli">登录</li>
+            <li class="layui-nav-item ">&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+            <li class="layui-nav-item " id = "registli">注册</li>
+        </ul>
     </div>
     <div style="height: 61px;clear: both"></div>
     <div class="layui-row" style="padding:5px;">
@@ -50,15 +55,6 @@
                         </select>
                     </div>
                 </div>
-                <!--<div class="layui-inline">
-                    <label class="layui-form-label">浏览权限</label>
-                    <div class="layui-input-inline">
-                        <select name="browsepermission" class="newsLook"  lay-filter="browseLook">
-                            <option value="0">开放浏览</option>
-                            <option value="1">会员浏览</option>
-                        </select>
-                    </div>
-                </div>-->
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">关键字</label>
@@ -103,6 +99,9 @@
     <div class="story-foot" style="text-align: center">
         2017 @记忆的尽头是故事 | <a href="http://www.miibeian.gov.cn/" target="_blank" style="color: #92B8B1">浙ICP备17039224号-1</a>
     </div>
+    <p style="display: none;">
+        <script src="https://s19.cnzz.com/z_stat.php?id=1271311300&web_id=1271311300" language="JavaScript"></script>
+    </p>
 </div>
 </body>
 </html>

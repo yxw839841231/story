@@ -16,7 +16,7 @@
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
 
-  <select id="queryByPage" parameterType="cn.zjoin.story.business.model.ArticleOperator" resultMap="BaseResultMap">
+  <select id="queryByPage" parameterType="cn.zjoin.story.business.model.operator.ArticleOperator" resultMap="BaseResultMap">
     select * from article t <include refid="sqlWhere"/>;
   </select>
 

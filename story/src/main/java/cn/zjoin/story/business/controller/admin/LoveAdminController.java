@@ -10,7 +10,7 @@ import cn.zjoin.story.base.model.BaseResult;
 import cn.zjoin.story.base.model.Pagination;
 import cn.zjoin.story.business.controller.love.LoveController;
 import cn.zjoin.story.business.model.Confession;
-import cn.zjoin.story.business.model.ConfessionOperator;
+import cn.zjoin.story.business.model.operator.ConfessionOperator;
 import cn.zjoin.story.business.service.ConfessionService;
 import com.github.pagehelper.PageInfo;
 import org.apache.log4j.Logger;

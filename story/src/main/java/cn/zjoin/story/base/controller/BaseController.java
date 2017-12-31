@@ -40,6 +40,10 @@ public class BaseController {
         return "admin";
     }
 
+    @RequestMapping(value = "study")
+    public String study() {
+        return "study";
+    }
     protected User getUser(){
         User user = TokenManager.getToken();
         return user;

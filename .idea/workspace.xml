@@ -10,17 +10,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c70a3507-4f24-4f6b-ab07-962cbcb6abc5" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/story.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/story_war.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/story_war.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/admin.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/ArticleOperator.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/operator/ArticleOperator.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/CarouselOperator.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/operator/CarouselOperator.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/CommentOperator.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/operator/CommentOperator.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/ConfessionOperator.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/operator/ConfessionOperator.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/UserOperator.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/operator/UserOperator.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/article/detail.js" afterPath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/story/detail_article.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/story_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/story_war_exploded.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/pom.xml" afterPath="$PROJECT_DIR$/story/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/base/controller/BaseController.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/base/controller/BaseController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/ArticleController.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/ArticleController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/CarouselController.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/CarouselController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/LoveAdminController.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/LoveAdminController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/MenuController.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/MenuController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/UserController.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/UserController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/love/LoveController.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/love/LoveController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/ArticleStoryController.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/ArticleStoryController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/CommentStoryController.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/CommentStoryController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/StoryController.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/StoryController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/UserStoryController.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/UserStoryController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/dao/CommentMapper.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/dao/CommentMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/Comment.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/Comment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/Confession.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/Confession.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/User.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/service/CommentService.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/service/CommentService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/service/impl/CommentServiceImpl.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/service/impl/CommentServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/core/shiro/TokenManager.java" afterPath="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/core/shiro/TokenManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/resources/Mapper/ArticleMapper.xml" afterPath="$PROJECT_DIR$/story/src/main/resources/Mapper/ArticleMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/resources/Mapper/CommentMapper.xml" afterPath="$PROJECT_DIR$/story/src/main/resources/Mapper/CommentMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/resources/Mapper/ConfessionMapper.xml" afterPath="$PROJECT_DIR$/story/src/main/resources/Mapper/ConfessionMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/resources/Mapper/UserMapper.xml" afterPath="$PROJECT_DIR$/story/src/main/resources/Mapper/UserMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/resources/generatorConfig.xml" afterPath="$PROJECT_DIR$/story/src/main/resources/generatorConfig.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/WEB-INF/jsp/love.jsp" afterPath="$PROJECT_DIR$/story/src/main/webapp/WEB-INF/jsp/love.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/html/admin/index.html" afterPath="$PROJECT_DIR$/story/src/main/webapp/html/admin/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/html/index.html" afterPath="$PROJECT_DIR$/story/src/main/webapp/html/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/html/love/love.html" afterPath="$PROJECT_DIR$/story/src/main/webapp/html/love/love.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/html/love/make.html" afterPath="$PROJECT_DIR$/story/src/main/webapp/html/love/make.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/html/love/show.html" afterPath="$PROJECT_DIR$/story/src/main/webapp/html/love/show.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/html/me.html" afterPath="$PROJECT_DIR$/story/src/main/webapp/html/me.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/html/story.html" afterPath="$PROJECT_DIR$/story/src/main/webapp/html/story.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/html/story/article/detail.html" afterPath="$PROJECT_DIR$/story/src/main/webapp/html/story/article/detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/article/detail.js" afterPath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/article/detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/html/story/index.html" afterPath="$PROJECT_DIR$/story/src/main/webapp/html/story/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/html/study.html" afterPath="$PROJECT_DIR$/story/src/main/webapp/html/study.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/layui/css/layui2.css" afterPath="$PROJECT_DIR$/story/src/main/webapp/layui/css/layui2.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/layui/css/story.css" afterPath="$PROJECT_DIR$/story/src/main/webapp/layui/css/story.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/common.js" afterPath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/common.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/index.js" afterPath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/love.js" afterPath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/love.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/show.js" afterPath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/show.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/story.js" afterPath="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/story.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/layedit.js" afterPath="$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/layedit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/zjoin.js" afterPath="$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/zjoin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/story/src/main/webapp/layui/layui.js" afterPath="$PROJECT_DIR$/story/src/main/webapp/layui/layui.js" />
     </list>
     <ignored path="$PROJECT_DIR$/story/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,115 +86,142 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ArticleStoryController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/ArticleStoryController.java">
+      <file leaf-file-name="love.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/love/love.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="66" column="36" lean-forward="true" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="30" column="20" lean-forward="true" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+            <state relative-caret-position="269">
+              <caret line="28" column="21" lean-forward="false" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
               <folding>
-                <marker date="1514264019000" expanded="true" signature="535:551" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="1138:1241" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="1255:1271" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="1498:1553" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="1697:1730" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="1848:1885" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="1938:2010" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="2086:2142" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="2216:2230" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="2232:2240" ph="&amp;##xe8f4;" />
-                <marker date="1514264019000" expanded="true" signature="2310:2359" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="2438:2452" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="3291:3339" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="3557:3612" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="3684:3717" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="3835:3872" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="3925:3997" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="4070:4108" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="4178:4192" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="4194:4202" ph="&amp;##xe8f4;" />
-                <marker date="1514264019000" expanded="true" signature="4268:4317" ph="..." />
-                <marker date="1514264019000" expanded="true" signature="5248:5256" ph="&amp;##xe91d;" />
-                <marker date="1514264019000" expanded="true" signature="5260:5266" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="5286:5292" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="5292:5298" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="5298:5304" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="5393:5401" ph="&amp;##xe998;" />
-                <marker date="1514264019000" expanded="true" signature="5405:5411" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="5431:5437" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="5437:5443" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="5443:5449" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="5537:5545" ph="&amp;##xe7fd;" />
-                <marker date="1514264019000" expanded="true" signature="5549:5555" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="5575:5581" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="5581:5587" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="6042:6048" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="6634:6642" ph="&amp;##xe91f;" />
-                <marker date="1514264019000" expanded="true" signature="6646:6652" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="6672:6678" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="6678:6684" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="6684:6690" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="6780:6788" ph="&amp;##xe8b5;" />
-                <marker date="1514264019000" expanded="true" signature="6792:6798" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="6837:6843" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="6843:6849" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="6849:6855" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="6945:6953" ph="&amp;##xe87d;" />
-                <marker date="1514264019000" expanded="true" signature="6957:6963" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="6983:6989" ph="&amp;nbsp;" />
-                <marker date="1514264019000" expanded="true" signature="6989:6995" ph="&amp;nbsp;" />
+                <marker date="1514717991000" expanded="false" signature="1565:1609" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="detail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/story/article/detail.html">
+      <file leaf-file-name="show.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/love/show.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="486">
+              <caret line="73" column="6" lean-forward="true" selection-start-line="73" selection-start-column="6" selection-end-line="73" selection-end-column="6" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1514731871000" expanded="true" signature="2092:2166" ph="..." />
+                <marker date="1514731871000" expanded="false" signature="3292:3329" ph="..." />
+                <marker date="1514731871000" expanded="false" signature="3376:3390" ph="..." />
+                <marker date="1514731871000" expanded="false" signature="3434:3448" ph="..." />
+                <marker date="1514731871000" expanded="false" signature="3489:3651" ph="..." />
+                <marker date="1514731871000" expanded="false" signature="4107:4211" ph="..." />
+                <marker date="1514731871000" expanded="false" signature="4278:4320" ph="..." />
+                <marker date="1514731871000" expanded="false" signature="4386:4419" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/show.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-445">
+              <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="28" />
+              <folding>
+                <element signature="e#2892#6112#0" expanded="false" />
+                <element signature="e#6139#11230#0" expanded="false" />
+                <element signature="e#8134#9060#0" expanded="false" />
+                <element signature="e#11253#12388#0" expanded="false" />
+                <marker date="1514731082000" expanded="true" signature="385:519" ph="..." />
+                <marker date="1514731082000" expanded="true" signature="536:563" ph="..." />
+                <marker date="1514731082000" expanded="true" signature="612:742" ph="..." />
+                <marker date="1514731082000" expanded="true" signature="759:783" ph="..." />
+                <marker date="1514731082000" expanded="true" signature="1184:1364" ph="..." />
+                <marker date="1514731082000" expanded="true" signature="1407:1441" ph="..." />
+                <marker date="1514731082000" expanded="true" signature="1540:1683" ph="..." />
+                <marker date="1514731082000" expanded="true" signature="1726:1760" ph="..." />
+                <marker date="1514731082000" expanded="true" signature="2343:2417" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detail_study.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/story/detail_study.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+              <folding>
+                <marker date="1514698958000" expanded="true" signature="1823:1852" ph="..." />
+                <marker date="1514698958000" expanded="true" signature="1854:1862" ph="&amp;##xe061;" />
+                <marker date="1514698958000" expanded="true" signature="3842:3850" ph="&amp;##xe8dc;" />
+                <marker date="1514698958000" expanded="true" signature="4004:4012" ph="&amp;##xeac9;" />
+                <marker date="1514698958000" expanded="true" signature="6607:6615" ph="&amp;##xe8dc;" />
+                <marker date="1514698958000" expanded="true" signature="6747:6755" ph="&amp;##xeac9;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StudyStoryController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/StudyStoryController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="319">
+              <caret line="53" column="43" lean-forward="false" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StoryController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/StoryController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="247">
-              <caret line="13" column="28" lean-forward="false" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
+              <caret line="42" column="32" lean-forward="false" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/index.html">
+      <file leaf-file-name="LoveController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/love/LoveController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
-              <caret line="47" column="43" lean-forward="true" selection-start-line="47" selection-start-column="43" selection-end-line="47" selection-end-column="43" />
-              <folding>
-                <element signature="n#ul#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="111">
+              <caret line="122" column="17" lean-forward="false" selection-start-line="122" selection-start-column="17" selection-end-line="122" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="study.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/study.html">
+      <file leaf-file-name="ConfessionOperator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/operator/ConfessionOperator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="55" column="39" lean-forward="true" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
+            <state relative-caret-position="318">
+              <caret line="44" column="33" lean-forward="false" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="love.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/love.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="35" column="7" lean-forward="false" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
               <folding>
-                <element signature="n#ul#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1514708547000" expanded="true" signature="730:748" ph="..." />
+                <marker date="1514708547000" expanded="true" signature="1601:1662" ph="..." />
+                <marker date="1514708547000" expanded="true" signature="1731:1821" ph="..." />
+                <marker date="1514708547000" expanded="true" signature="1898:1912" ph="..." />
+                <marker date="1514708547000" expanded="true" signature="1914:1922" ph="&amp;##xe8f5;" />
+                <marker date="1514708547000" expanded="true" signature="1959:1973" ph="..." />
+                <marker date="1514708547000" expanded="true" signature="1975:1983" ph="&amp;##xe8f4;" />
+                <marker date="1514708547000" expanded="true" signature="1991:1997" ph="&amp;nbsp;" />
+                <marker date="1514708547000" expanded="true" signature="2226:2272" ph="..." />
+                <marker date="1514708547000" expanded="true" signature="2385:2589" ph="..." />
+                <marker date="1514708547000" expanded="true" signature="2620:2667" ph="..." />
+                <marker date="1514708547000" expanded="true" signature="2669:2677" ph="&amp;##xe87e;" />
+                <marker date="1514708547000" expanded="true" signature="2807:3013" ph="..." />
+                <marker date="1514708547000" expanded="true" signature="3044:3091" ph="..." />
+                <marker date="1514708547000" expanded="true" signature="3093:3101" ph="&amp;##xe992;" />
+                <marker date="1514708547000" expanded="true" signature="4198:4230" ph="..." />
+                <marker date="1514708547000" expanded="true" signature="4242:4264" ph="data:" />
               </folding>
             </state>
           </provider>
@@ -170,14 +240,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>carousel</find>
-      <find>aop</find>
-      <find>customer_timeout</find>
-      <find>newestArticle</find>
-      <find>story-main-right-box</find>
-      <find>debu</find>
-      <find>debugger</find>
-      <find>&amp;</find>
       <find>pageSize</find>
       <find>pageCurrent</find>
       <find>data.data</find>
@@ -193,12 +255,31 @@
       <find>context</find>
       <find>admin</find>
       <find>detai</find>
+      <find>Article</find>
+      <find>article</find>
+      <find>\n</find>
+      <find>code</find>
+      <find>cnzz</find>
+      <find>_1</find>
+      <find>\&quot;</find>
+      <find>a.font</find>
+      <find>Particle3D</find>
+      <find>render</find>
+      <find>fillText</find>
+      <find>opacity</find>
+      <find>globalAlpha</find>
+      <find>$</find>
+      <find>ran</find>
     </findStrings>
     <replaceStrings>
       <replace />
       <replace>article</replace>
       <replace>pageNum</replace>
       <replace>love_list_table</replace>
+      <replace>study</replace>
+      <replace>Study</replace>
+      <replace>function(</replace>
+      <replace>&quot;</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/plugin/bjui</dir>
@@ -215,57 +296,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/story/src/main/webapp/html/admin/love/index.html" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/LoveAdminController.java" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/make.js" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/ConfessionOperator.java" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/flow.js" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/css/love.css" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/html/admin/carousel/index.html" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/css/layui2.css" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/StoryController.java" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/core/shiro/TokenManager.java" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/element.js" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/html/logind.html" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/love/LoveController.java" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/html/admin/menu/index.html" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/article.js" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/html/me.html" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/html/love/make.html" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/html/love/show.html" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/love.js" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/util/constant/RedisConstant.java" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/MenuController.java" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/Menu.java" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/System.java" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/UserOperator.java" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/UserController.java" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/html/admin/user/index.html" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/CommentOperator.java" />
+        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/dao/StudyMapper.java" />
+        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/service/StudyService.java" />
+        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/service/impl/StudyServiceImpl.java" />
         <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/dao/CommentMapper.java" />
         <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/service/CommentService.java" />
         <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/service/impl/CommentServiceImpl.java" />
         <option value="$PROJECT_DIR$/story/src/main/resources/Mapper/CommentMapper.xml" />
         <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/CommentStoryController.java" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/css/article.css" />
-        <option value="$PROJECT_DIR$/story/src/main/resources/log4j.properties" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/html/story/index.html" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/ArticleController.java" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/form.js" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/base/model/BaseResult.java" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/util/PictureUtil.java" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/UserStoryController.java" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/article/detail.js" />
+        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/StudyStoryController.java" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/html/admin/index.html" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/admin.js" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/css/study.css" />
         <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/common.js" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/html/love/love.html" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/story.js" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/html/story.html" />
-        <option value="$PROJECT_DIR$/story/src/main/webapp/html/story/article/detail.html" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/base/service/BaseService.java" />
-        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/ArticleStoryController.java" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/css/story.css" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/html/love/make.html" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/css/layui2.css" />
+        <option value="$PROJECT_DIR$/story/src/main/resources/log4j.properties" />
+        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/base/controller/MailController.java" />
         <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/index.js" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/story.js" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/study.js" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/story/detail_article.js" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/layedit.js" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/html/story/index.html" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/html/me.html" />
+        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/MenuController.java" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/story/detail_study.js" />
+        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/base/controller/BaseController.java" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/drawHeart.js" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/jquery.js" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/love.js" />
+        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/Confession.java" />
+        <option value="$PROJECT_DIR$/story/src/main/resources/Mapper/ConfessionMapper.xml" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/snow.js" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/layui.js" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/plugin/love/snow.js" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/index.html" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/html/love/love.html" />
         <option value="$PROJECT_DIR$/story/src/main/webapp/html/index.html" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/html/story.html" />
         <option value="$PROJECT_DIR$/story/src/main/webapp/html/study.html" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/html/story/article/detail.html" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/html/story/study/detail_study.html" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/zjoin.js" />
+        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/StoryController.java" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/WEB-INF/jsp/study.jsp" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/WEB-INF/jsp/love.jsp" />
+        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/operator/ConfessionOperator.java" />
+        <option value="$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/love/LoveController.java" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/show.js" />
+        <option value="$PROJECT_DIR$/story/src/main/webapp/html/love/show.html" />
       </list>
     </option>
   </component>
@@ -317,6 +398,17 @@
           <item name="story Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
         </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="story Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="story Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Plugins" type="7aea1407:MavenProjectsStructure$PluginsNode" />
+          <item name="mybatis-generator" type="36feed69:MavenProjectsStructure$PluginNode" />
+        </path>
       </expand>
       <select />
     </treeState>
@@ -344,7 +436,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -404,26 +495,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="story" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="story" type="b2602c69:ProjectViewProjectNode" />
-              <item name="story" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="story" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="story" type="b2602c69:ProjectViewProjectNode" />
-              <item name="story" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="story" type="462c0819:PsiDirectoryNode" />
               <item name="business" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -445,17 +516,7 @@
               <item name="story" type="462c0819:PsiDirectoryNode" />
               <item name="business" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="story" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="story" type="b2602c69:ProjectViewProjectNode" />
-              <item name="story" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="story" type="462c0819:PsiDirectoryNode" />
-              <item name="business" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="love" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="story" type="b2602c69:ProjectViewProjectNode" />
@@ -472,10 +533,105 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="html" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="story" type="b2602c69:ProjectViewProjectNode" />
+              <item name="story" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="html" type="462c0819:PsiDirectoryNode" />
+              <item name="love" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="story" type="b2602c69:ProjectViewProjectNode" />
+              <item name="story" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="layui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="story" type="b2602c69:ProjectViewProjectNode" />
+              <item name="story" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="layui" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="story" type="b2602c69:ProjectViewProjectNode" />
+              <item name="story" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="layui" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="love" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="story" type="b2602c69:ProjectViewProjectNode" />
+              <item name="story" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="layui" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="story" type="b2602c69:ProjectViewProjectNode" />
+              <item name="story" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="layui" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="story" type="b2602c69:ProjectViewProjectNode" />
+              <item name="story" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="layui" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="love" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="story" type="b2602c69:ProjectViewProjectNode" />
+              <item name="story" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="layui" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="story" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="story" type="b2602c69:ProjectViewProjectNode" />
+              <item name="story" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="story" type="b2602c69:ProjectViewProjectNode" />
+              <item name="story" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
@@ -490,23 +646,26 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/plugin/love" />
+      <recent name="$PROJECT_DIR$/story/src/main/webapp/layui/images/love" />
+      <recent name="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/story" />
+      <recent name="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love" />
       <recent name="$PROJECT_DIR$/story/src/main/webapp/html" />
-      <recent name="$PROJECT_DIR$/story/src/main/webapp/html/love" />
-      <recent name="$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules" />
-      <recent name="$PROJECT_DIR$/story/src/main/webapp/layui/css" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="cn.zjoin.story.business.model" />
+      <recent name="cn.zjoin.story.business.controller.story" />
+      <recent name="cn.zjoin.story.business.model.operator" />
       <recent name="cn.zjoin.story.business.controller.admin" />
       <recent name="cn.zjoin.story.business.service.impl" />
       <recent name="cn.zjoin.story.business.service" />
-      <recent name="cn.zjoin.story.business.controller.love" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love" />
-      <recent name="$PROJECT_DIR$/story/src/main/webapp/html" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/story/src/main/webapp/layui/images/love" />
+      <recent name="$PROJECT_DIR$/story/src/main/webapp/layui/images/love/snow" />
+      <recent name="$PROJECT_DIR$/story/src/main/webapp/layui/images" />
+      <recent name="$PROJECT_DIR$/story/src/main/webapp/WEB-INF/jsp" />
+      <recent name="$PROJECT_DIR$/story/src/main/webapp/layui/css/img" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -522,44 +681,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Tomcat Server.story">
-    <configuration name="CreateImageUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="cn.zjoin.story.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="cn.zjoin.story.util.CreateImageUtil" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="story" />
-      <envs />
-    </configuration>
-    <configuration name="LoveController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="cn.zjoin.story.business.controller.love.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="cn.zjoin.story.business.controller.love.LoveController" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="story" />
-      <envs />
-    </configuration>
     <configuration name="MD5Util" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -579,6 +700,44 @@
       <module name="story" />
       <envs />
     </configuration>
+    <configuration name="MailController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="cn.zjoin.story.base.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="cn.zjoin.story.base.controller.MailController" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="story" />
+      <envs />
+    </configuration>
+    <configuration name="MailUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="cn.zjoin.story.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="cn.zjoin.story.util.MailUtil" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="story" />
+      <envs />
+    </configuration>
     <configuration name="PictureUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -587,6 +746,25 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="cn.zjoin.story.util.PictureUtil" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="story" />
+      <envs />
+    </configuration>
+    <configuration name="SendMail" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="cn.zjoin.story.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="cn.zjoin.story.util.mail.SendMail" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -773,7 +951,7 @@
       </ConfigurationWrapper>
     </configuration>
     <configuration name="story" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.23" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="UPDATING_POLICY" value="restart-server" />
+      <option name="UPDATING_POLICY" value="update-resources" />
       <deployment>
         <artifact name="story:war exploded">
           <settings>
@@ -879,19 +1057,21 @@
         </option>
       </method>
     </configuration>
-    <list size="5">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Tomcat Server.story" />
-      <item index="1" class="java.lang.String" itemvalue="Application.CreateImageUtil" />
-      <item index="2" class="java.lang.String" itemvalue="Application.LoveController" />
-      <item index="3" class="java.lang.String" itemvalue="Application.MD5Util" />
-      <item index="4" class="java.lang.String" itemvalue="Application.PictureUtil" />
+      <item index="1" class="java.lang.String" itemvalue="Application.MD5Util" />
+      <item index="2" class="java.lang.String" itemvalue="Application.PictureUtil" />
+      <item index="3" class="java.lang.String" itemvalue="Application.SendMail" />
+      <item index="4" class="java.lang.String" itemvalue="Application.MailUtil" />
+      <item index="5" class="java.lang.String" itemvalue="Application.MailController" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Application.PictureUtil" />
-        <item index="1" class="java.lang.String" itemvalue="Application.MD5Util" />
-        <item index="2" class="java.lang.String" itemvalue="Application.LoveController" />
-        <item index="3" class="java.lang.String" itemvalue="Application.CreateImageUtil" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Application.MailController" />
+        <item index="1" class="java.lang.String" itemvalue="Application.MailUtil" />
+        <item index="2" class="java.lang.String" itemvalue="Application.SendMail" />
+        <item index="3" class="java.lang.String" itemvalue="Application.PictureUtil" />
+        <item index="4" class="java.lang.String" itemvalue="Application.MD5Util" />
       </list>
     </recent_temporary>
   </component>
@@ -932,18 +1112,26 @@
       <workItem from="1514181558345" duration="1228000" />
       <workItem from="1514255577154" duration="744000" />
       <workItem from="1514262947540" duration="2276000" />
+      <workItem from="1514349201915" duration="3133000" />
+      <workItem from="1514375022407" duration="878000" />
+      <workItem from="1514380124225" duration="9004000" />
+      <workItem from="1514435429054" duration="10256000" />
+      <workItem from="1514510700731" duration="5541000" />
+      <workItem from="1514534528168" duration="6388000" />
+      <workItem from="1514557137102" duration="31359000" />
+      <workItem from="1514700581145" duration="19663000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="298736000" />
+    <option name="totallyTimeSpent" value="384958000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47968286" sideWeight="0.50745475" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6381182" sideWeight="0.51216024" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3268999" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47968286" sideWeight="0.5058573" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20386267" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -954,18 +1142,18 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6382557" sideWeight="0.49361023" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6381182" sideWeight="0.48783976" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32448733" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32448733" sideWeight="0.49713877" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32448733" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.72014475" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3268999" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32606542" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23962805" sideWeight="0.46441495" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25035766" sideWeight="0.46441495" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26108727" sideWeight="0.53558505" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1001,461 +1189,571 @@
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/service/impl/CommentServiceImpl.java</url>
-          <line>58</line>
-          <properties />
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/base/service/BaseService.java</url>
           <line>34</line>
           <properties />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/ArticleOperator.java</url>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/service/impl/StudyServiceImpl.java</url>
+          <line>42</line>
+          <properties />
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/base/controller/MailController.java</url>
+          <line>55</line>
+          <properties />
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/CommentStoryController.java</url>
+          <line>79</line>
+          <properties />
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/service/impl/CommentServiceImpl.java</url>
           <line>58</line>
-          <properties field="coveroperator" class="cn.zjoin.story.business.model.ArticleOperator" />
+          <properties />
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/CommentStoryController.java</url>
+          <line>65</line>
+          <properties />
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/operator/ArticleOperator.java</url>
+          <line>58</line>
+          <properties field="coveroperator" class="cn.zjoin.story.business.model.operator.ArticleOperator" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="30" />
+      <option name="time" value="35" />
     </breakpoint-manager>
-    <watches-manager />
+    <watches-manager>
+      <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
+        <watch expression="System.currentTimeMillis()" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/admin/menu/index.html">
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/css/layui2.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="383" column="11" lean-forward="false" selection-start-line="383" selection-start-column="11" selection-end-line="383" selection-end-column="11" />
+        <state relative-caret-position="232">
+          <caret line="704" column="12" lean-forward="true" selection-start-line="704" selection-start-column="12" selection-end-line="704" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/story/story.html">
+    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/base/controller/MailController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/me.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="208" column="10" lean-forward="false" selection-start-line="208" selection-start-column="10" selection-end-line="208" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/love/show.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/css/common.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/love/love2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-985">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/love/make.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="106" column="22" lean-forward="true" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/love.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1449">
-          <caret line="96" column="13" lean-forward="true" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/util/constant/SvgUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="6" column="42" lean-forward="true" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/util/constant/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/System.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="43" lean-forward="false" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/MenuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="44" column="19" lean-forward="false" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/util/constant/RedisConstant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="64" column="36" lean-forward="false" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/UserOperator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/admin/user/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2641">
-          <caret line="139" column="17" lean-forward="true" selection-start-line="139" selection-start-column="17" selection-end-line="139" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="46" column="32" lean-forward="false" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/ConfessionOperator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="12" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/CommentOperator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="13" column="28" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/service/CommentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="20" column="60" lean-forward="false" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/resources/Mapper/CommentMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="10" column="69" lean-forward="true" selection-start-line="10" selection-start-column="69" selection-end-line="10" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/Comment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/dao/CommentMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="18" column="1" lean-forward="false" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/article.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/css/article.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="39" lean-forward="false" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
+        <state relative-caret-position="297">
+          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/story/src/main/resources/log4j.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="46" lean-forward="false" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/story/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1102">
-          <caret line="58" column="33" lean-forward="false" selection-start-line="58" selection-start-column="33" selection-end-line="58" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/ArticleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1995">
-          <caret line="126" column="9" lean-forward="false" selection-start-line="126" selection-start-column="9" selection-end-line="126" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/form.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1311">
-          <caret line="69" column="10" lean-forward="false" selection-start-line="69" selection-start-column="10" selection-end-line="69" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/src.zip!/java/util/Random.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="227" column="54" lean-forward="true" selection-start-line="227" selection-start-column="54" selection-end-line="227" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/util/PictureUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="38" column="67" lean-forward="true" selection-start-line="38" selection-start-column="67" selection-end-line="38" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/regist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/UserStoryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/Article.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="41" column="28" lean-forward="false" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/article/detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="51" lean-forward="false" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/story.js.bak">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/story.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="661">
-          <caret line="129" column="18" lean-forward="false" selection-start-line="129" selection-start-column="18" selection-end-line="129" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/love/love.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="54" column="10" lean-forward="true" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/service/impl/CommentServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="34" column="38" lean-forward="false" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="56" column="28" lean-forward="true" selection-start-line="56" selection-start-column="28" selection-end-line="56" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/base/model/BaseResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="717">
-          <caret line="77" column="45" lean-forward="false" selection-start-line="77" selection-start-column="45" selection-end-line="77" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/base/model/Pagination.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="34" column="16" lean-forward="false" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/CommentStoryController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="673">
-          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/story.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="16" column="15" lean-forward="false" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/service/ArticleService.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/base/service/BaseService.java">
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/article.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="22" column="33" lean-forward="false" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="33" />
-          <folding>
-            <element signature="method#getList#0;class#BaseService#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="261">
+          <caret line="34" column="25" lean-forward="true" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/ArticleStoryController.java">
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/admin.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="66" column="36" lean-forward="true" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/story/article/detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="28" lean-forward="false" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-          <folding />
+        <state relative-caret-position="250">
+          <caret line="47" column="25" lean-forward="true" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="30" column="20" lean-forward="true" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+        <state relative-caret-position="-1088">
+          <caret line="106" column="84" lean-forward="false" selection-start-line="106" selection-start-column="84" selection-end-line="106" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/story.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="103" column="60" lean-forward="false" selection-start-line="103" selection-start-column="60" selection-end-line="103" selection-end-column="60" />
           <folding>
-            <marker date="1514264019000" expanded="true" signature="535:551" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="1138:1241" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="1255:1271" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="1498:1553" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="1697:1730" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="1848:1885" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="1938:2010" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="2086:2142" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="2216:2230" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="2232:2240" ph="&amp;##xe8f4;" />
-            <marker date="1514264019000" expanded="true" signature="2310:2359" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="2438:2452" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="3291:3339" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="3557:3612" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="3684:3717" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="3835:3872" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="3925:3997" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="4070:4108" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="4178:4192" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="4194:4202" ph="&amp;##xe8f4;" />
-            <marker date="1514264019000" expanded="true" signature="4268:4317" ph="..." />
-            <marker date="1514264019000" expanded="true" signature="5248:5256" ph="&amp;##xe91d;" />
-            <marker date="1514264019000" expanded="true" signature="5260:5266" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="5286:5292" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="5292:5298" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="5298:5304" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="5393:5401" ph="&amp;##xe998;" />
-            <marker date="1514264019000" expanded="true" signature="5405:5411" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="5431:5437" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="5437:5443" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="5443:5449" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="5537:5545" ph="&amp;##xe7fd;" />
-            <marker date="1514264019000" expanded="true" signature="5549:5555" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="5575:5581" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="5581:5587" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="6042:6048" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="6634:6642" ph="&amp;##xe91f;" />
-            <marker date="1514264019000" expanded="true" signature="6646:6652" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="6672:6678" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="6678:6684" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="6684:6690" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="6780:6788" ph="&amp;##xe8b5;" />
-            <marker date="1514264019000" expanded="true" signature="6792:6798" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="6837:6843" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="6843:6849" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="6849:6855" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="6945:6953" ph="&amp;##xe87d;" />
-            <marker date="1514264019000" expanded="true" signature="6957:6963" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="6983:6989" ph="&amp;nbsp;" />
-            <marker date="1514264019000" expanded="true" signature="6989:6995" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="1349:1397" ph="..." />
+            <marker date="1514653443000" expanded="true" signature="1637:1692" ph="..." />
+            <marker date="1514653443000" expanded="true" signature="1746:1779" ph="..." />
+            <marker date="1514653443000" expanded="true" signature="1897:1934" ph="..." />
+            <marker date="1514653443000" expanded="true" signature="1987:2059" ph="..." />
+            <marker date="1514653443000" expanded="true" signature="2132:2170" ph="..." />
+            <marker date="1514653443000" expanded="true" signature="2240:2254" ph="..." />
+            <marker date="1514653443000" expanded="true" signature="2256:2264" ph="&amp;##xe8f4;" />
+            <marker date="1514653443000" expanded="true" signature="2330:2379" ph="..." />
+            <marker date="1514653443000" expanded="true" signature="3272:3280" ph="&amp;##xe91d;" />
+            <marker date="1514653443000" expanded="true" signature="3284:3290" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="3310:3316" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="3316:3322" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="3322:3328" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="3417:3425" ph="&amp;##xe998;" />
+            <marker date="1514653443000" expanded="true" signature="3429:3435" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="3455:3461" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="3461:3467" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="3467:3473" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="3561:3569" ph="&amp;##xe7fd;" />
+            <marker date="1514653443000" expanded="true" signature="3573:3579" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="3599:3605" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="3605:3611" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="4125:4131" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="4745:4753" ph="&amp;##xe91f;" />
+            <marker date="1514653443000" expanded="true" signature="4757:4763" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="4783:4789" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="4789:4795" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="4795:4801" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="4891:4899" ph="&amp;##xe8b5;" />
+            <marker date="1514653443000" expanded="true" signature="4903:4909" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="4948:4954" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="4954:4960" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="4960:4966" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="5056:5064" ph="&amp;##xe87d;" />
+            <marker date="1514653443000" expanded="true" signature="5068:5074" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="5094:5100" ph="&amp;nbsp;" />
+            <marker date="1514653443000" expanded="true" signature="5100:5106" ph="&amp;nbsp;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/study.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="56" column="63" lean-forward="false" selection-start-line="56" selection-start-column="63" selection-end-line="56" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/crazycake/shiro-redis/2.4.2.1-RELEASE/shiro-redis-2.4.2.1-RELEASE.jar!/org/crazycake/shiro/RedisManager.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/core/RedisOperationManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="44" column="23" lean-forward="false" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/layedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="470" column="19" lean-forward="true" selection-start-line="470" selection-start-column="19" selection-end-line="470" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/story/detail_article.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="92" lean-forward="false" selection-start-line="18" selection-start-column="92" selection-end-line="18" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1653">
+          <caret line="87" column="25" lean-forward="true" selection-start-line="87" selection-start-column="25" selection-end-line="87" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/logina.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/logind.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/admin/MenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/base/controller/BaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="18" column="2" lean-forward="true" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="2" />
+          <folding>
+            <element signature="e#667#668#0" expanded="false" />
+            <element signature="e#718#719#0" expanded="false" />
+            <element signature="e#1084#1085#0" expanded="false" />
+            <element signature="e#1114#1115#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/images/love/heart.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="29534" lean-forward="true" selection-start-line="3" selection-start-column="29534" selection-end-line="3" selection-end-column="29534" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/make.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/love/make.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/Confession.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/resources/Mapper/ConfessionMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="69" lean-forward="true" selection-start-line="16" selection-start-column="69" selection-end-line="16" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/drawHeart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="61" column="8" lean-forward="true" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="325" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="325" />
+          <folding>
+            <marker date="1514715878000" expanded="true" signature="385:473" ph="..." />
+            <marker date="1514715878000" expanded="true" signature="385:552" ph="..." />
+            <marker date="1514715878000" expanded="true" signature="385:566" ph="..." />
+            <marker date="1514715878000" expanded="true" signature="609:643" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/layui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="746">
+          <caret line="404" column="37" lean-forward="false" selection-start-line="404" selection-start-column="37" selection-end-line="404" selection-end-column="37" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="1399" column="0" lean-forward="false" selection-start-line="1399" selection-start-column="0" selection-end-line="1399" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/me.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3069">
+          <caret line="251" column="8" lean-forward="false" selection-start-line="251" selection-start-column="8" selection-end-line="251" selection-end-column="8" />
+          <folding>
+            <marker date="1514659574000" expanded="true" signature="1628:1642" ph="..." />
+            <marker date="1514659574000" expanded="true" signature="4064:4107" ph="..." />
+            <marker date="1514659574000" expanded="true" signature="5388:5431" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="47" column="43" lean-forward="true" selection-start-line="47" selection-start-column="43" selection-end-line="47" selection-end-column="43" />
+        <state relative-caret-position="308">
+          <caret line="33" column="20" lean-forward="false" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
           <folding>
-            <element signature="n#ul#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1514717991000" expanded="false" signature="1846:1890" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/story.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="27" column="15" lean-forward="false" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
+          <folding>
+            <marker date="1514717991000" expanded="false" signature="1531:1575" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/story/story.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1613">
+          <caret line="85" column="8" lean-forward="false" selection-start-line="83" selection-start-column="4" selection-end-line="85" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/story/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="641">
+          <caret line="103" column="8" lean-forward="false" selection-start-line="103" selection-start-column="8" selection-end-line="103" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/study.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="55" column="39" lean-forward="true" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
+        <state relative-caret-position="304">
+          <caret line="16" column="38" lean-forward="false" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
           <folding>
-            <element signature="n#ul#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1514717991000" expanded="false" signature="1681:1725" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/story/article/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="36" column="16" lean-forward="false" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#li#0;n#div#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#li#1;n#div#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#li#2;n#div#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/story/study/detail_study.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="17" column="38" lean-forward="false" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+          <folding>
+            <marker date="1514717991000" expanded="false" signature="1937:1981" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/plugin/love/snow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="1627" column="66" lean-forward="true" selection-start-line="1627" selection-start-column="66" selection-end-line="1627" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/WEB-INF/jsp/study.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="7" lean-forward="true" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/WEB-INF/jsp/love.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/WEB-INF/jsp/admin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/WEB-INF/jsp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/love.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="35" column="7" lean-forward="false" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+          <folding>
+            <marker date="1514708547000" expanded="true" signature="730:748" ph="..." />
+            <marker date="1514708547000" expanded="true" signature="1601:1662" ph="..." />
+            <marker date="1514708547000" expanded="true" signature="1731:1821" ph="..." />
+            <marker date="1514708547000" expanded="true" signature="1898:1912" ph="..." />
+            <marker date="1514708547000" expanded="true" signature="1914:1922" ph="&amp;##xe8f5;" />
+            <marker date="1514708547000" expanded="true" signature="1959:1973" ph="..." />
+            <marker date="1514708547000" expanded="true" signature="1975:1983" ph="&amp;##xe8f4;" />
+            <marker date="1514708547000" expanded="true" signature="1991:1997" ph="&amp;nbsp;" />
+            <marker date="1514708547000" expanded="true" signature="2226:2272" ph="..." />
+            <marker date="1514708547000" expanded="true" signature="2385:2589" ph="..." />
+            <marker date="1514708547000" expanded="true" signature="2620:2667" ph="..." />
+            <marker date="1514708547000" expanded="true" signature="2669:2677" ph="&amp;##xe87e;" />
+            <marker date="1514708547000" expanded="true" signature="2807:3013" ph="..." />
+            <marker date="1514708547000" expanded="true" signature="3044:3091" ph="..." />
+            <marker date="1514708547000" expanded="true" signature="3093:3101" ph="&amp;##xe992;" />
+            <marker date="1514708547000" expanded="true" signature="4198:4230" ph="..." />
+            <marker date="1514708547000" expanded="true" signature="4242:4264" ph="data:" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/model/operator/ConfessionOperator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="44" column="33" lean-forward="false" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/StoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="42" column="32" lean-forward="false" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/love/LoveController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="122" column="17" lean-forward="false" selection-start-line="122" selection-start-column="17" selection-end-line="122" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/love/love.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="28" column="21" lean-forward="false" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
+          <folding>
+            <marker date="1514717991000" expanded="false" signature="1565:1609" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/lay/modules/zjoin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="145" column="9" lean-forward="false" selection-start-line="145" selection-start-column="9" selection-end-line="145" selection-end-column="9" />
+          <folding>
+            <marker date="1514724700000" expanded="true" signature="1137:1150" ph="..." />
+            <marker date="1514724700000" expanded="true" signature="1200:1230" ph="..." />
+            <marker date="1514724700000" expanded="true" signature="1265:1288" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/java/cn/zjoin/story/business/controller/story/StudyStoryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="53" column="43" lean-forward="false" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/story/detail_study.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+          <folding>
+            <marker date="1514698958000" expanded="true" signature="1823:1852" ph="..." />
+            <marker date="1514698958000" expanded="true" signature="1854:1862" ph="&amp;##xe061;" />
+            <marker date="1514698958000" expanded="true" signature="3842:3850" ph="&amp;##xe8dc;" />
+            <marker date="1514698958000" expanded="true" signature="4004:4012" ph="&amp;##xeac9;" />
+            <marker date="1514698958000" expanded="true" signature="6607:6615" ph="&amp;##xe8dc;" />
+            <marker date="1514698958000" expanded="true" signature="6747:6755" ph="&amp;##xeac9;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/layui/js/modules/love/show.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-445">
+          <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="28" />
+          <folding>
+            <element signature="e#2892#6112#0" expanded="false" />
+            <element signature="e#6139#11230#0" expanded="false" />
+            <element signature="e#8134#9060#0" expanded="false" />
+            <element signature="e#11253#12388#0" expanded="false" />
+            <marker date="1514731082000" expanded="true" signature="385:519" ph="..." />
+            <marker date="1514731082000" expanded="true" signature="536:563" ph="..." />
+            <marker date="1514731082000" expanded="true" signature="612:742" ph="..." />
+            <marker date="1514731082000" expanded="true" signature="759:783" ph="..." />
+            <marker date="1514731082000" expanded="true" signature="1184:1364" ph="..." />
+            <marker date="1514731082000" expanded="true" signature="1407:1441" ph="..." />
+            <marker date="1514731082000" expanded="true" signature="1540:1683" ph="..." />
+            <marker date="1514731082000" expanded="true" signature="1726:1760" ph="..." />
+            <marker date="1514731082000" expanded="true" signature="2343:2417" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/story/src/main/webapp/html/love/show.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="73" column="6" lean-forward="true" selection-start-line="73" selection-start-column="6" selection-end-line="73" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1514731871000" expanded="true" signature="2092:2166" ph="..." />
+            <marker date="1514731871000" expanded="false" signature="3292:3329" ph="..." />
+            <marker date="1514731871000" expanded="false" signature="3376:3390" ph="..." />
+            <marker date="1514731871000" expanded="false" signature="3434:3448" ph="..." />
+            <marker date="1514731871000" expanded="false" signature="3489:3651" ph="..." />
+            <marker date="1514731871000" expanded="false" signature="4107:4211" ph="..." />
+            <marker date="1514731871000" expanded="false" signature="4278:4320" ph="..." />
+            <marker date="1514731871000" expanded="false" signature="4386:4419" ph="..." />
           </folding>
         </state>
       </provider>

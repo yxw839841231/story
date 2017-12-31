@@ -1,0 +1,29 @@
+body{
+    background-color: #f7f7f8;
+}
+@media only screen and (max-width: 992px) {
+    .story_logo{display: none}
+}
+.story-container{
+    background-color: #f7f7f8;
+    padding: 0px;
+}
+.story-nav {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+ul li div a:hover{
+    cursor: pointer;
+    color: #4285f4;
+}
+.layui-nav{background: #fefefe;}
+.layui-nav .layui-nav-item a{color: #0a001f;}
+.layui-nav .layui-this a, .layui-nav .layui-nav-item a:hover{color: #5eb877;font-weight: bold}
+.study-banner{width: 100%;height: 287px;background-image: url("img/study_my_bg.jpg");}
+#loginli,#logoutli,#registli,#personli{color: #222}
+#study_ul li div{border-bottom: 1px solid #e2e2e2}
+#study_ul li div:hover{background: #ffffff}
+.study_label {display: inline-block;padding: 10px;line-height: 20px;border-radius: 5px;border: 1px solid #d5d5d5;color: #666666;cursor: pointer}
+.study_label.study_label_this {background: #4285f4;color: #fefefe;border-color: #4285f4;}

@@ -1,0 +1,77 @@
+<script>
+    layui.define(['laydate', 'layedit'], function () {
+        var $ = layui.jquery, form = layui.form, layedit = layui.layedit;
+
+        form.render(null, 'study_form');
+        var editIndex = layedit.build('study_edit');
+        zjoin.set({image: $("#study_image"), input: $("#study_input")});
+        $(".layui-layer-btn0").click(function () {
+            layedit.sync(editIndex);
+            $("#study_save").click();
+        })
+        form.on('submit(study_save)',function (data) {
+           $.ajax({
+                url:'/admin/study/add',
+                type:'post',
+                data:data.field,
+                success:function (data) {
+                    if(data.code==0){
+                        $('#study_list_table').datagrid('refresh');
+                        layer.closeCurrent();
+                    }else {
+                        layer.warn(data.msg);
+                    }
+                }
+            })
+            return false;
+        });
+        
+    });
+</script>
+<div class="bjui-pageContent">
+    <form class="layui-form" lay-filter="study_form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">标题</label>
+            <div class="layui-input-inline">
+                <input type="text" name="title" lay-verify="required" class="layui-input" value="">
+            </div>
+            <label class="layui-form-label">封面</label>
+            <div class="layui-input-inline">
+                <img class="zjoin-upload" style="max-height: 150px;max-width: 150px;" src="/layui/images/default-cover.png" id="study_image">
+                <input type="hidden" id="study_input" name="cover">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">关键字</label>
+            <div class="layui-input-inline">
+                <input type="text" name="keywords" lay-verify="required" class="layui-input" value="">
+            </div>
+            <label class="layui-form-label">目录</label>
+            <div class="layui-input-inline">
+                <select name="catalog">
+                    <option value="1">Java</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-inline">
+                <input type="text" name="describle" lay-verify="required" class="layui-input" value="">
+            </div>
+            <label class="layui-form-label">类别</label>
+            <div class="layui-input-inline">
+                <select name="type">
+                    <option value="1">原创</option>
+                    <option value="2">转载</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">内容</label>
+            <div class="layui-input-block" style="width: 85%">
+                <textarea class="layui-textarea layui-hide" name="content" id="study_edit"></textarea>
+            </div>
+        </div>
+        <button id="study_save" lay-submit="" class="layui-hide" lay-filter="study_save"></button>
+    </form>
+</div>

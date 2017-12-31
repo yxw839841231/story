@@ -54,6 +54,7 @@ public class StoryController extends BaseController {
         BaseResult result = new BaseResult();
         Example example = new Example(Carousel.class);
         example.createCriteria().andEqualTo("isdelete",false).andEqualTo("catalog",catalog);
+        example.orderBy("id").desc();
         result.setData(carouselService.getByExample(example));
         return result;
     }

@@ -55,7 +55,7 @@ layui.define(['layer', 'form', 'ZJOINS'], function (exports) {
                             domain: ZJOIN.domain,
                             get_new_uptoken: false,
                             container: 'container',
-                            max_file_size: '1mb',
+                            max_file_size: '20mb',
                             max_retries: 3,
                             dragdrop: !0,
                             drop_element: 'container',

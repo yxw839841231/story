@@ -18,5 +18,6 @@
     <result column="fromlover" jdbcType="VARCHAR" property="fromlover" />
     <result column="isaudit" jdbcType="INTEGER" property="isaudit" />
     <result column="auditcontent" jdbcType="VARCHAR" property="auditcontent" />
+    <result column="type" jdbcType="INTEGER" property="type" />
   </resultMap>
 </mapper>

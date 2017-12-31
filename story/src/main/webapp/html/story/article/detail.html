@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>记忆的尽头是故事</title>
-    <link rel="shortcut icon" type="image/x-icon" href="http://image.story521.cn/logo.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="http://image.story521.cn/story48.ico"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="keywords" content="故事,story,story521,说出你的故事,灵魂,回忆">
     <meta name="description" content="所谓故事，便已是过去了，然而之所以能成为故事，大概是因为在我们内心深处，有着无法忘却的理由。">
@@ -17,8 +17,8 @@
         layui.config({
             base: '/layui/js/modules/'
         }).use('common').config({
-            base: '/layui/js/modules/article/'
-        }).use('detail');
+            base: '/layui/js/modules/story/'
+        }).use('detail_article');
         (adsbygoogle = window.adsbygoogle || []).push({
             google_ad_client: "ca-pub-6045388089730503",
             enable_page_level_ads: true
@@ -31,15 +31,18 @@
     <div class="layui-header story-header">
         <ul class="layui-nav layui-layout-center">
             <div class="story-nav">
-                <li class="layui-nav-item layui-this"><a href="/">首页</a></li>
+                <li class="layui-nav-item"><a href="http://www.story521.cn/"><img src="http://image.story521.cn/logo64.ico" style="width: 30px;height: 30px;border-radius:15px;"></a></li>
+                <li class="layui-nav-item layui-this"><a href="http://www.story521.cn/html/story.html"><img src="http://image.story521.cn/storys64.ico" style="width: 30px;height: 30px;border-radius:15px;"></a></li>
+                <!--<li class="layui-nav-item"><a href="http://www.story521.cn/html/love/love.html"><img src="http://image.story521.cn/love128.ico" style="width: 30px;height: 30px;border-radius:15px;"></a></li>-->
+                <li class="layui-nav-item"><a href="http://www.story521.cn/html/study.html"><img src="http://image.story521.cn/study128.ico" style="width: 30px;height: 30px;border-radius:15px;background: #ffffff"></a></li>
             </div>
         </ul>
 
-        <!--<ul class="layui-nav layui-layout-right">-->
-            <!--<li class="layui-nav-item " id = "loginli">登录</li>-->
-            <!--<li class="layui-nav-item ">&nbsp;&nbsp;|&nbsp;&nbsp;</li>-->
-            <!--<li class="layui-nav-item " id = "registli">注册</li>-->
-        <!--</ul>-->
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item " id = "loginli">登录</li>
+            <li class="layui-nav-item ">&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+            <li class="layui-nav-item " id = "registli">注册</li>
+        </ul>
     </div>
     <div class="layui-container story-container" >
         <div class="layui-row">
@@ -64,7 +67,6 @@
                     <fieldset class="layui-elem-field layui-field-title">
                         <legend>网友评论</legend>
                         <div class="layui-field-box">
-                            <ul style="margin-bottom: 30px;" id="comment_list"></ul>
                             <textarea placeholder="我说两句～" class="layui-textarea" id="comment_edit"></textarea>
                         </div>
                         <div style="float: right;margin-right: 20px;">
@@ -72,6 +74,7 @@
                             <button class="layui-btn layui-btn-radius layui-btn-primary layui-btn-sm" id="claer_comment">清空内容
                             </button>
                         </div>
+                        <ul style="margin-bottom: 30px;" id="comment_list"></ul>
                     </fieldset>
                 </div>
             </div>
@@ -93,6 +96,9 @@
             Copyright © 2016-2017 易天下·故事 . All rights reserved. | 浙ICP备17039224号-1
         </div>
     </div>
+    <p style="display: none;">
+        <script src="https://s19.cnzz.com/z_stat.php?id=1271311300&web_id=1271311300" language="JavaScript"></script>
+    </p>
 </div>
 </body>
 </html>

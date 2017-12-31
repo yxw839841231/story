@@ -1,4 +1,4 @@
-package cn.zjoin.story.business.model;
+package cn.zjoin.story.business.model.operator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -10,6 +10,7 @@
     <result column="userid" property="userid" jdbcType="BIGINT" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="dz" property="dz" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
 
@@ -41,10 +42,10 @@
     UPDATE comment set dz = dz+1 WHERE id =#{id};
   </update>
 
-  <select id="getArticleCommentList" parameterType="java.lang.Long" resultType="cn.zjoin.story.business.model.view.ViewComment">
+  <select id="getArticleCommentList" parameterType="cn.zjoin.story.business.model.Comment" resultType="cn.zjoin.story.business.model.view.ViewComment">
     SELECT c.*,u.nickname,u.picture FROM comment c
     LEFT JOIN user u on c.userid = u.id
-    WHERE articleid =#{id}
+    WHERE articleid =#{articleid,jdbcType=BIGINT} and `type` = #{type,jdbcType=INTEGER}
     ORDER BY c.createtime desc
 
   </select>

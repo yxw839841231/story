@@ -9,11 +9,15 @@ import cn.zjoin.story.base.controller.BaseController;
 import cn.zjoin.story.base.model.BaseResult;
 import cn.zjoin.story.base.model.Pagination;
 import cn.zjoin.story.business.model.Comment;
+import cn.zjoin.story.business.model.User;
 import cn.zjoin.story.business.service.CommentService;
+import cn.zjoin.story.business.service.StudyService;
 import cn.zjoin.story.core.aspet.Login;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,6 +39,9 @@ public class CommentStoryController extends BaseController {
     @Resource
     private CommentService commentService;
 
+    @Autowired
+    private StudyService studyService;
+
 
     @RequestMapping(value = "newest", method = RequestMethod.GET)
     @ResponseBody
@@ -50,16 +57,25 @@ public class CommentStoryController extends BaseController {
     @Login
     public BaseResult add(Comment comment) {
         BaseResult result = new BaseResult();
+        User user = getUser();
+        if(!user.getIsauth()){
+            result.setCode(-1);
+            result.setMsg("您还未验证邮箱，无法评论哦～");
+            return result;
+        }
         comment.setCreatetime(new Date());
+
         comment.setUserid(getUser().getId());
         commentService.insert(comment);
-        getRedisOperationManager().setData("",1);
+        if (comment.getType()==2){
+            studyService.updatePl(comment.getArticleid());
+        }
         return result;
     }
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     @ResponseBody
-    public BaseResult list(Pagination<Comment> pagination,Comment comment) {
+    public BaseResult list(Pagination<Comment> pagination,@ModelAttribute Comment comment) {
 
         BaseResult result = new BaseResult();
         try {

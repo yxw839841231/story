@@ -63,6 +63,8 @@
 
             , editormd: 'modules/plugin/editormd/editormd' //缓存
 
+            , snow : 'modules/plugin/love/snow'
+
 
             , ztree: 'modules/plugin/ztree/ztree' //
             , ztreecheck: 'modules/plugin/ztree/ztreecheck' //

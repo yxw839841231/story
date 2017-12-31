@@ -2,15 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>爱·告白</title>
+    <title>爱告白</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="爱的告白,就要爱,爱,告白,表白,爱情">
-    <link rel="shortcut icon" type="image/x-icon" href="http://image.story521.cn/logo.ico"/>
+    <meta name="keywords" content="爱的告白,就要爱,爱,告白,表白,爱情,story521,story">
+    <meta name="description" content="爱，就疯狂，不爱，就坚强！爱就应该大声的说出来，不管是哪种爱。一起讲述我们爱的故事。">
+    <link rel="shortcut icon" type="image/x-icon" href="http://image.story521.cn/love64.ico"/>
     <link rel="stylesheet" href="/layui/css/layui2.css">
     <link rel="stylesheet" href="/layui/css/show.css">
     <script src="/layui/layui.js"></script>
     <script>
-        layui.define(['layer','jquery'], function () {
+        layui.config({
+            base: '/layui/js/modules/love/'
+        }).use('show').define('jquery',function () {
+            var $ =layui.jquery;
+                //播放完毕
+                $('#mp3Btn').on('ended', function() {
+                    console.log("音频已播放完成");
+                    $('.btn-audio').css({'background':'url(/layui/images/love//voice_stop.png) no-repeat center bottom','background-size':'cover'});
+                })
+                //播放器控制
+                var audio = document.getElementById('mp3Btn');
+                audio.volume = .3;
+                $('.btn-audio').click(function() {
+                    event.stopPropagation();//防止冒泡
+                    if(audio.paused){ //如果当前是暂停状态
+                        $('.btn-audio').css({'background':'url(/layui/images/love//voice_play.png) no-repeat center bottom','background-size':'cover'});
+                        audio.play(); //播放
+                        return;
+                    }else{//当前是播放状态
+                        $('.btn-audio').css({'background':'url(/layui/images/love//voice_stop.png) no-repeat center bottom','background-size':'cover'});
+                        audio.pause(); //暂停
+                    }
+                });
+        });
+        /*layui.define(['layer','jquery'], function () {
             var $ = layui.jquery
             $.get('/love/showi?id='+getUrlParam("id"),function (data) {
                 if(data.code==0){
@@ -27,15 +52,27 @@
                 return null; //返回参数值
             }
         });
-
+*/
     </script>
     <style>
 
-        #love_detail img{max-width: 100%;max-height: 100%;}
+        /*#love_detail img{max-width: 100%;max-height: 100%;}*/
+
+        .btn-audio{
+            width: 50px;
+            height: 50px;
+            background:url(/layui/images/love/voice_stop.png) no-repeat center bottom;
+            background-size:cover;
+        }
     </style>
 </head>
 <body>
-<div class="layui-layout layui-layout-admin">
+<div class="btn-audio" style="position: absolute;top:10px;right: 10px;z-index: 99999999999">
+    <audio id="mp3Btn">
+        <source src="images/audio.mp3" type="audio/mpeg" />
+    </audio>
+</div>
+<!--<div class="layui-layout layui-layout-admin">
 
     <div class="layui-container story-container" >
         <div class="layui-row" style="text-align: center;padding: 15px 0px;">
@@ -43,13 +80,13 @@
             <h3 style="color: #ffffff">- OUR STORY -</h3>
             <h3 style="color: #ffffff">陪伴是最长情的告白</h3>
             <div style="width: 200px;height: 200px;line-height: 200px;margin: 10px auto;border-radius: 100px;text-align: center;vertical-align: middle;overflow:hidden;background: #f7e4f0" id="cover"></div>
-            <!--<div style="width: 100%;min-height: 150px;margin: 20px auto;background: #f5f0d8;line-height: 35px;font-family: 华文细黑;color: #bf7878;">
+            &lt;!&ndash;<div style="width: 100%;min-height: 150px;margin: 20px auto;background: #f5f0d8;line-height: 35px;font-family: 华文细黑;color: #bf7878;">
                 关关雎鸠，在河之洲。窈窕淑女，君子好逑。<br>
                 参差荇菜，左右流之。窈窕淑女，寤寐求之。<br>
                 求之不得，寤寐思服。悠哉悠哉，辗转反侧。<br>
                 参差荇菜，左右采之。窈窕淑女，琴瑟友之。<br>
                 参差荇菜，左右芼之。窈窕淑女，钟鼓乐之。<br>
-            </div>-->
+            </div>&ndash;&gt;
             <div id = "love_detail" style="width: 100%;min-height: 150px;margin: 20px auto;border-radius:3px;background: #ecd1e2;line-height: 35px;">
 
             </div>
@@ -63,6 +100,6 @@
     </div>
 
 
-</div>
+</div>-->
 </body>
 </html>

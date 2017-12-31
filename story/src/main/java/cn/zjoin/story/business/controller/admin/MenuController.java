@@ -45,7 +45,7 @@ public class MenuController extends BaseController{
             List<System> list1 = systemService.getAll();
             map.put("menu",list);
             map.put("system",list1);
-            getRedisOperationManager().setData(RedisConstant.SYSTEM_MENU,map);
+            getRedisOperationManager().setData(RedisConstant.SYSTEM_MENU,map,30000);
         }else {
             map = (Map<String,Object>)o;
         }

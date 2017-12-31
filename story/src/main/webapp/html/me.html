@@ -26,7 +26,27 @@
                     $("#wx").val(res.data.wx);
                     $("#loginname").val(res.data.loginname);
                     $("#email").val(res.data.email);
+                    $("#email2").val(res.data.email);
                     $("#phone").val(res.data.phone);
+                    if(res.data.isauth){
+                        $("#isAuth").empty().append('<div class="layui-form-mid" style="color: #00aa00">已激活</div>');
+                    }else {
+                        $("#isAuth").empty().append('<button class="layui-btn" id="isauth" >立即激活</button>');
+                        $("#isauth").click(function () {
+                            $.ajax( {
+                                url:'/mail/authMail',
+                                type:'get',
+                                success:function (data) {
+                                    if(data.code==0){
+                                        layer.ok("验证邮件已成功发送，请尽快验证！");
+                                    }else {
+                                        layer.err(data.msg);
+                                    }
+                                }
+                                    
+                            });
+                        });
+                    }
                     if (res.data.picture) {
                         $("#user-image").attr("src", res.data.picture)
                         $("#picture").val(res.data.picture);
@@ -62,7 +82,7 @@
                                     //假设你的列表返回在data集合中
                                     layui.each(res.data.list, function (index, d) {
                                         var html = '<div style="width: 100%;height: 35px;line-height: 35px;">';
-                                        html+='<a href="/html/story/article/detail.html?id='+d.id+'" target="_blank">'+d.title+'</a>'
+                                        html+='<a href="http://www.story521.cn/html/story/article/detail.html?id='+d.id+'" target="_blank">'+d.title+'</a>'
                                         html+='</div>';
 
                                         lis.push(html)
@@ -85,7 +105,7 @@
                                     //假设你的列表返回在data集合中
                                     layui.each(res.data.list, function (index, d) {
                                         var html = '<div style="width: 100%;height: 35px;line-height: 35px;">';
-                                        html+='<a href="/html/love/show.html?id='+d.id+'" target="_blank">'+d.title+'</a>'
+                                        html+='<a href="http://www.story521.cn/html/love/show.html?id='+d.id+'" target="_blank">'+d.title+'</a>'
                                         html+='</div>';
 
                                         lis.push(html)
@@ -106,8 +126,8 @@
     <div class="layui-header story-header">
         <ul class="layui-nav layui-layout-center">
             <div class="story-nav">
-                <li class="layui-nav-item layui-this"><a href="/">首页</a></li>
-                <li class="layui-nav-item"><a href="love/love.html">爱·告白</a></li>
+                <li class="layui-nav-item"><a href="http://www.story521.cn/">首页</a></li>
+                <li class="layui-nav-item layui-this"><a href="http://www.story521.cn/html/me.html">个人中心</a></li>
             </div>
         </ul>
 
@@ -180,7 +200,7 @@
                                         <img src="/layui/images/default-cover.png"
                                              style="max-width: 100%;max-height: 100%;" id="user-image">
                                         <input type="hidden" name="picture" id="picture"
-                                               value="http://ovkuoveh9.bkt.clouddn.com/FhNQ7FEeTpf2juzH8rAbPDyNP1w3">
+                                               value="http://image.story521.cn/FhNQ7FEeTpf2juzH8rAbPDyNP1w3">
                                     </div>
                                 </div>
                             </div>
@@ -192,6 +212,26 @@
                                 </div>
                             </div>
                         </form>
+                        <hr>
+                        <fieldset class="layui-elem-field layui-field-title">
+                            <legend>账户状态</legend>
+                            <div class="layui-field-box">
+
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">邮箱</label>
+                                            <div class="layui-input-block">
+                                                <input class="layui-input" name="" id="email2" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">激活状态</label>
+                                            <div class="layui-input-block" id="isAuth"></div>
+                                        </div>
+                                    </div>
+
+                            </div>
+                        </fieldset>
                     </div>
                     <div class="layui-tab-item" id="myArticle"></div>
                     <div class="layui-tab-item" id="myLove"></div>
@@ -207,6 +247,9 @@
             Copyright © 2016-2017 记忆的尽头是故事 All rights reserved. | 浙ICP备17039224号-1
         </div>
     </div>
+    <p style="display: none;">
+        <script src="https://s19.cnzz.com/z_stat.php?id=1271311300&web_id=1271311300" language="JavaScript"></script>
+    </p>
 </div>
 </body>
 </html>
